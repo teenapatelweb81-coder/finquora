@@ -22,3 +22,5 @@ beta/assets/pdf/A4-portrait.pdf
 !application/logs/index.html
 !application/logs/.htaccess
 /vendor/
+application/config/database*
+beta/application/config/database*
