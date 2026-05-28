@@ -18,7 +18,7 @@ application/assets/*
 upload/*
 beta/assets/*
 beta/upload/*
-application/beta/assets/pdf/A4-portrait.pdf
+beta/assets/pdf/A4-portrait.pdf
 !application/logs/index.html
 !application/logs/.htaccess
 /vendor/
