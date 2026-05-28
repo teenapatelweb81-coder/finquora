@@ -14,6 +14,7 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 #codeigniter 3
 application/logs/*
 application/upload/*
+upload/*
 application/beta/assets/*
 application/beta/assets/pdf/A4-portrait.pdf
 !application/logs/index.html
