@@ -19,6 +19,7 @@
                 justify-content: center;
                 width: 100vw;
                 height: 100vh;
+                min-height: 675px;
                 background-color: #F4F5FF;
             }
             p {
