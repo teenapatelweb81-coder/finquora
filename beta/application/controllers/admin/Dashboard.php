@@ -519,108 +519,8 @@ class Dashboard extends CI_Controller
         $myteamUserIds =  [];
         $myteamUserIdsrole = [];
         
-        if ($role != 1) {
-            $users = $this->db->select('id,role')
-            ->where('domain_id', $domain_id)
-                ->where('parent_team_id', $uid)
-                ->where('parent_team_role','2')
-                ->where('status',1)
-                ->get('user_master')
-                ->result_array();
-                
-                if (empty($users)) {
-                    $users = $this->db->select('id,role')
-                    ->where('domain_id', $domain_id)
-                    ->where('parent_team_id', $uid)
-                    ->where('parent_team_role','2')
-                    ->where('status',1)
-                    ->get('branch_franchise')
-                    ->result_array();
-                }
-                if (!empty($users)) {
-                    foreach ($users as $user) {
-                        $myteamuserIds[]     = $user['id'];
-                        $myteamUserIdsrole[] = $user['role'];
-                    }
-                }
-            }
-            // print_r($myteamuserIds);die;
-            if (empty($myteamuserIds)) {
-                $myteamuserIds = [-1];
-            }else{
-                // foreach($myteamuserIds as $myteamUserId){
-                    //     $users = $this->db->select('id')
-                    //                 ->where('domain_id', $domain_id)
-                    //                 ->where('parent_id', $myteamUserId)
-                //                 ->get('user_master')
-                //                 ->result_array();
-                
-                //                 if (!empty($users)) {
-                    //                 foreach ($users as $user) {
-                        //                     $myteamUserIds[]     = $user['id'];
-                        //                 }
-                        //             }
-                        // }
-                        // print_r($myteamuserIds);die;
-                        // check error a rhi hai
-                // $this->db->select('id');
-                // $this->db->from('user_master');
-                // $this->db->where('domain_id', $domain_id);
-                // $this->db->where('status', 1);
-                // $this->db->group_start();
-                        
-                //         foreach ($myteamuserIds as $key => $pid) {
-                //             $prole = $myteamUserIdsrole[$key] ?? null;
-                            
-                //             if ($prole !== null) {
-                //                 $this->db->or_group_start()
-                //                 ->where('parent_id', $pid)
-                //                 ->where('parent_id_role', $prole)
-                //                 ->group_end();
-                //             }
-                //         }
-            
-                //  $this->db->group_end();
-                // $users = $this->db->get()->result_array();
-
-                $this->db->select('id');
-                $this->db->from('user_master');
-                $this->db->where('domain_id', $domain_id);
-                $this->db->where('status', 1);
-
-                $hasCondition = false;
-
-                foreach ($myteamuserIds as $key => $pid) {
-
-                    $prole = $myteamUserIdsrole[$key] ?? null;
-
-                    if ($prole !== null) {
-
-                        if (!$hasCondition) {
-                            $this->db->group_start();
-                            $hasCondition = true;
-                        }
-
-                        $this->db->or_group_start()
-                                ->where('parent_id', $pid)
-                                ->where('parent_id_role', $prole)
-                                ->group_end();
-                    }
-                }
-
-                if ($hasCondition) {
-                    $this->db->group_end();
-                }
-
-                $users = $this->db->get()->result_array();
-            
-            // IDs collect करो
-            if (!empty($users)) {
-                foreach ($users as $user) {
-                    $myteamuserIds[] = $user['id'];
-                }
-            }
-        }
+            $myteamuserIds = $this->getMyTeamUserIds($uid, $domain_id);
+        
     //    echo '<pre>'; print_r($this->db->last_query());
         
     //     print_r($myteamuserIds);die;
@@ -15425,5 +15325,49 @@ public function deleteCibilLink($id)
     }
 }
 
+public function getMyTeamUserIds($uid, $domain_id)
+{
+    $allUserIds = [$uid];
+    $queue      = [$uid];
+
+    while (!empty($queue)) {
+
+        $parentId = array_shift($queue);
+
+        // Get direct team members
+        $users = $this->db
+            ->select('id')
+            ->where('domain_id', $domain_id)
+            ->where('parent_team_id', $parentId)
+            ->where('status', 1)
+            ->get('user_master')
+            ->result_array();
+
+        // If not found in user_master then check branch_franchise
+        if (empty($users)) {
+            $users = $this->db
+                ->select('id')
+                ->where('domain_id', $domain_id)
+                ->where('parent_id', $parentId)
+                ->where('status', 1)
+                ->get('user_master')
+                ->result_array();
+        }
+
+        foreach ($users as $user) {
+
+            if (!in_array($user['id'], $allUserIds)) {
+
+                $allUserIds[] = $user['id'];
+
+                // Add to queue so we can find their team members too
+                $queue[] = $user['id'];
+            }
+        }
+    }
+
+    // return $allUserIds;
+    return array_values(array_diff($allUserIds, [$uid]));
+}
 
 }
