@@ -23,6 +23,7 @@ $route['admin/deleteInstanloan/(:num)'] = 'admin/Dashboard/deleteInstanloan/$1';
 $route['admin-dashboard'] = 'admin/Dashboard';
 $route['admin/reject'] = 'admin/Dashboard/reject';
 $route['admin/myleads'] = 'admin/Dashboard/myleads';
+$route['admin/getMyTeamUserIdss'] = 'admin/Dashboard/getMyTeamUserIdss';
 $route['admin/disbursement'] = 'admin/Dashboard/disbursement';
 $route['admin/payout'] = 'admin/Dashboard/payout';
 $route['admin/approved'] = 'admin/Dashboard/approved';

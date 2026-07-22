@@ -228,7 +228,10 @@ if (isset($_GET['type']) || isset($_GET['user_id'])) {?>
       </header>
 
       <?php
-         $agent = $this->db->where('id', $_SESSION['user_id'])->where('status !=', 2)->get('user_master')->row();
+         $agent = $this->db->where(['id'=>$_SESSION['user_id'] ,'role'=>$_SESSION['role']])->where('status !=', 2)->get('user_master')->row();
+         if (empty($agent)) {
+            $agent = $this->db->where(['id'=>$_SESSION['user_id'] ,'role'=>$_SESSION['role']])->where('status !=', 2)->get('branch_franchise')->row();
+         }
          $domain_id = domain_id_get();
          $user_id   = $this->session->userdata('user_id');
          $this->db->from('registerUser');
@@ -422,7 +425,9 @@ if (isset($_GET['type']) || isset($_GET['user_id'])) {?>
                         <li data-id="<?= $menu_possition['my_team'] ?>" class=<?php if ($currentURL == "admin-team") {echo "active";}?>><a href="<?php echo base_url('admin/admin-team'); ?>"><i class="fa fa-handshake-o" aria-hidden="true"></i>My Team</a></li>
                      <?php }?>
 
-                     <?php if (empty($agent->parent_id)) {?>
+                     <?php 
+                  //   print_r($agent);die;
+                     if (empty($agent->parent_id) || $agent->parent_id == 0) {?>
                      <?php if ($this->session->userdata('type') == 'admin' || has_permission('My Team')) { ?>
                         <li data-id="<?= $menu_possition['dsa_branch_team'] ?>" class=<?php if ($currentURL == "my-team") {echo "active";}?>><a href="<?php echo base_url('admin/my-team'); ?>"><i class="fa fa-handshake-o" aria-hidden="true"></i><?=  ($this->session->userdata('role') == 1) ? 'DSA & Branch team' : 'My team free DSA' ; ?></a></li>
                      <?php }} ?>
