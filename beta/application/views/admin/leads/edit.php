@@ -190,6 +190,52 @@
 
             </div>
 
+            
+            <?php
+                $user = $this->db
+                ->where('id', $this->session->userdata('user_id'))
+                ->get('user_master')
+                ->row_array();
+                if($user['parent_id_role'] == 1){?>
+               <div class="row">
+                  <div class="col-md-6">
+                        <label for="add_for" class="form-label">Add For<span class="text-danger">*</span></label>
+                        <select id="add_for" class="form-control" name="add_for">
+                           <?php
+                           if (!empty($teamusers)) {
+                              foreach ($teamusers as $teamuser) {
+                                    ?>
+                                    <option  <?= ($datas->uid == $teamuser['id']) ? 'selected' : '' ?> value="<?php echo $teamuser['id']; ?>"
+                                          data-role="<?php echo $teamuser['role']; ?>">
+                                       <?php echo $teamuser['name']; ?>
+                                    </option>
+                                    <?php
+                              }
+                           }
+                           ?>
+                        </select>
+
+                        <input type="hidden" name="add_for_role" id="add_for_role" value="<?= $datas->uid_role?>">
+                  </div>
+                  
+               </div>
+               <script>
+                  $(document).ready(function () {
+
+                     function setRole() {
+                        var role = $('#add_for option:selected').data('role');
+                        $('#add_for_role').val(role);
+                     }
+
+                     setRole(); // first selected option
+
+                     $('#add_for').change(function () {
+                        setRole();
+                     });
+                  });
+               </script>
+            <?php }?>
+
             <div class="row">
 
                 <div class="col-md-5">

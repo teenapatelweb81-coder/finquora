@@ -519,11 +519,11 @@ class Dashboard extends CI_Controller
         $myteamUserIds =  [];
         $myteamUserIdsrole = [];
         
-            $myteamuserIds = $this->getMyTeamUserIds($uid, $domain_id);
+        $myteamuserIds = $this->getMyTeamUserIds($uid, $domain_id);
         
-    //    echo '<pre>'; print_r($this->db->last_query());
-        
-    //     print_r($myteamuserIds);die;
+        //    echo '<pre>'; print_r($this->db->last_query());
+            
+        //     print_r($myteamuserIds);die;
 
        
         // Code for parent_team_id END
@@ -810,33 +810,174 @@ class Dashboard extends CI_Controller
         $team_user = $this->db->where('parent_team_id', $user_id);
         $team_user = $this->count2 = $this->db->count_all_results();
 
+        $allUserIds = $this->getMyTeamUserIdss();
+        foreach ($allUserIds as $key => $user) {
+            if ($user['id'] == $uid && $user['role'] == $role) {
+                unset($allUserIds[$key]);
+            }
+        }
+
+        $allUserIds = array_values($allUserIds); // Re-index array
+        $team_user = count($allUserIds);
         if($team_user > 0){
+            /*
+             // $data['team_leads_digital'] = $this->db->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('process_id', $processIdsdigital)->where_in('uid', $myteamuserIds)->get('leads')->num_rows();
+            
+            // $data['team_disbursemenets_lead_digital'] = $this->db->select('SUM(COALESCE(disbursed,0) + COALESCE(disbursed_team,0)) AS dis')->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('process_id', $processIdsdigital)->where_in('uid', $myteamuserIds)->get('leads')->row();
+           
+            // $data['team_payout_lead_digital'] = $this->db->select('SUM(COALESCE(payment_amount_paid_team,0) + COALESCE(payment_amount_paid,0)) AS pay_amount')->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('process_id', $processIdsdigital)->where_in('uid', $myteamuserIds)->get('leads')->row();
+           
 
-            $data['team_leads_digital'] = $this->db->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('process_id', $processIdsdigital)->where_in('uid', $myteamuserIds)->get('leads')->num_rows();
-            $data['team_disbursemenets_lead_digital'] = $this->db->select('SUM(COALESCE(disbursed,0) + COALESCE(disbursed_team,0)) AS dis')->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('process_id', $processIdsdigital)->where_in('uid', $myteamuserIds)->get('leads')->row();
-            $data['team_payout_lead_digital'] = $this->db->select('SUM(COALESCE(payment_amount_paid_team,0) + COALESCE(payment_amount_paid,0)) AS pay_amount')->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('process_id', $processIdsdigital)->where_in('uid', $myteamuserIds)->get('leads')->row();
-            $data['team_approved_digital'] = $this->db->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('process_id', $processIdsdigital)->where('lead_status', 'Apporved')->where_in('uid', $myteamuserIds)->get('leads')->num_rows();
-            $data['team_rejects_digital'] = $this->db->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('process_id', $processIdsdigital)->where('lead_status', 'Reject')->where_in('uid', $myteamuserIds)->get('leads')->num_rows();
-            $data['team_rejects'] = $this->db
-                ->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])
-                ->where_in('process_id', $processIdsPaper)
-                ->where('lead_status', 'Reject')
-                ->where_in('uid', $myteamuserIds)
-                ->get('leads')
-                ->num_rows();
+            // $data['team_approved_digital'] = $this->db->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('process_id', $processIdsdigital)->where('lead_status', 'Apporved')->where_in('uid', $myteamuserIds)->get('leads')->num_rows();
+          
+                
+            // $data['team_rejects_digital'] = $this->db->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('process_id', $processIdsdigital)->where('lead_status', 'Reject')->where_in('uid', $myteamuserIds)->get('leads')->num_rows();
+           
 
-            $data['team_leads'] = $this->db->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('process_id', $processIdsPaper)->where_in('uid', $myteamuserIds)->get('leads')->num_rows();
-            $data['team_disbursemenets_lead_paper'] = $this->db->select('SUM(COALESCE(disbursed,0) + COALESCE(disbursed_team,0)) AS dis')->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('process_id', $processIdsPaper)->where_in('uid', $myteamuserIds)->get('leads')->row();
-            $data['team_payout_lead_paper'] = $this->db->select('SUM(COALESCE(payment_amount_paid_team,0) + COALESCE(payment_amount_paid,0)) AS pay_amount')->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('process_id', $processIdsPaper)->where_in('uid', $myteamuserIds)->get('leads')->row();
-            $data['team_approved'] = $this->db->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('process_id', $processIdsPaper)->where('lead_status', 'Apporved')->where_in('uid', $myteamuserIds)->get('leads')->num_rows();
-            $data['team_rejects'] = $this->db->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('process_id', $processIdsPaper)->where('lead_status', 'Reject')->where_in('uid', $myteamuserIds)->get('leads')->num_rows();
+
+            // $data['team_rejects'] = $this->db
+            //     ->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])
+            //     ->where_in('process_id', $processIdsPaper)
+            //     ->where('lead_status', 'Reject')
+            //     ->where_in('uid', $myteamuserIds)
+            //     ->get('leads')
+            //     ->num_rows();
+
+
+
+            // $data['team_leads'] = $this->db->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('process_id', $processIdsPaper)->where_in('uid', $myteamuserIds)->get('leads')->num_rows();
+          
+            
+            // $data['team_disbursemenets_lead_paper'] = $this->db->select('SUM(COALESCE(disbursed,0) + COALESCE(disbursed_team,0)) AS dis')->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('process_id', $processIdsPaper)->where_in('uid', $myteamuserIds)->get('leads')->row();
+            // $data['team_payout_lead_paper'] = $this->db->select('SUM(COALESCE(payment_amount_paid_team,0) + COALESCE(payment_amount_paid,0)) AS pay_amount')->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('process_id', $processIdsPaper)->where_in('uid', $myteamuserIds)->get('leads')->row();
+            // $data['team_approved'] = $this->db->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('process_id', $processIdsPaper)->where('lead_status', 'Apporved')->where_in('uid', $myteamuserIds)->get('leads')->num_rows();
+            // $data['team_rejects'] = $this->db->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('process_id', $processIdsPaper)->where('lead_status', 'Reject')->where_in('uid', $myteamuserIds)->get('leads')->num_rows();
             
             
-            $data['team_loans_digital'] = $this->db->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('apply_for_loan', $loan_name_digital)->where_in('user_id', $myteamuserIds)->get('loan_master')->num_rows();
-            $data['team_disbursemenets_loan_digital'] = $this->db->select('SUM(COALESCE(disbursed,0) + COALESCE(disbursed_team,0)) AS dis')->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('apply_for_loan', $loan_name_digital)->where_in('user_id', $myteamuserIds)->get('loan_master')->row();
-            $data['team_payout_loan_digital'] = $this->db->select('SUM(COALESCE(payment_amount_paid_team,0) + COALESCE(payment_amount_paid,0)) AS pay_amount')->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('apply_for_loan', $loan_name_digital)->where_in('user_id', $myteamuserIds)->get('loan_master')->row();
-            $data['team_loans_approved_digital'] = $this->db->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('apply_for_loan', $loan_name_digital)->where('loan_status', 'Apporved')->where_in('user_id', $myteamuserIds)->get('loan_master')->num_rows();
-            $data['team_loans_rejects_digital'] = $this->db->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('apply_for_loan', $loan_name_digital)->where('loan_status', 'Reject')->where_in('user_id', $myteamuserIds)->get('loan_master')->num_rows();
+            // $data['team_loans_digital'] = $this->db->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('apply_for_loan', $loan_name_digital)->where_in('user_id', $myteamuserIds)->get('loan_master')->num_rows();
+            // $data['team_disbursemenets_loan_digital'] = $this->db->select('SUM(COALESCE(disbursed,0) + COALESCE(disbursed_team,0)) AS dis')->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('apply_for_loan', $loan_name_digital)->where_in('user_id', $myteamuserIds)->get('loan_master')->row();
+            // $data['team_payout_loan_digital'] = $this->db->select('SUM(COALESCE(payment_amount_paid_team,0) + COALESCE(payment_amount_paid,0)) AS pay_amount')->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('apply_for_loan', $loan_name_digital)->where_in('user_id', $myteamuserIds)->get('loan_master')->row();
+            // $data['team_loans_approved_digital'] = $this->db->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('apply_for_loan', $loan_name_digital)->where('loan_status', 'Apporved')->where_in('user_id', $myteamuserIds)->get('loan_master')->num_rows();
+            // $data['team_loans_rejects_digital'] = $this->db->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('apply_for_loan', $loan_name_digital)->where('loan_status', 'Reject')->where_in('user_id', $myteamuserIds)->get('loan_master')->num_rows();
+            
+            */
+
+                $this->db->where_in('process_id', $processIdsdigital);
+                $this->applyDomainFilter($domain_id);
+                $this->applyUserRoleFilter($allUserIds);
+
+                $data['team_leads_digital'] = $this->db->get('leads')->num_rows();
+
+                $this->db->select('SUM(COALESCE(disbursed,0) + COALESCE(disbursed_team,0)) AS dis')
+                        ->where_in('process_id', $processIdsdigital);
+
+                $this->applyDomainFilter($domain_id);
+                $this->applyUserRoleFilter($allUserIds);
+
+                $data['team_disbursemenets_lead_digital'] = $this->db->get('leads')->row();
+
+                $this->db->select('SUM(COALESCE(payment_amount_paid_team,0) + COALESCE(payment_amount_paid,0)) AS pay_amount')
+                        ->where_in('process_id', $processIdsdigital);
+
+                $this->applyDomainFilter($domain_id);
+                $this->applyUserRoleFilter($allUserIds);
+
+                $data['team_payout_lead_digital'] = $this->db->get('leads')->row();
+
+                $this->db->where_in('process_id', $processIdsdigital)
+                        ->where('lead_status', 'Apporved');
+
+                $this->applyDomainFilter($domain_id);
+                $this->applyUserRoleFilter($allUserIds);
+
+                $data['team_approved_digital'] = $this->db->get('leads')->num_rows();
+
+                $this->db->where_in('process_id', $processIdsdigital)
+                        ->where('lead_status', 'Reject');
+
+                $this->applyDomainFilter($domain_id);
+                $this->applyUserRoleFilter($allUserIds);
+
+                $data['team_rejects_digital'] = $this->db->get('leads')->num_rows();
+
+                $this->db->where_in('process_id', $processIdsPaper);
+
+                $this->applyDomainFilter($domain_id);
+                $this->applyUserRoleFilter($allUserIds);
+
+                $data['team_leads'] = $this->db->get('leads')->num_rows();
+
+                $this->db->select('SUM(COALESCE(disbursed,0) + COALESCE(disbursed_team,0)) AS dis')
+                        ->where_in('process_id', $processIdsPaper);
+
+                $this->applyDomainFilter($domain_id);
+                $this->applyUserRoleFilter($allUserIds);
+
+                $data['team_disbursemenets_lead_paper'] = $this->db->get('leads')->row();
+
+                $this->db->select('SUM(COALESCE(payment_amount_paid_team,0) + COALESCE(payment_amount_paid,0)) AS pay_amount')
+                        ->where_in('process_id', $processIdsPaper);
+
+                $this->applyDomainFilter($domain_id);
+                $this->applyUserRoleFilter($allUserIds);
+
+                $data['team_payout_lead_paper'] = $this->db->get('leads')->row();
+
+                $this->db->where_in('process_id', $processIdsPaper)
+                        ->where('lead_status', 'Apporved');
+
+                $this->applyDomainFilter($domain_id);
+                $this->applyUserRoleFilter($allUserIds);
+
+                $data['team_approved'] = $this->db->get('leads')->num_rows();
+
+                $this->db->where_in('process_id', $processIdsPaper)
+                        ->where('lead_status', 'Reject');
+
+                $this->applyDomainFilter($domain_id);
+                $this->applyUserRoleFilter($allUserIds);
+
+                $data['team_rejects'] = $this->db->get('leads')->num_rows();
+
+                $this->db->where_in('apply_for_loan', $loan_name_digital);
+
+                $this->applyDomainFilter($domain_id);
+                $this->applyUserRoleFilter($allUserIds, 'user_id', 'role');
+
+                $data['team_loans_digital'] = $this->db->get('loan_master')->num_rows();
+
+                $this->db->select('SUM(COALESCE(disbursed,0) + COALESCE(disbursed_team,0)) AS dis')
+                        ->where_in('apply_for_loan', $loan_name_digital);
+
+                $this->applyDomainFilter($domain_id);
+                $this->applyUserRoleFilter($allUserIds, 'user_id', 'role');
+
+                $data['team_disbursemenets_loan_digital'] = $this->db->get('loan_master')->row();
+
+                $this->db->select('SUM(COALESCE(payment_amount_paid_team,0) + COALESCE(payment_amount_paid,0)) AS pay_amount')
+                        ->where_in('apply_for_loan', $loan_name_digital);
+
+                $this->applyDomainFilter($domain_id);
+                $this->applyUserRoleFilter($allUserIds, 'user_id', 'role');
+
+                $data['team_payout_loan_digital'] = $this->db->get('loan_master')->row();
+
+                $this->db->where_in('apply_for_loan', $loan_name_digital)
+                        ->where('loan_status', 'Apporved');
+
+                $this->applyDomainFilter($domain_id);
+                $this->applyUserRoleFilter($allUserIds, 'user_id', 'role');
+
+                $data['team_loans_approved_digital'] = $this->db->get('loan_master')->num_rows();
+
+                $this->db->where_in('apply_for_loan', $loan_name_digital)
+                        ->where('loan_status', 'Reject');
+
+                $this->applyDomainFilter($domain_id);
+                $this->applyUserRoleFilter($allUserIds, 'user_id', 'role');
+
+                $data['team_loans_rejects_digital'] = $this->db->get('loan_master')->num_rows(); 
+
         }
          
 
@@ -1086,16 +1227,20 @@ class Dashboard extends CI_Controller
         }
 
         //Parent Team lead data 
-        $user_id = $this->session->userdata('user_id');
-        $my_team_user = $this->db->from('user_master');
-        if ($this->session->userdata('type') != 'admin') {
-            $team_user = $this->db->where('domain_id', $domain_id);
+        $allUserIds = $this->getMyTeamUserIdss();
+        foreach ($allUserIds as $key => $user) {
+            if ($user['id'] == $uid && $user['role'] == $role) {
+                unset($allUserIds[$key]);
+            }
         }
-        $team_user = $this->db->where('parent_team_id', $user_id);
-        $team_user = $this->count2 = $this->db->count_all_results();
+
+        $allUserIds = array_values($allUserIds); // Re-index array
+        $team_user = count($allUserIds);
+
+    
 
         if($team_user > 0 && $this->session->userdata('role') == 2){
-            $data['team_leads_paper'] = $this->db
+            /*$data['team_leads_paper'] = $this->db
                 ->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])
                 ->where_in('process_id', $processIdsPaper)
                 ->where_in('uid', $myteamuserIds)->order_by('id', 'DESC')
@@ -1107,6 +1252,34 @@ class Dashboard extends CI_Controller
                 ->where_in('uid', $myteamuserIds)->order_by('id', 'DESC')
                 ->get('leads')
                 ->result();
+                */
+            $this->db->where_in('process_id', $processIdsPaper);
+
+            if ($this->session->userdata('type') != 'admin') {
+                $this->db->where('domain_id', $domain_id);
+            }
+
+            $this->applyUserRoleFilter($allUserIds);
+
+            $data['team_leads_paper'] = $this->db
+                ->order_by('id', 'DESC')
+                ->get('leads')
+                ->result();
+            
+            $this->db->where_in('process_id', $processIdsdigital);
+
+            if ($this->session->userdata('type') != 'admin') {
+                $this->db->where('domain_id', $domain_id);
+            }
+
+            $this->applyUserRoleFilter($allUserIds);
+
+            $data['team_leads_digital'] = $this->db
+                ->order_by('id', 'DESC')
+                ->get('leads')
+                ->result();
+
+
         }
 
         $data['adminColor'] = $this->db->where( array('domain_id' => $domain_id))->get('admin_color')->row_array();
@@ -1296,15 +1469,18 @@ class Dashboard extends CI_Controller
         }
 
          //Parent Team lead data 
-        $user_id = $this->session->userdata('user_id');
-        $my_team_user = $this->db->from('user_master');
-        if ($this->session->userdata('type') != 'admin') {
-            $team_user = $this->db->where('domain_id', $domain_id);
+        $allUserIds = $this->getMyTeamUserIdss();
+        foreach ($allUserIds as $key => $user) {
+            if ($user['id'] == $uid && $user['role'] == $role) {
+                unset($allUserIds[$key]);
+            }
         }
-        $team_user = $this->db->where('parent_team_id', $user_id);
-        $team_user = $this->count2 = $this->db->count_all_results();
+
+        $allUserIds = array_values($allUserIds); // Re-index array
+        $team_user = count($allUserIds);
 
         if($team_user > 0 && $this->session->userdata('role') == 2){
+            /*
             $data['team_payout_lead_digital'] = $this->db
                 ->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])
                 ->where_in('process_id', $processIdsdigital)
@@ -1340,6 +1516,56 @@ class Dashboard extends CI_Controller
                 ->order_by('id', 'DESC')
                 ->get('leads')
                 ->result();
+            */
+
+            $this->db->where_in('process_id', $processIdsdigital);
+
+            if ($this->session->userdata('type') != 'admin') {
+                $this->db->where('domain_id', $domain_id);
+            }
+
+            $this->applyUserRoleFilter($allUserIds);
+
+            $this->db->group_start()
+                ->group_start()
+                    ->where('payment_amount_paid !=', '')
+                    ->where('payment_amount_paid IS NOT NULL', null, false)
+                ->group_end()
+                ->or_group_start()
+                    ->where('payment_amount_paid_team !=', '')
+                    ->where('payment_amount_paid_team IS NOT NULL', null, false)
+                ->group_end()
+            ->group_end();
+
+            $data['team_payout_lead_digital'] = $this->db
+                ->order_by('id', 'DESC')
+                ->get('leads')
+                ->result();
+            
+            $this->db->where_in('process_id', $processIdsPaper);
+
+            if ($this->session->userdata('type') != 'admin') {
+                $this->db->where('domain_id', $domain_id);
+            }
+
+            $this->applyUserRoleFilter($allUserIds);
+
+            $this->db->group_start()
+                ->group_start()
+                    ->where('payment_amount_paid !=', '')
+                    ->where('payment_amount_paid IS NOT NULL', null, false)
+                ->group_end()
+                ->or_group_start()
+                    ->where('payment_amount_paid_team !=', '')
+                    ->where('payment_amount_paid_team IS NOT NULL', null, false)
+                ->group_end()
+            ->group_end();
+
+            $data['team_payout_lead_paper'] = $this->db
+                ->order_by('id', 'DESC')
+                ->get('leads')
+                ->result(); 
+
         }
         
         $data['adminColor'] = $this->db->where(array('domain_id' => $domain_id))->get('admin_color')->row_array();
@@ -1517,17 +1743,21 @@ class Dashboard extends CI_Controller
         }
 
         //Parent Team lead data 
-        $user_id = $this->session->userdata('user_id');
-        $my_team_user = $this->db->from('user_master');
-        if ($this->session->userdata('type') != 'admin') {
-            $team_user = $this->db->where('domain_id', $domain_id);
+        //Parent Team lead data 
+        $allUserIds = $this->getMyTeamUserIdss();
+        foreach ($allUserIds as $key => $user) {
+            if ($user['id'] == $uid && $user['role'] == $role) {
+                unset($allUserIds[$key]);
+            }
         }
-        $team_user = $this->db->where('parent_team_id', $user_id);
-        $team_user = $this->count2 = $this->db->count_all_results();
+
+        $allUserIds = array_values($allUserIds); // Re-index array
+        $team_user = count($allUserIds);
 
         if($team_user > 0 && $this->session->userdata('role') == 2){
             // $data['disbursemenets_lead_paper'] = $this->db->select('*')->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('process_id', $processIdsPaper)->where('uid', $uid)->where('disbursed !=', '')->where('disbursed IS NOT NULL', null, false)->get('leads')->result();
             // $data['disbursemenets_lead_digital'] = $this->db->select('*')->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('process_id', $processIdsdigital)->where('uid', $uid)->where('disbursed !=', '')->where('disbursed IS NOT NULL', null, false)->get('leads')->result();
+           /* 
            $data['team_disbursemenets_lead_digital'] = $this->db
                                     ->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])
                                     ->where_in('process_id', $processIdsdigital)
@@ -1563,7 +1793,54 @@ class Dashboard extends CI_Controller
                                 ->order_by('id', 'DESC')
                                 ->get('leads')
                                 ->result();
+            */
+            $this->db->where_in('process_id', $processIdsdigital);
 
+            if ($this->session->userdata('type') != 'admin') {
+                $this->db->where('domain_id', $domain_id);
+            }
+
+            $this->applyUserRoleFilter($allUserIds);
+
+            $this->db->group_start()
+                ->group_start()
+                    ->where('disbursed_team !=', '')
+                    ->where('disbursed_team IS NOT NULL', null, false)
+                ->group_end()
+                ->or_group_start()
+                    ->where('disbursed !=', '')
+                    ->where('disbursed IS NOT NULL', null, false)
+                ->group_end()
+            ->group_end();
+
+            $data['team_disbursemenets_lead_digital'] = $this->db
+                ->order_by('id', 'DESC')
+                ->get('leads')
+                ->result();
+
+            $this->db->where_in('process_id', $processIdsPaper);
+
+            if ($this->session->userdata('type') != 'admin') {
+                $this->db->where('domain_id', $domain_id);
+            }
+
+            $this->applyUserRoleFilter($allUserIds);
+
+            $this->db->group_start()
+                ->group_start()
+                    ->where('disbursed_team !=', '')
+                    ->where('disbursed_team IS NOT NULL', null, false)
+                ->group_end()
+                ->or_group_start()
+                    ->where('disbursed !=', '')
+                    ->where('disbursed IS NOT NULL', null, false)
+                ->group_end()
+            ->group_end();
+
+            $data['team_disbursemenets_lead_paper'] = $this->db
+                ->order_by('id', 'DESC')
+                ->get('leads')
+                ->result();
 
         }
 
@@ -1641,94 +1918,7 @@ class Dashboard extends CI_Controller
 
         //myteam userids 
 
-        // Code for parent_team_id START
-        $myteamuserIds     = [$uid];
-        $myteamUserIds = [];
-        $myteamUserIdsrole = [];
         
-        if ($role != 1) {
-           $users = $this->db->select('id,role')
-            ->where('domain_id', $domain_id)
-                ->where('parent_team_id', $uid)
-                ->where('parent_team_role','2')
-                ->where('status',1)
-                ->get('user_master')
-                ->result_array();
-                
-                if (empty($users)) {
-                $users = $this->db->select('id,role')
-                ->where('domain_id', $domain_id)
-                ->where('parent_team_id', $uid)
-                ->where('parent_team_role','2')
-                ->where('status',1)
-                ->get('branch_franchise')
-                ->result_array();
-                }
-                
-                if (!empty($users)) {
-                foreach ($users as $user) {
-                    $myteamuserIds[]     = $user['id'];
-                    $myteamUserIdsrole[] = $user['role'];
-                }
-            }
-        }
-        
-        if (empty($myteamuserIds)) {
-            $myteamuserIds = [-1];
-        }else{
-            // foreach($myteamuserIds as $myteamUserId){
-            //     $users = $this->db->select('id')
-            //                 ->where('domain_id', $domain_id)
-            //                 ->where('parent_id', $myteamUserId)
-            //                 ->get('user_master')
-            //                 ->result_array();
-                            
-            //                 if (!empty($users)) {
-            //                 foreach ($users as $user) {
-            //                     $myteamuserIds[]     = $user['id'];
-            //                 }
-            //             }
-            // }
-            $this->db->select('id');
-                $this->db->from('user_master');
-                $this->db->where('domain_id', $domain_id);
-                $this->db->where('status', 1);
-
-                $hasCondition = false;
-
-                foreach ($myteamuserIds as $key => $pid) {
-
-                    $prole = $myteamUserIdsrole[$key] ?? null;
-
-                    if ($prole !== null) {
-
-                        if (!$hasCondition) {
-                            $this->db->group_start();
-                            $hasCondition = true;
-                        }
-
-                        $this->db->or_group_start()
-                                ->where('parent_id', $pid)
-                                ->where('parent_id_role', $prole)
-                                ->group_end();
-                    }
-                }
-
-                if ($hasCondition) {
-                    $this->db->group_end();
-                }
-
-                $users = $this->db->get()->result_array();
-
-            // IDs collect करो
-            if (!empty($users)) {
-                foreach ($users as $user) {
-                    $myteamuserIds[] = $user['id'];
-                }
-            }
-        }
-
-        // Code for parent_team_id END
 
         if ($user_data['parent_id'] == '' || $user_data['parent_id'] == 0 || $user_data['parent_id'] == NULL) {
             $data['paper_Approved'] = $this->db->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('process_id', $processIdsPaper)->where('uid', $uid)->where('lead_status', 'Apporved')->get('leads')->result();
@@ -1762,16 +1952,19 @@ class Dashboard extends CI_Controller
             $data['digital_Approved'] = $this->db->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('process_id', $processIdsdigital)->where('lead_status', 'Apporved')->order_by('id', 'DESC')->get('leads')->result();
         }
 
-         //Parent Team lead data 
-        $user_id = $this->session->userdata('user_id');
-        $my_team_user = $this->db->from('user_master');
-        if ($this->session->userdata('type') != 'admin') {
-            $team_user = $this->db->where('domain_id', $domain_id);
+        //Parent Team lead data 
+        $allUserIds = $this->getMyTeamUserIdss();
+        foreach ($allUserIds as $key => $user) {
+            if ($user['id'] == $uid && $user['role'] == $role) {
+                unset($allUserIds[$key]);
+            }
         }
-        $team_user = $this->db->where('parent_team_id', $user_id);
-        $team_user = $this->count2 = $this->db->count_all_results();
+
+        $allUserIds = array_values($allUserIds); // Re-index array
+        $team_user = count($allUserIds);
 
         if($team_user > 0 && $this->session->userdata('role') == 2){
+            /*
             $data['team_approved_lead_digital'] = $this->db
                 ->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])
                 ->where_in('process_id', $processIdsdigital)
@@ -1786,6 +1979,35 @@ class Dashboard extends CI_Controller
                 ->where_in('uid', $myteamuserIds)
                 ->where('lead_status', 'Apporved')
                ->order_by('id', 'DESC') ->get('leads')
+                ->result();
+            */
+
+            $this->db->where_in('process_id', $processIdsdigital)
+                    ->where('lead_status', 'Apporved');
+
+            if ($this->session->userdata('type') != 'admin') {
+                $this->db->where('domain_id', $domain_id);
+            }
+
+            $this->applyUserRoleFilter($allUserIds);
+
+            $data['team_approved_lead_digital'] = $this->db
+                ->order_by('id', 'DESC')
+                ->get('leads')
+                ->result();
+
+            $this->db->where_in('process_id', $processIdsPaper)
+                    ->where('lead_status', 'Apporved');
+
+            if ($this->session->userdata('type') != 'admin') {
+                $this->db->where('domain_id', $domain_id);
+            }
+
+            $this->applyUserRoleFilter($allUserIds);
+
+            $data['team_approved_lead_paper'] = $this->db
+                ->order_by('id', 'DESC')
+                ->get('leads')
                 ->result();
         }
 
@@ -1856,94 +2078,7 @@ class Dashboard extends CI_Controller
 
         //myteam userids 
 
-        // Code for parent_team_id START
-        $myteamuserIds     = [$uid];
-        $myteamUserIds = [];
-        $myteamUserIdsrole = [];
         
-        if ($role != 1) {
-            $users = $this->db->select('id,role')
-            ->where('domain_id', $domain_id)
-                ->where('parent_team_id', $uid)
-                ->where('parent_team_role','2')
-                ->where('status',1)
-                ->get('user_master')
-                ->result_array();
-                
-                if (empty($users)) {
-                $users = $this->db->select('id,role')
-                ->where('domain_id', $domain_id)
-                ->where('parent_team_id', $uid)
-                ->where('parent_team_role','2')
-                ->where('status',1)
-                ->get('branch_franchise')
-                ->result_array();
-                }
-                
-                if (!empty($users)) {
-                foreach ($users as $user) {
-                    $myteamuserIds[]     = $user['id'];
-                    $myteamUserIdsrole[] = $user['role'];
-                }
-            }
-        }
-        
-        if (empty($myteamuserIds)) {
-            $myteamuserIds = [-1];
-        }else{
-            // foreach($myteamuserIds as $myteamUserId){
-            //     $users = $this->db->select('id')
-            //                 ->where('domain_id', $domain_id)
-            //                 ->where('parent_id', $myteamUserId)
-            //                 ->get('user_master')
-            //                 ->result_array();
-                            
-            //                 if (!empty($users)) {
-            //                 foreach ($users as $user) {
-            //                     $myteamuserIds[]     = $user['id'];
-            //                 }
-            //             }
-            // }
-            $this->db->select('id');
-                $this->db->from('user_master');
-                $this->db->where('domain_id', $domain_id);
-                $this->db->where('status', 1);
-
-                $hasCondition = false;
-
-                foreach ($myteamuserIds as $key => $pid) {
-
-                    $prole = $myteamUserIdsrole[$key] ?? null;
-
-                    if ($prole !== null) {
-
-                        if (!$hasCondition) {
-                            $this->db->group_start();
-                            $hasCondition = true;
-                        }
-
-                        $this->db->or_group_start()
-                                ->where('parent_id', $pid)
-                                ->where('parent_id_role', $prole)
-                                ->group_end();
-                    }
-                }
-
-                if ($hasCondition) {
-                    $this->db->group_end();
-                }
-
-                $users = $this->db->get()->result_array();
-
-            // IDs collect करो
-            if (!empty($users)) {
-                foreach ($users as $user) {
-                    $myteamuserIds[] = $user['id'];
-                }
-            }
-        }
-
-        // Code for parent_team_id END
         
         if ($user_data['parent_id'] == '' || $user_data['parent_id'] == 0 || $user_data['parent_id'] == NULL) {
             $data['paper_reject'] = $this->db->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('process_id', $processIdsPaper)->where('uid', $uid)->where('lead_status', 'Reject')->get('leads')->result();
@@ -1977,16 +2112,20 @@ class Dashboard extends CI_Controller
             $data['digital_reject'] = $this->db->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('process_id', $processIdsdigital)->where('lead_status', 'Reject')->order_by('id', 'DESC')->get('leads')->result();
         }
 
-         //Parent Team lead data 
-        $user_id = $this->session->userdata('user_id');
-        $my_team_user = $this->db->from('user_master');
-        if ($this->session->userdata('type') != 'admin') {
-            $team_user = $this->db->where('domain_id', $domain_id);
+        
+        //Parent Team lead data 
+        $allUserIds = $this->getMyTeamUserIdss();
+        foreach ($allUserIds as $key => $user) {
+            if ($user['id'] == $uid && $user['role'] == $role) {
+                unset($allUserIds[$key]);
+            }
         }
-        $team_user = $this->db->where('parent_team_id', $user_id);
-        $team_user = $this->count2 = $this->db->count_all_results();
+
+        $allUserIds = array_values($allUserIds); // Re-index array
+        $team_user = count($allUserIds);
 
         if($team_user > 0 && $this->session->userdata('role') == 2){
+            /*            
             $data['team_reject_lead_digital'] = $this->db
                 ->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])
                 ->where_in('process_id', $processIdsdigital)
@@ -2001,6 +2140,37 @@ class Dashboard extends CI_Controller
                 ->where('lead_status', 'Reject')
                 ->order_by('id', 'DESC')->get('leads')
                 ->result();
+            */
+            $this->db->where_in('process_id', $processIdsdigital)
+                    ->where('lead_status', 'Reject');
+
+            if ($this->session->userdata('type') != 'admin') {
+                $this->db->where('domain_id', $domain_id);
+            }
+
+            $this->applyUserRoleFilter($allUserIds);
+
+            $data['team_reject_lead_digital'] = $this->db
+                ->order_by('id', 'DESC')
+                ->get('leads')
+                ->result();
+
+                
+            $this->db->where_in('process_id', $processIdsPaper)
+                    ->where('lead_status', 'Reject');
+
+            if ($this->session->userdata('type') != 'admin') {
+                $this->db->where('domain_id', $domain_id);
+            }
+
+            $this->applyUserRoleFilter($allUserIds);
+
+            $data['team_reject_lead_paper'] = $this->db
+                ->order_by('id', 'DESC')
+                ->get('leads')
+                ->result();
+            
+
         }
 
         $data['adminColor'] = $this->db->where( array('domain_id' => $domain_id))->get('admin_color')->row_array();
@@ -2119,94 +2289,7 @@ class Dashboard extends CI_Controller
 
         //myteam userids 
 
-        // Code for parent_team_id START
-        $myteamuserIds     = [$uid];
-        $myteamUserIds = [];
-        $myteamUserIdsrole = [];
         
-        if ($role != 1) {
-            $users = $this->db->select('id,role')
-            ->where('domain_id', $domain_id)
-                ->where('parent_team_id', $uid)
-                ->where('parent_team_role','2')
-                ->where('status',1)
-                ->get('user_master')
-                ->result_array();
-                
-                if (empty($users)) {
-                $users = $this->db->select('id,role')
-                ->where('domain_id', $domain_id)
-                ->where('parent_team_id', $uid)
-                ->where('parent_team_role','2')
-                ->where('status',1)
-                ->get('branch_franchise')
-                ->result_array();
-                }
-                
-                if (!empty($users)) {
-                foreach ($users as $user) {
-                    $myteamuserIds[]     = $user['id'];
-                    $myteamUserIdsrole[] = $user['role'];
-                }
-            }
-        }
-        
-        if (empty($myteamuserIds)) {
-            $myteamuserIds = [-1];
-        }else{
-            // foreach($myteamuserIds as $myteamUserId){
-            //     $users = $this->db->select('id')
-            //                 ->where('domain_id', $domain_id)
-            //                 ->where('parent_id', $myteamUserId)
-            //                 ->get('user_master')
-            //                 ->result_array();
-                            
-            //                 if (!empty($users)) {
-            //                 foreach ($users as $user) {
-            //                     $myteamuserIds[]     = $user['id'];
-            //                 }
-            //             }
-            // }
-            $this->db->select('id');
-                $this->db->from('user_master');
-                $this->db->where('domain_id', $domain_id);
-                $this->db->where('status', 1);
-
-                $hasCondition = false;
-
-                foreach ($myteamuserIds as $key => $pid) {
-
-                    $prole = $myteamUserIdsrole[$key] ?? null;
-
-                    if ($prole !== null) {
-
-                        if (!$hasCondition) {
-                            $this->db->group_start();
-                            $hasCondition = true;
-                        }
-
-                        $this->db->or_group_start()
-                                ->where('parent_id', $pid)
-                                ->where('parent_id_role', $prole)
-                                ->group_end();
-                    }
-                }
-
-                if ($hasCondition) {
-                    $this->db->group_end();
-                }
-
-                $users = $this->db->get()->result_array();
-
-            // IDs collect करो
-            if (!empty($users)) {
-                foreach ($users as $user) {
-                    $myteamuserIds[] = $user['id'];
-                }
-            }
-        }
-
-        // Code for parent_team_id END
 
         $loan_name_digital = ['Business Loan', 'Personal Loan', 'Instant Loan'];
         $loan_name_paper   = ['Home Loan'];
@@ -2242,21 +2325,90 @@ class Dashboard extends CI_Controller
             $data['disbursemenets_loan_digital'] = $this->db->where('disbursed !=', '')->where('disbursed IS NOT NULL', null, false)->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('apply_for_loan', $loan_name_digital)->where('admin_id', 1)->get('loan_master')->result_array(); 
 
         }
+        
         //Parent Team lead data 
-        $user_id = $this->session->userdata('user_id');
-        $my_team_user = $this->db->from('user_master');
-        if ($this->session->userdata('type') != 'admin') {
-            $team_user = $this->db->where('domain_id', $domain_id);
+        $allUserIds = $this->getMyTeamUserIdss();
+        foreach ($allUserIds as $key => $user) {
+            if ($user['id'] == $uid && $user['role'] == $role) {
+                unset($allUserIds[$key]);
+            }
         }
-        $team_user = $this->db->where('parent_team_id', $user_id);
-        $team_user = $this->count2 = $this->db->count_all_results();
+
+        $allUserIds = array_values($allUserIds); // Re-index array
+        $team_user = count($allUserIds);
 
         if($team_user > 0 && $this->session->userdata('role') == '2'){
-            $data['team_loans_digital'] = $this->db->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('apply_for_loan', $loan_name_digital)->where_in('user_id', $myteamuserIds)->get('loan_master')->result_array();
-            $data['team_disbursemenets_loan_digital'] = $this->db->where('disbursed_team !=', '')->where('disbursed_team IS NOT NULL', null, false)->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('apply_for_loan', $loan_name_digital)->where_in('user_id', $myteamuserIds)->get('loan_master')->result_array();
-            $data['team_payout_loan_digital'] = $this->db->where('payment_amount_paid_team !=', '')->where('payment_amount_paid_team IS NOT NULL', null, false)->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('apply_for_loan', $loan_name_digital)->where_in('user_id', $myteamuserIds)->get('loan_master')->result_array();
-            $data['team_loans_rejects_digital'] = $this->db->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('apply_for_loan', $loan_name_digital)->where('loan_status', 'Reject')->where_in('user_id', $myteamuserIds)->get('loan_master')->result_array();
-            $data['team_loans_approved_digital'] = $this->db->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('apply_for_loan', $loan_name_digital)->where('loan_status', 'Apporved')->where_in('user_id', $myteamuserIds)->get('loan_master')->result_array();
+            // $data['team_loans_digital'] = $this->db->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('apply_for_loan', $loan_name_digital)->where_in('user_id', $myteamuserIds)->get('loan_master')->result_array();
+            // $data['team_disbursemenets_loan_digital'] = $this->db->where('disbursed_team !=', '')->where('disbursed_team IS NOT NULL', null, false)->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('apply_for_loan', $loan_name_digital)->where_in('user_id', $myteamuserIds)->get('loan_master')->result_array();
+            // $data['team_payout_loan_digital'] = $this->db->where('payment_amount_paid_team !=', '')->where('payment_amount_paid_team IS NOT NULL', null, false)->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('apply_for_loan', $loan_name_digital)->where_in('user_id', $myteamuserIds)->get('loan_master')->result_array();
+            // $data['team_loans_rejects_digital'] = $this->db->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('apply_for_loan', $loan_name_digital)->where('loan_status', 'Reject')->where_in('user_id', $myteamuserIds)->get('loan_master')->result_array();
+            // $data['team_loans_approved_digital'] = $this->db->where(($this->session->userdata('type') != 'admin') ? ['domain_id' => $domain_id] : [])->where_in('apply_for_loan', $loan_name_digital)->where('loan_status', 'Apporved')->where_in('user_id', $myteamuserIds)->get('loan_master')->result_array();
+
+            $this->db->where_in('apply_for_loan', $loan_name_digital);
+
+            if ($this->session->userdata('type') != 'admin') {
+                $this->db->where('domain_id', $domain_id);
+            }
+
+            $this->applyUserRoleFilter($allUserIds, 'user_id', 'role');
+
+            $data['team_loans_digital'] = $this->db
+                ->get('loan_master')
+                ->result_array();
+
+            $this->db->where('disbursed_team !=', '')
+                    ->where('disbursed_team IS NOT NULL', null, false)
+                    ->where_in('apply_for_loan', $loan_name_digital);
+
+            if ($this->session->userdata('type') != 'admin') {
+                $this->db->where('domain_id', $domain_id);
+            }
+
+            $this->applyUserRoleFilter($allUserIds, 'user_id', 'role');
+
+            $data['team_disbursemenets_loan_digital'] = $this->db
+                ->get('loan_master')
+                ->result_array();
+
+            $this->db->where('payment_amount_paid_team !=', '')
+                    ->where('payment_amount_paid_team IS NOT NULL', null, false)
+                    ->where_in('apply_for_loan', $loan_name_digital);
+
+            if ($this->session->userdata('type') != 'admin') {
+                $this->db->where('domain_id', $domain_id);
+            }
+
+            $this->applyUserRoleFilter($allUserIds, 'user_id', 'role');
+
+            $data['team_payout_loan_digital'] = $this->db
+                ->get('loan_master')
+                ->result_array();
+
+            $this->db->where_in('apply_for_loan', $loan_name_digital)
+                    ->where('loan_status', 'Reject');
+
+            if ($this->session->userdata('type') != 'admin') {
+                $this->db->where('domain_id', $domain_id);
+            }
+
+            $this->applyUserRoleFilter($allUserIds, 'user_id', 'role');
+
+            $data['team_loans_rejects_digital'] = $this->db
+                ->get('loan_master')
+                ->result_array();
+
+            $this->db->where_in('apply_for_loan', $loan_name_digital)
+                    ->where('loan_status', 'Apporved');
+
+            if ($this->session->userdata('type') != 'admin') {
+                $this->db->where('domain_id', $domain_id);
+            }
+
+            $this->applyUserRoleFilter($allUserIds, 'user_id', 'role');
+
+            $data['team_loans_approved_digital'] = $this->db
+                ->get('loan_master')
+                ->result_array();
         }
 
         $data['adminColor'] = $this->db->where( array('domain_id' => $domain_id))->get('admin_color')->row_array();
@@ -3414,12 +3566,55 @@ class Dashboard extends CI_Controller
         // ✔ If parent_id changed → set transfer_status_user = 1
         if (!empty($parent_id) && $parent_id != $oldUser->parent_id) {
             $updateArr['parent_id'] = $parent_id;
+            $updateArr['transfer_status_user'] = 1;
         }
         
         
+        $parentRole = $oldUser->role; // Current user's role
+
         if (!empty($parent_team_id)) {
+
+            // Update current user
             $updateArr['parent_team_id'] = $parent_team_id;
-            $updateArr['transfer_status_user'] = 1;
+            $updateArr['parent_team_role'] = 2;
+
+            // Update all child users
+            $this->db->where('parent_id', $id);
+            $this->db->where('parent_id_role', $parentRole);
+            $this->db->update('user_master', [
+                'parent_team_id'   => $parent_team_id,
+                'parent_team_role' => 2
+            ]);
+
+            // Update all child Branch
+            $this->db->where('parent_id', $id);
+            $this->db->where('parent_id_role', $parentRole);
+            $this->db->update('branch_franchise', [
+                'parent_team_id'   => $parent_team_id,
+                'parent_team_role' => 2
+            ]);
+
+        } else {
+
+            // Current user
+            $updateArr['parent_team_id'] = null;
+            $updateArr['parent_team_role'] = null;
+
+            // Remove team from all child users
+            $this->db->where('parent_id', $id);
+            $this->db->where('parent_id_role', $parentRole);
+            $this->db->update('user_master', [
+                'parent_team_id'   => null,
+                'parent_team_role' => null
+            ]);
+
+            // Remove team from all child users
+            $this->db->where('parent_id', $id);
+            $this->db->where('parent_id_role', $parentRole);
+            $this->db->update('branch_franchise', [
+                'parent_team_id'   => null,
+                'parent_team_role' => null
+            ]);
         }
         
         $updateStatus = $this->Dashboard_Model->update_channel_partner($id, $updateArr);
@@ -3511,9 +3706,54 @@ class Dashboard extends CI_Controller
             $updateArr['transfer_status'] = 1;
         }
 
+        $oldUser = $this->db->where('id', $id)->get('branch_franchise')->row();
+
+
+        $parentRole = $oldUser->role; // Current user's role
+
         if (!empty($parent_team_id)) {
+
+            // Update current user
             $updateArr['parent_team_id'] = $parent_team_id;
-            $updateArr['transfer_status'] = 1;
+            $updateArr['parent_team_role'] = 2;
+
+            // Update all child users
+            $this->db->where('parent_id', $id);
+            $this->db->where('parent_id_role', $parentRole);
+            $this->db->update('user_master', [
+                'parent_team_id'   => $parent_team_id,
+                'parent_team_role' => 2
+            ]);
+
+            // Update all child Branch
+            $this->db->where('parent_id', $id);
+            $this->db->where('parent_id_role', $parentRole);
+            $this->db->update('branch_franchise', [
+                'parent_team_id'   => $parent_team_id,
+                'parent_team_role' => 2
+            ]);
+
+        } else {
+
+            // Current user
+            $updateArr['parent_team_id'] = null;
+            $updateArr['parent_team_role'] = null;
+
+            // Remove team from all child users
+            $this->db->where('parent_id', $id);
+            $this->db->where('parent_id_role', $parentRole);
+            $this->db->update('user_master', [
+                'parent_team_id'   => null,
+                'parent_team_role' => null
+            ]);
+
+            // Remove team from all child users
+            $this->db->where('parent_id', $id);
+            $this->db->where('parent_id_role', $parentRole);
+            $this->db->update('branch_franchise', [
+                'parent_team_id'   => null,
+                'parent_team_role' => null
+            ]);
         }
 
         // 🔄 Step 5: Update record
@@ -3554,7 +3794,7 @@ class Dashboard extends CI_Controller
         // $userIds[] = $uid;
         $userIds[] = $main_user->id;
         $userIdsrole[] = $main_user->role;
-// print_r($main_user);
+        // print_r($main_user);
         if ($role != 1) {
             $users = $this->db->select('id,role')->where(['parent_id'=> $this->session->userdata('user_id'),'parent_id_role'=> $this->session->userdata('role'),'domain_id' =>$domain_id ])->get('user_master')->result_array();
             // print_r($users);die;
@@ -3567,10 +3807,27 @@ class Dashboard extends CI_Controller
             }
         }
 
+        
+        //Parent Team lead data 
+        $allUserIds = $this->getMyTeamUserIdss();
+
+        $allUserIds = array_values($allUserIds); // Re-index array
+        $team_user = count($allUserIds);
+
+
+
         if ($role == 1) {
             $data['datas'] = $this->db->where('domain_id', domain_id_get())->order_by('id', 'DESC')->get('leads')->result_array();
         } else {
-            $data['datas'] = $this->db->where('domain_id', domain_id_get())->where_in('uid', $userIds)->where_in('uid_role', $userIdsrole)->order_by('id', 'DESC')->get('leads')->result();
+            // $data['datas'] = $this->db->where('domain_id', domain_id_get())->where_in('uid', $userIds)->where_in('uid_role', $userIdsrole)->order_by('id', 'DESC')->get('leads')->result();
+            $this->db->where('domain_id', domain_id_get());
+
+            $this->applyUserRoleFilter($allUserIds);
+
+            $data['datas'] = $this->db
+                ->order_by('id', 'DESC')
+                ->get('leads')
+                ->result();
         }
 
      
@@ -4007,14 +4264,15 @@ class Dashboard extends CI_Controller
         if (!has_permission('Lead') || !has_permission('add lead') ) {
 			
             if ($this->session->userdata('type') != 'admin') {
-		$this->session->set_flashdata('message', 'You do not have permission to access this section.');
-		redirect('admin-dashboard');
-		return;
-		}
+                $this->session->set_flashdata('message', 'You do not have permission to access this section.');
+                redirect('admin-dashboard');
+                return;
+            }
 		}
         //$data = [];
         $all['domains'] = $this->db->where('status',1)->get('domains')->result_array();
         $all['process_type'] = $this->Dashboard_Model->process_type_list();
+        $all['teamusers'] = $this->getMyTeamUserIdss();
         $this->load->view('admin/template/header');
         $this->load->view('admin/leads/add', $all);
         $this->load->view('admin/template/footer');
@@ -4033,6 +4291,8 @@ class Dashboard extends CI_Controller
 
         $data['process_type'] = $this->Dashboard_Model->process_type_list();
         $data['datas'] = $this->Dashboard_Model->common_row($leadId, 'leads');
+        $data['teamusers'] = $this->getMyTeamUserIdss();
+
 
         $data['domains'] = $this->db->where('status',1)->get('domains')->result_array();
         $this->load->view('admin/template/header');
@@ -4064,9 +4324,28 @@ class Dashboard extends CI_Controller
         $this->form_validation->set_rules('zip_code', 'Zip code', 'required|trim');
         $this->form_validation->set_error_delimiters('<span class="text-danger mt-1">', '</span>');
 
+        $uid = $this->session->userdata('user_id');
+        $uid_role = $this->session->userdata('role');
+
+        $add_by = NULL;
+        $add_by_role = NULL;
+
+        if($this->input->post('add_for')){
+            $uid = $this->input->post('add_for');
+            $uid_role = $this->input->post('add_for_role');
+
+
+            $add_by = $this->session->userdata('user_id');
+            $add_by_role = $this->session->userdata('role');
+
+        }
+
+
         if ($this->form_validation->run()) {
-            $data['uid'] = $this->session->userdata('user_id');
-            $data['uid_role'] = $this->session->userdata('role');
+            $data['uid'] = $uid;
+            $data['uid_role'] = $uid_role;
+            $data['add_by'] = $add_by;
+            $data['add_by_role'] = $add_by_role;
             $data['process_id'] = $this->input->post('process_id');
             $data['title'] = $this->input->post('title');
             $data['first_name'] = $this->input->post('first_name');
@@ -4113,6 +4392,27 @@ class Dashboard extends CI_Controller
         $data = $this->input->post();
         $id = $data['id'];
         unset($data['id']);
+
+        
+        $data['uid'] = $this->session->userdata('user_id');
+        $data['uid_role'] = $this->session->userdata('role');
+
+        $data['add_by'] = NULL;
+        $data['add_by_role'] = NULL;
+
+        if($this->input->post('add_for')){
+            $data['uid'] = $this->input->post('add_for');
+            $data['uid_role'] = $this->input->post('add_for_role');
+
+
+            $data['add_by'] = $this->session->userdata('user_id');
+            $data['add_by_role'] = $this->session->userdata('role');
+
+        }
+        unset($data['add_for']);
+        unset($data['add_for_role']);
+
+
         $updateData = $this->Dashboard_Model->update_data($id, $data, 'leads');
         if ($updateData) {
             $this->session->set_flashdata('success', 'Lead has been Updated Successfully!!');
@@ -15368,6 +15668,183 @@ public function getMyTeamUserIds($uid, $domain_id)
 
     // return $allUserIds;
     return array_values(array_diff($allUserIds, [$uid]));
+}
+
+ 
+public function getMyTeamUserIdss()
+{
+    $uid       = $this->session->userdata('user_id');
+    $role      = $this->session->userdata('role');
+    $name      = $this->session->userdata('name');
+    $domain_id = domain_id_get();
+
+    $allUserIds = [];
+    $allUserIds = [
+        [
+            'id'   => $uid,
+            'role' => $role,
+            'name' => $name
+        ]
+    ]; 
+
+    $team_user_masters = $this->db
+        ->select('id, role, name')
+        ->where('domain_id', $domain_id)
+        ->where('parent_team_id', $uid)
+        //->where('parent_team_role', $role)
+        ->where('status', 1)
+        ->get('user_master')
+        ->result_array();
+
+    foreach ($team_user_masters as $team_user_master) {
+
+        // Add first level user if not exists
+        $exists = false;
+        foreach ($allUserIds as $user) {
+            if (
+                $user['id'] == $team_user_master['id'] &&
+                $user['role'] == $team_user_master['role']
+            ) {
+                $exists = true;
+                break;
+            }
+        }
+
+        if (!$exists) {
+            $allUserIds[] = [
+                'id'   => $team_user_master['id'],
+                'role' => $team_user_master['role'],
+                'name' => $team_user_master['name']
+            ];
+        }
+
+        $parent_user_masters = $this->db
+            ->select('id, role, name')
+            ->where('domain_id', $domain_id)
+            ->where('parent_id', $team_user_master['id'])
+            ->where('parent_id_role', $team_user_master['role'])
+            ->where('status', 1)
+            ->get('user_master')
+            ->result_array();
+
+        foreach ($parent_user_masters as $parent_user_master) {
+
+            $exists = false;
+
+            foreach ($allUserIds as $user) {
+                if (
+                    $user['id'] == $parent_user_master['id'] &&
+                    $user['role'] == $parent_user_master['role']
+                ) {
+                    $exists = true;
+                    break;
+                }
+            }
+
+            if (!$exists) {
+                $allUserIds[] = [
+                    'id'   => $parent_user_master['id'],
+                    'role' => $parent_user_master['role'],
+                    'name' => $parent_user_master['name']
+                ];
+            }
+        }
+
+        
+        
+    }
+
+    $branch_franchises = $this->db
+        ->select('id, role, name')
+        ->where('domain_id', $domain_id)
+        ->where('parent_team_id', $uid)
+        //->where('parent_team_role', $role)
+        ->where('status', 1)
+        ->get('branch_franchise')
+        ->result_array();
+
+    foreach ($branch_franchises as $branch_franchise) {
+
+        // Add first level user if not exists
+        $exists = false;
+        foreach ($allUserIds as $user) {
+            if (
+                $user['id'] == $branch_franchise['id'] &&
+                $user['role'] == $branch_franchise['role']
+            ) {
+                $exists = true;
+                break;
+            }
+        }
+
+        if (!$exists) {
+            $allUserIds[] = [
+                'id'   => $branch_franchise['id'],
+                'role' => $branch_franchise['role'],
+                'name' => $branch_franchise['name']
+            ];
+        }
+
+        $parent_branch_franchises = $this->db
+            ->select('id, role, name')
+            ->where('domain_id', $domain_id)
+            ->where('parent_id', $branch_franchise['id'])
+            ->where('parent_id_role', $branch_franchise['role'])
+            ->where('status', 1)
+            ->get('user_master')
+            ->result_array();
+
+        foreach ($parent_branch_franchises as $parent_branch_franchise) {
+
+            $exists = false;
+
+            foreach ($allUserIds as $user) {
+                if (
+                    $user['id'] == $parent_branch_franchise['id'] &&
+                    $user['role'] == $parent_branch_franchise['role']
+                ) {
+                    $exists = true;
+                    break;
+                }
+            }
+
+            if (!$exists) {
+                $allUserIds[] = [
+                    'id'   => $parent_branch_franchise['id'],
+                    'role' => $parent_branch_franchise['role'],
+                    'name' => $branch_franchise['name']
+                ];
+            }
+        }
+
+        
+        
+    }
+ 
+    return $allUserIds;
+    
+   
+}
+
+private function applyUserRoleFilter($allUserIds, $uidColumn = 'uid', $roleColumn = 'uid_role')
+{
+    $this->db->group_start();
+
+    foreach ($allUserIds as $user) {
+        $this->db->or_group_start()
+            ->where($uidColumn, $user['id'])
+            ->where($roleColumn, $user['role'])
+            ->group_end();
+    }
+
+    $this->db->group_end();
+}
+
+private function applyDomainFilter($domain_id)
+{
+    if ($this->session->userdata('type') != 'admin') {
+        $this->db->where('domain_id', $domain_id);
+    }
 }
 
 }

@@ -530,29 +530,24 @@ public function update_registerUser_password($id, $hashedPassword,$pas)
 
         $domain_id = domain_id_get();
         $table = 'user_master';
+
         $this->db->from($table);
-        // if ($type != 'admin') {
-            $this->db->where('domain_id', $domain_id);
-        // }
-        // if ($role != 1) {
-        // $this->db->where('parent_id', $uid);
-        // }else {
-            $this->db->where('parent_id_role',1);
-        // }
+        $this->db->where('domain_id', $domain_id);
+        $this->db->where('parent_id_role', 1);
         $this->db->where('role', 2);
         $this->db->where('status', 1);
-        // $this->db->where_not_in('status', [2, 3]);
-        // if (empty($subStatus)) {
-            $this->db->where('subscription', '');
-        // } else {
-        //     $this->db->where('subscription !=', '');
-        // }
+        $this->db->where('subscription', '');
 
-        $this->db->order_by("id", "DESC");
+        // Only users having a parent_id
+        $this->db->where('parent_id IS NOT NULL', NULL, FALSE);
+        $this->db->where('parent_id !=', '');
+        // If parent_id can be 0, uncomment the next line
+        // $this->db->where('parent_id !=', 0);
+
+        $this->db->order_by('id', 'DESC');
+
         $query = $this->db->get();
         return $query->result();
-        //return $this->db->last_query();
-        //return $this->db->get($table)->result();
 
     }
 

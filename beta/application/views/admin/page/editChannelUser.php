@@ -229,6 +229,7 @@
  
 					  <?php 
 					  	if(domain_id_get() == $datas[0]->domain_id && $datas[0]->parent_id_role != 1){
+							if (empty($datas[0]->parent_id) || $datas[0]->parent_id == 0) {
 					 		if (empty($ref) && $this->session->userdata('role') == 1) {?>
 								<div class="col-md-6">
 									<div class="form-group mb-2">
@@ -253,7 +254,7 @@
 										</select>
 									</div>
 								</div>
-								<?php } }?>
+								<?php } }}?>
 							</div>
 							<div class="row">
 						
