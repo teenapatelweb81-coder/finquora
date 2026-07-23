@@ -80,6 +80,43 @@ class Rolepermission extends CI_Controller
     $this->load->view('admin/template/footer');
 }
 
+   public function seopermission()
+{
+    if ($this->session->userdata('type') != 'admin') {
+        $this->session->set_flashdata('message', 'You do not have permission to access this section.');
+        redirect('admin-dashboard');
+        return;
+    }
+
+    $roles_raw = $this->db->get('roles')->result_array();
+        $data['domains'] = $this->db->where('status',1)->get('domains')->result_array();
+
+    // Step 1: Create a map of all roles
+    $roleMap = [];
+    foreach ($roles_raw as $role) {
+        $role['children'] = [];
+        $roleMap[$role['id']] = $role;
+    }
+
+    // Step 2: Organize roles into a hierarchy
+    $tree = [];
+    foreach ($roleMap as $id => &$role) {
+        if ($role['parent_id']) {
+            if (isset($roleMap[$role['parent_id']])) {
+                $roleMap[$role['parent_id']]['children'][] = &$role;
+            }
+        } else {
+            $tree[] = &$role;
+        }
+    }
+
+    $data['roles'] = $tree;
+
+    $this->load->view('admin/template/header');
+    $this->load->view('admin/permission/seo-view', $data);
+    $this->load->view('admin/template/footer');
+}
+
    public function menu_position()
 {
     if ($this->session->userdata('type') != 'admin') {
@@ -128,13 +165,17 @@ public function update_menu_position()
             redirect('admin/permission');
         }
         $this->db->where('domain_id', $domain_id);
+        $this->db->where('user_id',NULL);
+        $this->db->where('role', Null);
         $this->db->delete('permissions');
 
         if (!empty($permissions)) {
             foreach ($permissions as $perm) {
                 $this->db->insert('permissions', [
                     'domain_id' => $domain_id,
-                    'permission' => $perm
+                    'permission' => $perm,
+                    'user_id' => NULL,
+                    'role' => NULL
                 ]);
             }
         }
@@ -143,12 +184,54 @@ public function update_menu_position()
         redirect('admin/permission');
     }
 
+    public function update_seopermission() {
+        $domain_id = $this->input->post('domain_id');
+        $permissions = $this->input->post('permissions');
+        $user_id = $this->input->post('user_id');
+        $role = $this->input->post('role');
+        // print_r($permissions);die;
+
+        if (empty($domain_id)) {
+            $this->session->set_flashdata('error', 'Please select a domain first. This will help us which domains you want to give permission.');
+            redirect('admin/seo-permission');
+        }
+        $this->db->where('domain_id', $domain_id);
+        $this->db->where('user_id',$user_id);
+        $this->db->where('role', $role);
+        $this->db->delete('permissions');
+
+        if (!empty($permissions)) {
+            foreach ($permissions as $perm) {
+                $this->db->insert('permissions', [
+                    'domain_id' => $domain_id,
+                    'permission' => $perm,
+                    'user_id' => $user_id,
+                    'role' => $role
+                ]);
+            }
+        }
+
+        $this->session->set_flashdata('success', 'SEO Permissions updated successfully.');
+        redirect('admin/seo-permission');
+    }
+
 
     public function get_permissions() {
         $domain_id = $this->input->post('domain_id');
         $permissions = $this->db->get('permissions')->result_array();
 
         $query = $this->db->select('permission')->where('domain_id', $domain_id)->get('permissions');
+        $assigned_permissions = array_column($query->result_array(), 'permission');
+        echo json_encode($assigned_permissions);
+    }
+
+    public function get_seopermissions() {
+        $domain_id = $this->input->post('domain_id');
+        $user_id = $this->input->post('user_id');
+        $role = $this->input->post('role');
+        $permissions = $this->db->get('permissions')->result_array();
+
+        $query = $this->db->select('permission')->where('domain_id', $domain_id)->where('user_id', $user_id)->where('role', $role)->get('permissions');
         $assigned_permissions = array_column($query->result_array(), 'permission');
         echo json_encode($assigned_permissions);
     }

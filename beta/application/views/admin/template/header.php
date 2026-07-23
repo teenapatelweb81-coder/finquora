@@ -421,7 +421,7 @@ if (isset($_GET['type']) || isset($_GET['user_id'])) {?>
                         <li class=<?php if ($currentURL == "loanasign") {echo "active";}?>></li>
                      <?php }}?>
 
-                     <?php if ($this->session->userdata('role') == 1) { ?>
+                     <?php if ($this->session->userdata('role') == 1 && $this->session->userdata('type') != 'seo') { ?>
                         <li data-id="<?= $menu_possition['my_team'] ?>" class=<?php if ($currentURL == "admin-team") {echo "active";}?>><a href="<?php echo base_url('admin/admin-team'); ?>"><i class="fa fa-handshake-o" aria-hidden="true"></i>My Team</a></li>
                      <?php }?>
 
@@ -509,6 +509,7 @@ if (isset($_GET['type']) || isset($_GET['user_id'])) {?>
                                  <li class=<?php if ($currentURL == "admin/domain/") {echo "active";}?>><a href="<?php echo base_url('admin/domain/'); ?>"> Domain </a></li>
                                  <li class=<?php if ($currentURL == "admin/sub-admin/") {echo "active";}?>><a href="<?php echo base_url('admin/sub-admin/'); ?>"> Admin Create</a></li>
                                  <li class=<?php if ($currentURL == "admin/permission") {echo "active";}?>><a href="<?php echo base_url('admin/permission'); ?>"> Permissions </a></li>
+                                 <li class=<?php if ($currentURL == "admin/seo-permission") {echo "active";}?>><a href="<?php echo base_url('admin/seo-permission'); ?>">SEO Permissions </a></li>
                               <?php }?>
                                  
                               <?php if (($this->session->userdata('type') == 'admin') || $this->session->userdata('role') == 1 && has_permission('Email configuration')) { ?>

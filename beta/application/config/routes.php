@@ -640,6 +640,7 @@ $route['admin/domainDel/(:num)'] = 'admin/rolepermission/domainDel/$1';
 
 // permission master
 $route['admin/permission'] = 'admin/rolepermission/permission';
+$route['admin/seo-permission'] = 'admin/rolepermission/seopermission';
 $route['admin/menu-position'] = 'admin/rolepermission/menu_position';
 
 // single change plan by

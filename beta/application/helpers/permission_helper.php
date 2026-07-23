@@ -64,14 +64,47 @@ if (!function_exists('has_permission')) {
             return false; 
         }
 
-        $domain_id = $domain->id;
-        $permissions = $permissions->id;
-        $query = $CI->db->get_where('permissions', [
-            'permission' => $permissions,
-            'domain_id' => $domain_id
-        ]);
+        // $domain_id = $domain->id;
+        // $permissions = $permissions->id;
+        // $query = $CI->db->get_where('permissions', [
+        //     'permission' => $permissions,
+        //     'domain_id' => $domain_id
+        // ]);
 
-        return $query->num_rows() > 0;
+        // return $query->num_rows() > 0;
+
+        $domain_id = $domain->id;
+        $permission_id = $permissions->id;
+
+        // Check if current user has any custom permissions
+        $has_custom_permission = $CI->db
+            ->where('user_id', $user_id)
+            ->where('role', $role)
+            ->count_all_results('permissions');
+
+        if ($has_custom_permission > 0) {
+
+            // User has custom permissions
+            $query = $CI->db->get_where('permissions', [
+                'permission' => $permission_id,
+                'domain_id'  => $domain_id,
+                'user_id'    => $user_id,
+                'role'       => $role
+            ]);
+
+            return ($query->num_rows() > 0);
+
+        } else {
+
+            // Existing permission system
+            $query = $CI->db->get_where('permissions', [
+                'permission' => $permission_id,
+                'domain_id'  => $domain_id
+            ]);
+
+            return ($query->num_rows() > 0);
+
+        }
     }
 
  if (!function_exists('domain_id_get')) {
@@ -138,6 +171,30 @@ if (!function_exists('send_mail')) {
             log_message('error', $ci->email->print_debugger());
             return false;
         }
+    }
+
+}
+
+if (!function_exists('get_all_child_roles')) {
+
+    function get_all_child_roles($parent_id)
+    {
+        $CI =& get_instance();
+
+        $ids = [$parent_id];
+
+        $children = $CI->db
+            ->where('parent_id', $parent_id)
+            ->get('roles')
+            ->result();
+
+        foreach ($children as $child) {
+
+            $ids = array_merge($ids, get_all_child_roles($child->id));
+
+        }
+
+        return $ids;
     }
 
 }

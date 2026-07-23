@@ -36,6 +36,295 @@ $adminColor = $this->db->where( array('domain_id' => $domain_id))->get('admin_co
   <?php }?>
   <section class="content" style=" margin-bottom: 50px; ">
     <div class="container-fluid">
+      <?php if($this->session->userdata('type') == 'seo'){ ?>
+<style>
+body{
+
+background:#f5f7fb;
+
+}
+
+.website-dashboard{
+
+background:linear-gradient(135deg,#4f46e5,#7c3aed);
+
+border-radius:25px;
+
+padding:60px;
+
+color:#fff;
+
+overflow:hidden;
+
+position:relative;
+
+box-shadow:0 20px 40px rgba(79,70,229,.25);
+
+}
+
+.website-dashboard:before{
+
+content:"";
+
+position:absolute;
+
+right:-80px;
+
+top:-80px;
+
+width:260px;
+
+height:260px;
+
+background:rgba(255,255,255,.08);
+
+border-radius:50%;
+
+}
+
+.website-dashboard:after{
+
+content:"";
+
+position:absolute;
+
+left:-60px;
+
+bottom:-60px;
+
+width:180px;
+
+height:180px;
+
+background:rgba(255,255,255,.05);
+
+border-radius:50%;
+
+}
+
+.dashboard-badge{
+
+display:inline-block;
+
+padding:8px 18px;
+
+background:rgba(255,255,255,.18);
+
+border-radius:30px;
+
+font-size:13px;
+
+margin-bottom:20px;
+
+}
+
+.dashboard-title{
+
+font-size:42px;
+
+font-weight:700;
+
+margin-bottom:20px;
+
+}
+
+.dashboard-title span{
+
+color:#FFE082;
+
+}
+
+.dashboard-text{
+
+font-size:18px;
+
+opacity:.9;
+
+line-height:1.7;
+
+max-width:650px;
+
+}
+
+.btn-dashboard{
+
+padding:12px 25px;
+
+border-radius:12px;
+
+margin-right:10px;
+
+font-weight:600;
+
+}
+
+.dashboard-icon{
+
+font-size:170px;
+
+opacity:.18;
+
+}
+
+.info-card{
+
+background:#fff;
+
+padding:25px;
+
+border-radius:18px;
+
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+height:100%;
+
+transition:.3s;
+
+}
+
+.info-card:hover{
+
+transform:translateY(-8px);
+
+}
+
+.icon{
+
+width:60px;
+
+height:60px;
+
+border-radius:15px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:26px;
+
+color:#fff;
+
+margin-bottom:20px;
+
+}
+
+.quick-link{
+
+display:block;
+
+padding:12px;
+
+margin-top:12px;
+
+background:#f5f7fb;
+
+border-radius:10px;
+
+text-decoration:none;
+
+font-weight:600;
+
+color:#4f46e5;
+
+transition:.3s;
+
+}
+
+.quick-link:hover{
+
+background:#4f46e5;
+
+color:#fff;
+
+}
+
+.activity{
+
+padding:10px 0;
+
+border-bottom:1px solid #eee;
+
+}
+
+.success{
+
+display:inline-block;
+
+width:10px;
+
+height:10px;
+
+background:#22c55e;
+
+border-radius:50%;
+
+margin-right:10px;
+
+}
+</style>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+
+<div class="container-fluid mt-4">
+
+    <div class="website-dashboard">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-8">
+
+                <span class="dashboard-badge">
+                    <i class="bi bi-globe2"></i> WEBSITE MANAGER
+                </span>
+
+                <h1 class="dashboard-title">
+                    Welcome Back,
+                    <span><?= $this->session->userdata('name'); ?></span> 👋
+                </h1>
+
+                <p class="dashboard-text">
+                    Manage your assigned website pages with confidence.
+                    Keep your content fresh, publish updates instantly,
+                    and provide visitors with the best experience.
+                </p>
+
+                <div class="mt-4">
+
+                    <!-- <a href="<?= base_url('pages'); ?>" class="btn btn-light btn-dashboard">
+                        <i class="bi bi-file-earmark-text"></i>
+                        Manage Pages
+                    </a> -->
+
+                    <a href="<?= rtrim(str_replace('/beta', '', base_url()), '/'); ?>" target="_blank" class="btn btn-outline-light btn-dashboard">
+                        <i class="bi bi-box-arrow-up-right"></i>
+                        Visit Website
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4 text-center">
+
+                <div class="dashboard-icon">
+
+                    <i class="bi bi-window-stack"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</div>
+<?php } ?>
       <?php if ($this->session->userdata('type') == 'admin' || has_permission('Lead')) { ?>
         <div class="lead_full_body">
           <div class="row mb-2 justify-content-center">
@@ -617,6 +906,7 @@ $adminColor = $this->db->where( array('domain_id' => $domain_id))->get('admin_co
         </div>
     </div>
 </div>
+
 <?php
  $teams_parent = $this->db->get_where('user_master', ['id' => $this->session->userdata('user_id'),'role' => $this->session->userdata('role')])->row_array();
   if (empty($teams_parent)) {
