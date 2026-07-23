@@ -27,7 +27,7 @@
   <!-- Top Navigation -->
   <nav class="bg-white shadow-sm border-b">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <h1 class="text-2xl font-bold text-indigo-600">LoanHub</h1>
+      <h1 class="text-2xl font-bold text-indigo-600">Finquora</h1>
       <div class="flex items-center gap-4">
         <input type="text" placeholder="Search loans..." 
                class="px-4 py-2 border rounded-lg w-80 focus:outline-none focus:border-indigo-500">
