@@ -181,9 +181,17 @@ $route['admin/company-profile-update'] = 'admin/Dashboard/companyProfileUpdate';
 $route['admin/our-story'] = 'admin/Dashboard/ourStory';
 $route['admin/our-story-create'] = 'admin/Dashboard/ourStoryCreate';
 $route['admin/our-story-add'] = 'admin/Dashboard/ourStoryAdd';
-$route['admin/our-storyn-edit/(:any)'] = 'admin/Dashboard/ourStoryEdit/$1';
+$route['admin/our-story-edit/(:any)'] = 'admin/Dashboard/ourStoryEdit/$1';
 $route['admin/our-story-update'] = 'admin/Dashboard/ourStoryUpdate';
 $route['admin/our-story-del/(:any)'] = 'admin/Dashboard/ourStoryDel/$1';
+
+//enquiry-content
+$route['admin/enquiry-content'] = 'admin/Dashboard/enquiryContent';
+$route['admin/enquiry-content-create'] = 'admin/Dashboard/enquiryContentCreate';
+$route['admin/enquiry-content-add'] = 'admin/Dashboard/enquiryContentAdd';
+$route['admin/enquiry-content-edit/(:any)'] = 'admin/Dashboard/enquiryContentEdit/$1';
+$route['admin/enquiry-content-update'] = 'admin/Dashboard/enquiryContentUpdate';
+$route['admin/enquiry-content-del/(:any)'] = 'admin/Dashboard/enquiryContentDel/$1';
 
 //Smartest Choice
 $route['admin/smart-choice'] = 'admin/Dashboard/smartChoice';

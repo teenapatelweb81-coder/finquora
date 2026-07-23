@@ -52,7 +52,7 @@
 						<td class=''><?=$data['title']?></td>
 						<td>
                     
-					       <a href="<?php echo base_url('admin/our-storyn-edit/') . $data['id']; ?>"><i class="fa fa-pencil-square-o text-primary fa-lg" aria-hidden="true"></i></a>
+					       <a href="<?php echo base_url('admin/our-story-edit/') . $data['id']; ?>"><i class="fa fa-pencil-square-o text-primary fa-lg" aria-hidden="true"></i></a>
 					        <a href="<?php echo base_url('admin/our-story-del/') . $data['id']; ?>" onclick="return confirm('Are you sure ?')" ><i class="fa fa-trash text-danger fa-lg" aria-hidden="true" onclick="delLead"></i></a>
 
 					   </td>

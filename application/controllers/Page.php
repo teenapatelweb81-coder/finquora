@@ -2583,8 +2583,34 @@ public function userPaymentAgen($id)
             $data['keywords'] = 'cureent-opening,page,test';
             $data['description'] = 'This is Loan page';
             $domain_id = domain_id_get();
+            $current_domain = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http");
+            $current_domain .= "://" . $_SERVER['HTTP_HOST'] . '/';
             $data['heading'] =  $this->db->where('domain_id',$domain_id)->where('type','loan_enquiry')->get('settings')->row_array();
             $data['states'] = $this->db->get('states')->result_array();
+             // Current page URL
+                $loan = $_GET['loan'];
+                $segment = $this->uri->segment(1); // enquiry-leads
+                $url = $segment.'?loan='.$loan;
+                // Get menu id from menus table
+                $menu = $this->db->like('url', $url)
+                                ->where('domain_id', $domain_id) // agar menus me domain_id hai
+                                ->get('menus')
+                                ->row_array();
+                                // print_r($menu);die;
+
+                if (!empty($menu)) {
+
+                    // Get content using menu_id
+                    $data['page_content'] = $this->db
+                        ->where('domain_id', $domain_id)
+                        ->where('menu_id', $menu['id'])
+                        ->get('enquiry_content')
+                        ->row_array();
+
+                } else {
+                    $data['page_content'] = [];
+                }
+            // print_r($this->db->last_query());die;
             $this->load->view('Page/template/header', $data);
             $this->load->view('Page/enquiry_leads', $data);
             $this->load->view('Page/template/footer', $data);

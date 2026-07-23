@@ -15004,7 +15004,7 @@ public function loanEnquiry()
     ->where(array('domain_id' => $domain_id))
     ->where(($this->session->userdata('role') != 1) ? array('team_id' =>$this->session->userdata('user_id')) : array())
     ->get('loan_enquiry_tbl')->result();
-
+    
     $data['heading'] = $this->Dashboard_Model->common_rows('loan_enquiry','settings', $domain_id); 
     $this->load->view('admin/template/header');
     $this->load->view('admin/page/loan_enquiry', $data);
@@ -15846,5 +15846,160 @@ private function applyDomainFilter($domain_id)
         $this->db->where('domain_id', $domain_id);
     }
 }
+
+
+        // enquiry content
+
+        public function enquiryContent()
+        {
+            if (($this->session->userdata('type') == 'admin') || ($this->session->userdata('type') == 'seo')) {
+                $data['contents'] = $this->db->where('domain_id', domain_id_get())->get('enquiry_content')->result_array();
+                 $this->load->view('admin/template/header');
+                 $this->load->view('admin/enquiry-content/list', $data);
+                 $this->load->view('admin/template/footer');
+			
+                }else{
+                $this->session->set_flashdata('message', 'You do not have permission to access this section.');
+                redirect('admin-dashboard');
+                return;
+                
+                }
+
+        }
+        public function enquiryContentAdd()
+        {
+           if (($this->session->userdata('type') == 'admin') || ($this->session->userdata('type') == 'seo')) {
+               // $data['bank_data'] = $this->Dashboard_Model->bank_list();
+               $data['datas'] = $this->db->get('enquiry_content')->row_array();
+               $data['menus'] = $this->db->where('domain_id', 3)->like('url', 'enquiry-leads')->get('menus')->result_array();
+
+               $data['domains'] = $this->db->where('status',1)->get('domains')->result_array();
+               $this->load->view('admin/template/header');
+               $this->load->view('admin/enquiry-content/create',$data);
+               $this->load->view('admin/template/footer');
+           
+			
+           }else{
+                $this->session->set_flashdata('message', 'You do not have permission to access this section.');
+                redirect('admin-dashboard');
+                return;
+                
+                }
+        }
+        public function enquiryContentCreate()
+        {
+            if (($this->session->userdata('type') == 'admin') || ($this->session->userdata('type') == 'seo')) {
+			
+                $post = $this->input->post();
+                 $exists = $this->db->where('domain_id', $post['domain_id'])
+                           ->where('menu_id', $post['menu_id'])
+                           ->get('enquiry_content')
+                           ->row();
+
+                if ($exists) {
+                    $this->session->set_flashdata('error', 'You have already added enquiry content for this page.');
+                    redirect('admin/enquiry-content-add');
+                    return;
+                }
+                // print_r($post);die;
+                $data = array(
+                    'domain_id' => $post['domain_id'],
+                    'menu_id' => $post['menu_id'],
+                    'description' => $post['description'],
+                );
+                $insert = $this->Dashboard_Model->common_insert($data, 'enquiry_content');
+    
+                if ($insert) {
+                    $this->session->set_flashdata('success', 'enquiry content has been Created Successfully!!');
+                    redirect('admin/enquiry-content');
+                } else {
+                $this->session->set_flashdata('error', 'Something Went Wrong, try again!!');
+                redirect('admin/enquiry-content-add');
+                }
+            }else{
+                $this->session->set_flashdata('message', 'You do not have permission to access this section.');
+                redirect('admin-dashboard');
+                return;
+                
+                }
+        }
+        public function enquiryContentEdit($id)
+        {
+            if (($this->session->userdata('type') == 'admin') || ($this->session->userdata('type') == 'seo')) {
+                $data['datas'] = $this->Dashboard_Model->common_row($id, 'enquiry_content');
+                $data['domains'] = $this->db->where('status',1)->get('domains')->result_array();
+                $data['menus'] = $this->db->where('domain_id', 3)->like('url', 'enquiry-leads')->get('menus')->result_array();
+
+                $this->load->view('admin/template/header');
+                $this->load->view('admin/enquiry-content/edit', $data);
+                $this->load->view('admin/template/footer');
+			
+            }else{
+                $this->session->set_flashdata('message', 'You do not have permission to access this section.');
+                redirect('admin-dashboard');
+                return;
+                
+            }
+        }
+    
+        public function enquiryContentUpdate()
+        {
+            if (($this->session->userdata('type') == 'admin') || ($this->session->userdata('type') == 'seo')) {
+			
+                // $id = $this->input->post('id');
+                $post = $this->input->post();
+                $id = $post['id'];
+                 $exists = $this->db->where('domain_id', $post['domain_id'])
+                           ->where('menu_id', $post['menu_id'])
+                           ->where('id !=', $id)
+                           ->get('enquiry_content')
+                           ->row();
+
+                if ($exists) {
+                    $this->session->set_flashdata('error', 'You have already added enquiry content for this page.');
+                    redirect('admin/enquiry-content-edit/' . $id);
+                    return;
+                }
+                unset($post['id']);
+                $data = array(
+                    'menu_id' => $post['menu_id'],
+                    'domain_id' => $post['domain_id'],
+                    'description' => $post['description'],
+                );
+                $update = $this->Dashboard_Model->common_update($id, $data, 'enquiry_content');
+                
+                if ($update) {
+                    $this->session->set_flashdata('success', 'Enquiry Content Update successfully');
+                    redirect('admin/enquiry-content');
+                } else {
+                    redirect('admin/enquiry-content-edit');
+                }
+             }else{
+                $this->session->set_flashdata('message', 'You do not have permission to access this section.');
+                redirect('admin-dashboard');
+                return;
+                
+            }
+        }
+        public function enquiryContentDel($id)
+        { 
+            if (($this->session->userdata('type') == 'admin') || ($this->session->userdata('type') == 'seo')) {
+                $banker_del = $this->db->where('id', $id)->delete('enquiry_content');
+                if ($banker_del) {
+                    $this->session->set_flashdata('success', 'Enquiry Content deleted successfully');
+                    redirect('admin/enquiry-content');
+                } else {
+                    $this->session->set_flashdata('error', 'Something went wrong, try again!!');
+                    redirect('admin/enquiry-content');
+                }
+			
+                }else {
+                $this->session->set_flashdata('message', 'You do not have permission to access this section.');
+                redirect('admin-dashboard');
+                return;
+                
+            }
+        }
+
 
 }

@@ -12,7 +12,7 @@
 		<div class="col-md-12 px-0">
 		<?php echo form_open_multipart('admin/Slider/heading_update');?>
             
-            <div class="card p-3 mb-0">
+            <div class="card p-3 mb-0" style="box-shadow:unset;">
 				<div class="cart-b">
             <div class="row align-items-end">
                 <div class="col-md-3 mt-2">
@@ -58,10 +58,16 @@
 	</div>
     <?php  }?>
 	<div class="row m-0">
-		<div class="col-md-12 px-0">
-		    <div id="message" class="text-primary text-center"></div>
-			<div class="table-responsive shadow-lg">
-			<table class="table table-bordered text-center table-hover">
+        <div id="message" class="text-primary text-center"></div>
+        <div class="table-responsive shadow-lg">
+            <?php if ($this->session->userdata('type') == 'seo' || $this->session->userdata('type') == 'admin') {?>
+            <div class="px-0">
+                 <div id="" class="text-primary text-right mr-3">
+                    <a href="<?php echo base_url() ?>admin/enquiry-content" class="btn btn-primary"><i class="fa fa-plus text-light fa-sm" aria-hidden="true"></i> Add Loan Enquiry Content</a>
+    
+                </div>
+            <?php }?>
+            <table class="table table-bordered text-center table-hover">
 				<span class="text-center text-info mb-2" id="susid"> <?php echo $this->session->flashdata('success');?></span>
                 <span class="text-center text-danger mb-2" id="errid"> <?php echo $this->session->flashdata('error');?></span>				
 				<thead>
