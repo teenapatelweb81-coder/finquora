@@ -8926,6 +8926,10 @@ public function id_genrate_docx()
                'whatsapp_no' =>$post['whatsapp_no'],
                'other_mobile' =>$post['other_mobile'],
                'owner_mobile' =>$post['owner_mobile'],
+               'header_w_logo'=> $post['header_w_logo'], 
+               'header_h_logo'=> $post['header_h_logo'], 
+               'footer_w_logo'=> $post['footer_w_logo'], 
+               'footer_h_logo'=> $post['footer_h_logo'], 
            );
            if(isset($logo)){
                $data['logo'] = $logo;

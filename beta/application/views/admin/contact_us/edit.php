@@ -247,6 +247,22 @@
                             </div>
                         <?php } ?>
                     </div>
+                    <div class="col-md-6">
+                        <label for="header_w_logo" class="form-label">Header logo width(px)</label>
+                        <input type="number" name="header_w_logo" id="header_w_logo" class="form-control"  value="<?php echo isset($datas['header_w_logo']) ? $datas['header_w_logo'] : ''; ?>">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="header_h_logo" class="form-label">Header logo height(px)</label>
+                        <input type="number" name="header_h_logo" id="header_h_logo" class="form-control"  value="<?php echo isset($datas['header_h_logo']) ? $datas['header_h_logo'] : ''; ?>">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="footer_w_logo" class="form-label">Footer logo width(px)</label>
+                        <input type="number" name="footer_w_logo" id="footer_w_logo" class="form-control"  value="<?php echo isset($datas['footer_w_logo']) ? $datas['footer_w_logo'] : ''; ?>">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="footer_h_logo" class="form-label">Footer logo height(px)</label>
+                        <input type="number" name="footer_h_logo" id="footer_h_logo" class="form-control"  value="<?php echo isset($datas['footer_h_logo']) ? $datas['footer_h_logo'] : ''; ?>">
+                    </div>
                 </div>
                     
                 

@@ -34,7 +34,7 @@ $defaultData = [
         <div class="container">
             <div class="row gap-y">
                 <div class="col-md-4 col-sm-12">
-                    <img src="<?= base_url('beta/assets/images/logo/' . (isset($contectUs['logo']) && !empty($contectUs['logo']) ? $contectUs['logo'] : $defaultData['logo'])) ?>" alt="<?= isset($contectUs['company_title']) && !empty($contectUs['company_title']) ? $contectUs['company_title'] : $defaultData['company_title'] ?>" class="m-t-20 m-b-30" style="max-width: 240px;">
+                    <img src="<?= base_url('beta/assets/images/logo/' . (isset($contectUs['logo']) && !empty($contectUs['logo']) ? $contectUs['logo'] : $defaultData['logo'])) ?>" alt="<?= isset($contectUs['company_title']) && !empty($contectUs['company_title']) ? $contectUs['company_title'] : $defaultData['company_title'] ?>" class="m-t-20 m-b-30" style="width:<?php echo isset($contectUs['footer_w_logo']) ? $contectUs['footer_w_logo'] : '100'; ?>px;height:<?php echo isset($contectUs['footer_w_logo']) ? $contectUs['footer_w_logo'] : '100'; ?>px;">
                     <p class="m-b-20"><?= isset($contectUs['description']) && !empty($contectUs['description']) ? $contectUs['description'] : $defaultData['description'] ?></p>
                     <p class="p-t-10"><a href="#" target="_blank" class="text-danger" rel="<?= isset($contectUs['company_title']) && !empty($contectUs['company_title']) ? $contectUs['company_title'] : $defaultData['company_title'] ?>"><i class="fa fa-youtube"></i> Learn company information &amp; products</a></p>
                 </div>

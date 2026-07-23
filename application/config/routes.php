@@ -185,3 +185,5 @@ $route['government-services-insert'] = 'page/government_services_insert';
 
 $route['brand-loan'] = 'page/brand_loan';
 $route['brand-loan-insert'] = 'page/brand_loan_insert';
+
+$route['products'] = 'page/products';

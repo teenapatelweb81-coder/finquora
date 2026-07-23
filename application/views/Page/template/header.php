@@ -97,8 +97,21 @@
                             $contectUs = $this->db->where('domain_id', $domain_ids)->get('contect_us')->row_array();
                            
                             ?>
-                            <span class="logo-default"><img style=" object-fit: contain; " src="<?= $logo_path ?>" alt="<?= isset($contectUs['company_title']) && !empty($contectUs['company_title']) ? $contectUs['company_title'] : '' ?>" width="160" height="60px"></span>
-                            <span class="logo-dark"><img style=" object-fit: contain; " src="<?= $logo_path ?>" alt="<?= isset($contectUs['company_title']) && !empty($contectUs['company_title']) ? $contectUs['company_title'] : '' ?>" width="160" height="60px"></span>
+                           <span class="logo-default">
+                                <img src="<?= $logo_path ?>"
+                                    alt="<?= !empty($contectUs['company_title']) ? $contectUs['company_title'] : '' ?>"
+                                    style="object-fit:contain;
+                                            width:<?= !empty($contectUs['header_w_logo']) ? $contectUs['header_w_logo'] : '100'; ?>px;
+                                            height:<?= !empty($contectUs['header_h_logo']) ? $contectUs['header_h_logo'] : '100'; ?>px;">
+                            </span>
+
+                            <span class="logo-dark">
+                                <img src="<?= $logo_path ?>"
+                                    alt="<?= !empty($contectUs['company_title']) ? $contectUs['company_title'] : '' ?>"
+                                    style="object-fit:contain;
+                                            width:<?= !empty($contectUs['header_w_logo']) ? $contectUs['header_w_logo'] : '100'; ?>px;
+                                            height:<?= !empty($contectUs['header_h_logo']) ? $contectUs['header_h_logo'] : '100'; ?>px;">
+                            </span>
                         </a>
                     </div>
 
