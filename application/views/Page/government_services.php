@@ -18,9 +18,9 @@
 
         <!-- RIGHT FORM -->
         <div class="<?php if(domain_id_get() == 3){?> col-lg-7 <?php }else{ ?>col-lg-12<?php } ?>">
-            <div class="container py-5">
+            <div class="">
                 <div class="row justify-content-center">
-                    <div class="col-lg-10">
+                    <div class="col-lg-12">
                         <div class="card shadow-lg">
                             <div class="card-header text-white p-3" style="background-color:<?= isset($heading['color']) ? $heading['color'] :  '#ed940d' ?>">
                                 <h3 class="mb-0 text-center"><i class="fas fa-file-invoice-dollar mr-2"></i><?= isset($heading['title']) ? $heading['title'] : 'Government Services' ?>   Form</h3>
