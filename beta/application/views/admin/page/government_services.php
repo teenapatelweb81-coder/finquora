@@ -61,6 +61,12 @@
 		<div class="col-md-12 px-0">
 		    <div id="message" class="text-primary text-center"></div>
 			<div class="table-responsive shadow-lg">
+                <?php if ($this->session->userdata('type') == 'seo' || $this->session->userdata('type') == 'admin') {?>
+                <div class="px-0">
+                    <div id="" class="text-primary text-right mr-3">
+                        <a href="<?php echo base_url() ?>admin/government-content" class="btn btn-primary"><i class="fa fa-plus text-light fa-sm" aria-hidden="true"></i> Add Government Service Content</a>
+                    </div>
+                <?php }?>
 			<table class="table table-bordered text-center table-hover">
 				<span class="text-center text-info mb-2" id="susid"> <?php echo $this->session->flashdata('success');?></span>
                 <span class="text-center text-danger mb-2" id="errid"> <?php echo $this->session->flashdata('error');?></span>				

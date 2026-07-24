@@ -193,6 +193,14 @@ $route['admin/enquiry-content-edit/(:any)'] = 'admin/Dashboard/enquiryContentEdi
 $route['admin/enquiry-content-update'] = 'admin/Dashboard/enquiryContentUpdate';
 $route['admin/enquiry-content-del/(:any)'] = 'admin/Dashboard/enquiryContentDel/$1';
 
+//government-content
+$route['admin/government-content'] = 'admin/Dashboard/governmentContent';
+$route['admin/government-content-create'] = 'admin/Dashboard/governmentContentCreate';
+$route['admin/government-content-add'] = 'admin/Dashboard/governmentContentAdd';
+$route['admin/government-content-edit/(:any)'] = 'admin/Dashboard/governmentContentEdit/$1';
+$route['admin/government-content-update'] = 'admin/Dashboard/governmentContentUpdate';
+$route['admin/government-content-del/(:any)'] = 'admin/Dashboard/governmentContentDel/$1';
+
 //Smartest Choice
 $route['admin/smart-choice'] = 'admin/Dashboard/smartChoice';
 $route['admin/smart-choice-create'] = 'admin/Dashboard/smartChoiceCreate';

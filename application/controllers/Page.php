@@ -2671,6 +2671,31 @@ public function userPaymentAgen($id)
             $domain_id = domain_id_get();
             $data['heading'] =  $this->db->where('domain_id',$domain_id)->where('type','government_services')->get('settings')->row_array();
             $data['states'] = $this->db->get('states')->result_array();
+            $current_domain = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http");
+            $current_domain .= "://" . $_SERVER['HTTP_HOST'] . '/';
+             // Current page URL
+                $loan = $_GET['type'];
+                $segment = $this->uri->segment(1); // enquiry-leads
+                $url = $segment.'?type='.$loan;
+                // Get menu id from menus table
+                $menu = $this->db->like('url', $url)
+                                ->where('domain_id', $domain_id) // agar menus me domain_id hai
+                                ->get('menus')
+                                ->row_array();
+                                // print_r($menu);die;
+
+                if (!empty($menu)) {
+
+                    // Get content using menu_id
+                    $data['page_content'] = $this->db
+                        ->where('domain_id', $domain_id)
+                        ->where('menu_id', $menu['id'])
+                        ->get('government_content')
+                        ->row_array();
+
+                } else {
+                    $data['page_content'] = [];
+                }
             $this->load->view('Page/template/header', $data);
             $this->load->view('Page/government_services', $data);
             $this->load->view('Page/template/footer', $data);

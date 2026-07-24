@@ -16006,4 +16006,158 @@ private function applyDomainFilter($domain_id)
         }
 
 
+        // government content
+
+        public function governmentContent()
+        {
+            if (($this->session->userdata('type') == 'admin') || ($this->session->userdata('type') == 'seo')) {
+                $data['contents'] = $this->db->where('domain_id', domain_id_get())->get('government_content')->result_array();
+                 $this->load->view('admin/template/header');
+                 $this->load->view('admin/government-content/list', $data);
+                 $this->load->view('admin/template/footer');
+			
+                }else{
+                $this->session->set_flashdata('message', 'You do not have permission to access this section.');
+                redirect('admin-dashboard');
+                return;
+                
+                }
+
+        }
+        public function governmentContentAdd()
+        {
+           if (($this->session->userdata('type') == 'admin') || ($this->session->userdata('type') == 'seo')) {
+               // $data['bank_data'] = $this->Dashboard_Model->bank_list();
+               $data['datas'] = $this->db->get('government_content')->row_array();
+               $data['menus'] = $this->db->where('domain_id', 3)->like('url', 'government-services')->get('menus')->result_array();
+
+               $data['domains'] = $this->db->where('status',1)->get('domains')->result_array();
+               $this->load->view('admin/template/header');
+               $this->load->view('admin/government-content/create',$data);
+               $this->load->view('admin/template/footer');
+           
+			
+           }else{
+                $this->session->set_flashdata('message', 'You do not have permission to access this section.');
+                redirect('admin-dashboard');
+                return;
+                
+                }
+        }
+        public function governmentContentCreate()
+        {
+            if (($this->session->userdata('type') == 'admin') || ($this->session->userdata('type') == 'seo')) {
+			
+                $post = $this->input->post();
+                 $exists = $this->db->where('domain_id', $post['domain_id'])
+                           ->where('menu_id', $post['menu_id'])
+                           ->get('government_content')
+                           ->row();
+
+                if ($exists) {
+                    $this->session->set_flashdata('error', 'You have already added government content for this page.');
+                    redirect('admin/government-content-add');
+                    return;
+                }
+                // print_r($post);die;
+                $data = array(
+                    'domain_id' => $post['domain_id'],
+                    'menu_id' => $post['menu_id'],
+                    'description' => $post['description'],
+                );
+                $insert = $this->Dashboard_Model->common_insert($data, 'government_content');
+    
+                if ($insert) {
+                    $this->session->set_flashdata('success', 'government content has been Created Successfully!!');
+                    redirect('admin/government-content');
+                } else {
+                $this->session->set_flashdata('error', 'Something Went Wrong, try again!!');
+                redirect('admin/government-content-add');
+                }
+            }else{
+                $this->session->set_flashdata('message', 'You do not have permission to access this section.');
+                redirect('admin-dashboard');
+                return;
+                
+                }
+        }
+        public function governmentContentEdit($id)
+        {
+            if (($this->session->userdata('type') == 'admin') || ($this->session->userdata('type') == 'seo')) {
+                $data['datas'] = $this->Dashboard_Model->common_row($id, 'government_content');
+                $data['domains'] = $this->db->where('status',1)->get('domains')->result_array();
+                $data['menus'] = $this->db->where('domain_id', 3)->like('url', 'government-services')->get('menus')->result_array();
+
+                $this->load->view('admin/template/header');
+                $this->load->view('admin/government-content/edit', $data);
+                $this->load->view('admin/template/footer');
+			
+            }else{
+                $this->session->set_flashdata('message', 'You do not have permission to access this section.');
+                redirect('admin-dashboard');
+                return;
+                
+            }
+        }
+    
+        public function governmentContentUpdate()
+        {
+            if (($this->session->userdata('type') == 'admin') || ($this->session->userdata('type') == 'seo')) {
+			
+                // $id = $this->input->post('id');
+                $post = $this->input->post();
+                $id = $post['id'];
+                 $exists = $this->db->where('domain_id', $post['domain_id'])
+                           ->where('menu_id', $post['menu_id'])
+                           ->where('id !=', $id)
+                           ->get('government_content')
+                           ->row();
+
+                if ($exists) {
+                    $this->session->set_flashdata('error', 'You have already added government content for this page.');
+                    redirect('admin/government-content-edit/' . $id);
+                    return;
+                }
+                unset($post['id']);
+                $data = array(
+                    'menu_id' => $post['menu_id'],
+                    'domain_id' => $post['domain_id'],
+                    'description' => $post['description'],
+                );
+                $update = $this->Dashboard_Model->common_update($id, $data, 'government_content');
+                
+                if ($update) {
+                    $this->session->set_flashdata('success', 'government Content Update successfully');
+                    redirect('admin/government-content');
+                } else {
+                    redirect('admin/government-content-edit');
+                }
+             }else{
+                $this->session->set_flashdata('message', 'You do not have permission to access this section.');
+                redirect('admin-dashboard');
+                return;
+                
+            }
+        }
+        public function governmentContentDel($id)
+        { 
+            if (($this->session->userdata('type') == 'admin') || ($this->session->userdata('type') == 'seo')) {
+                $banker_del = $this->db->where('id', $id)->delete('government_content');
+                if ($banker_del) {
+                    $this->session->set_flashdata('success', 'government Content deleted successfully');
+                    redirect('admin/government-content');
+                } else {
+                    $this->session->set_flashdata('error', 'Something went wrong, try again!!');
+                    redirect('admin/government-content');
+                }
+			
+                }else {
+                $this->session->set_flashdata('message', 'You do not have permission to access this section.');
+                redirect('admin-dashboard');
+                return;
+                
+            }
+        }
+
+
 }
