@@ -56,7 +56,7 @@
 </head>
 
   <!-- Top Navigation -->
-  <nav class="bg-white shadow-sm border-b sticky top-0 z-50">
+  <nav class="bg-white shadow-sm border-b  z-50">
     <div class="tail-container px-6 py-5 flex justify-between items-center">
       <div class="flex items-center gap-3">
         <div class="w-10 h-10 bg-gradient-to-br from-[#0370b5] to-[#0f8740] rounded-2xl flex items-center justify-center text-white text-2xl font-bold">F</div>
