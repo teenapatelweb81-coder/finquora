@@ -200,6 +200,19 @@ class Product extends CI_Controller {
             return;
         }
 
+        $olddata = $this->db->where('id', $id)->get('product_hero_banner')->row();
+            if ($_FILES["image"]["size"] > 0) {
+                $tmpFilePath = $_FILES['image']['tmp_name'];
+                $fileinfo = @getimagesize($_FILES["image"]["tmp_name"]);
+                $image_file_type = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);
+                $newFilePath = 'upload/assets/' . time() . '.' . $image_file_type;
+                if (move_uploaded_file($tmpFilePath, $newFilePath)) {
+                    $image = $newFilePath;
+                }
+            }else{
+                $image  =  $olddata->image; 
+            }
+
         // Data prepare
         $update_data = [
             'domain_id'         => $this->input->post('domain_id', TRUE),
@@ -217,15 +230,17 @@ class Product extends CI_Controller {
             'right_description' => $this->input->post('right_description', TRUE),
             'right_cta_text'    => $this->input->post('right_cta_text', TRUE),
             'right_cta_link'    => $this->input->post('right_cta_link', TRUE),
+            'image'             => $image,
             'status'            => $this->input->post('status', TRUE),
         ];
+        // print_r($update_data);die;
 
         if(empty($id)) {
             $updated = $this->Product_model->insert_hero_banner($update_data);
         } else {
             $updated = $this->Product_model->update_hero_banner($id, $update_data);
         }
-
+// print_r($this->db->last_query());die;
         if ($updated) {
             $this->session->set_flashdata('success', 'Banner updated successfully!');
         } else {

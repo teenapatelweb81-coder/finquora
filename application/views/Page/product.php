@@ -158,12 +158,12 @@
         
         <!-- Image -->
         <div class="relative flex-shrink-0 lg:pe-3">
-          <img src="<?= base_url('upload/assets/images/credit-score.jpg')?>" 
+          <img src="<?php echo isset($hero_banners) && !empty($hero_banners->image) ? base_url('beta/').''.$hero_banners->image : base_url('upload/assets/images/credit-score.jpg'); ?>" 
                alt="CIBIL Score" 
                class="w-full max-w-[280px] sm:max-w-[360px] rounded-3xl drop-shadow-2xl">
           
           <!-- Floating Badge -->
-          <div class="absolute top-2 right-2 sm:-top-4 sm:-right-4 bg-white shadow-xl rounded-2xl px-6 py-3 flex items-center gap-3">
+          <div class="absolute top-2 right-2 sm:-top-4 sm:-right-4 bg-white shadow-xl rounded-2xl px-3 py-2 flex items-center gap-1">
             <div class="text-3xl">📈</div>
             <div>
               <p class="text-emerald-600 font-bold"><?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->score_value : ''; ?></p>

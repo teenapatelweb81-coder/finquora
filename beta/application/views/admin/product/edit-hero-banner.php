@@ -27,7 +27,7 @@
                         </div>
                     <?php endif; ?>
 
-                    <form action="<?= base_url('admin/product/update_hero_banner') ?>" method="post">
+                    <form action="<?= base_url('admin/product/update_hero_banner') ?>" method="post" enctype="multipart/form-data">
         
                             <input type="hidden" name="domain_id" class="form-control" value="3" required>
                             <input type="hidden" name="id" class="form-control" value="<?= isset($banner) ? $banner->id : '' ?>" required>
@@ -98,6 +98,25 @@
                                     value="<?= set_value('score_label', isset($banner) ? $banner->score_label : '') ?>">
                             </div>
                         </div>
+                        <div class="mb-3">
+                            <div class="form-group">
+                                <label>Image</label>
+                                <input type="file" name="image" id="image" class="form-control" accept="image/*" onchange="previewimage(this)">
+                                <?php echo form_error('image', '<span class="text-danger">', '</span>'); ?>
+
+                                <div class="mt-3">
+                                    <img id="imagePreview"
+                                        src="<?php
+                                            if(isset($banner) && !empty($banner->image)){
+                                                echo base_url($banner->image);
+                                            }else{
+                                                echo '';
+                                            }
+                                        ?>"
+                                        style="max-width:120px;max-height:120px;<?php echo (isset($banner) && !empty($banner->image)) ? '' : 'display:none;'; ?>" class="img-thumbnail">
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="mb-3">
                             <label class="form-label">Right Heading</label>
@@ -141,3 +160,22 @@
         </div>
     </div>
 </div>
+<script>
+function previewimage(input){
+
+    if(input.files && input.files[0]){
+
+        var reader = new FileReader();
+
+        reader.onload = function(e){
+
+            $('#imagePreview')
+                .attr('src', e.target.result)
+                .show();
+
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+</script>
