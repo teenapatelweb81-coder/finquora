@@ -2798,11 +2798,16 @@ public function userPaymentAgen($id)
 
   public function products()
     {
-
         $data['title'] = 'Products';
         $data['keywords'] = 'home,page,test';
         $data['description'] = 'this is products page';
         $data['datas'] = $this->db->where('domain_id',domain_id_get())->where('status', 1)->get('video')->result_array();
+        
+        // Load products from database
+        $data['products'] = $this->Page_Model->get_active_products(domain_id_get());
+        $data['hero_banners'] = $this->Page_Model->get_active_hero_banners(domain_id_get());
+
+        // print_r($data['products']);die;
         $this->load->view('Page/template/header', $data);
         $this->load->view('Page/product', $data);
         $this->load->view('Page/template/footer', $data);

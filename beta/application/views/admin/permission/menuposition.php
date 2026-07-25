@@ -176,6 +176,7 @@
                     <li class="menus" data-key="brand_loan" data-id="<?= $roles['brand_loan']; ?>"><span class="mr-2"><?= $roles['brand_loan']; ?>. </span> <i class="fas fa-tag mr-2"></i> Brand Loan</li>
                     <li class="menus" data-key="document_menu" data-id="<?= $roles['document_menu']; ?>"><span class="mr-2"><?= $roles['document_menu']; ?>. </span> <i class="fas fa-file-contract mr-2"></i> Document</li>
                     <li class="menus" data-key="indiasale_dashboard" data-id="<?= $roles['indiasale_dashboard']; ?>"><span class="mr-2"><?= $roles['indiasale_dashboard']; ?>. </span> <i class="fas fa-file-contract mr-2"></i>  Apply Instant Loan kyc</li>
+                    <li class="menus" data-key="product" data-id="<?= $roles['product']; ?>"><span class="mr-2"><?= $roles['product']; ?>. </span> <i class="fas fa-box mr-2"></i>  Product</li>
                 </ul>
             </div>
             

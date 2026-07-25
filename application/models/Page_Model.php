@@ -335,6 +335,26 @@ public function insert_data($data, $dbname)
 
     }
 
+     public function get_active_products($domain_id = NULL)
+    {
+        $this->db->where('status', 1);
+        $this->db->order_by('id', 'DESC');
+        if ($domain_id) {
+            $this->db->where('domain_id', $domain_id);
+        }
+        return $this->db->get('products')->result();
+    }
+
+    public function get_active_hero_banners($domain_id = NULL)
+    {
+        $this->db->where('status', 1);
+        $this->db->order_by('id', 'DESC');
+        if ($domain_id) {
+            $this->db->where('domain_id', $domain_id);
+        }
+        return $this->db->get('product_hero_banner')->row();
+    }
+
 }
 
 ?>

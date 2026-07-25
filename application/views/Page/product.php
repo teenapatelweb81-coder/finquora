@@ -41,9 +41,9 @@
     .product-logo {
       transition: transform 0.4s ease;
     }
-    .card-hover:hover .product-logo {
+   /* .card-hover:hover .product-logo  {
       transform: scale(1.15) rotate(8deg);
-    }
+    } */
       button:focus{
       outline:unset;
     }
@@ -56,7 +56,7 @@
 </head>
 
   <!-- Top Navigation -->
-  <nav class="bg-white shadow-sm border-b  z-50">
+  <!-- <nav class="bg-white shadow-sm border-b  z-50">
     <div class="tail-container px-6 py-5 flex justify-between items-center">
       <div class="flex items-center gap-3">
         <div class="w-10 h-10 bg-gradient-to-br from-[#0370b5] to-[#0f8740] rounded-2xl flex items-center justify-center text-white text-2xl font-bold">F</div>
@@ -74,52 +74,104 @@
         </button>
       </div>
     </div>
-  </nav>
+  </nav> -->
 
   <!-- Hero Banner -->
-  <div class="hero-gradient text-white py-16 relative overflow-hidden">
-    <div class="tail-container px-6 grid md:grid-cols-2 gap-12 items-center">
-      <div class="space-y-6">
-        <h2 class="text-5xl md:text-6xl font-bold leading-tight">
-          Get the <span class="text-white/90">Best Loan</span> Offers<br>for Your Customers
-        </h2>
-        <p class="text-xl opacity-90">Instant Personal Loans • Zero Hidden Charges • Quick Disbursal</p>
-        
-        <div class="flex gap-4 pt-4">
-          <button onclick="copyLink()" 
-                  class="flex items-center gap-3 bg-white/20 backdrop-blur-md px-8 py-4 rounded-2xl hover:bg-white/30 transition-all font-medium">
-            <i class="fas fa-copy"></i> Copy Link
+
+  <!-- Enhanced Hero Section -->
+<div class="grid md:grid-cols-2 gap-0 min-h-[85vh]">
+
+  <!-- LEFT HALF - Loan Offers -->
+  <div class="hero-gradient text-white py-20 relative overflow-hidden flex items-center">
+    <div class="tail-container px-3">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-5 py-2 rounded-3xl mb-6">
+          <span class="text-sm font-medium"><?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->badge_text : ''; ?></span>
+        </div>
+
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
+          <?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->main_heading : ''; ?>
+        </h1>
+
+        <p class="text-xl md:text-2xl opacity-90 mb-10">
+          <?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->sub_heading : ''; ?>
+        </p>
+
+        <div class="flex flex-wrap gap-4">
+          <button  onclick="copyLink(window.currentProduct.copy_link)"
+                  class="flex items-center gap-3 bg-white/20 hover:bg-white/30 backdrop-blur-md px-8 py-4 rounded-3xl font-semibold transition-all text-lg">
+            <i class="fa fa-copy"></i> <?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->cta1_text : 'Copy Link'; ?>
           </button>
+          
           <button onclick="document.getElementById('productGrid').scrollIntoView({behavior: 'smooth'})"
-                  class="bg-white text-[#0370b5] px-8 py-4 rounded-2xl font-semibold hover:shadow-xl transition-all flex items-center gap-3">
-            <i class="fas fa-bolt"></i> Check Offers Now
+                  class="bg-white text-[#0370b5] hover:bg-yellow-300 hover:text-[#0370b5] px-10 py-4 rounded-3xl font-semibold text-lg flex items-center gap-3 transition-all shadow-xl">
+            <i class="fa fa-bolt"></i> <?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->cta2_text : 'Check Offers Now'; ?>
           </button>
         </div>
+
+        <!-- Trust Signals -->
+        <div class="flex items-center gap-8 mt-12 text-sm opacity-90">
+          <?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->trusts : ''; ?>
+        </div>
       </div>
-      
-     <!-- NEW CLEAN ICON + IMAGE STYLE -->
-      <div class="hidden md:flex justify-end">
-        <div class="relative">
-          <div class="w-80 h-80 bg-white/10 backdrop-blur-3xl rounded-[3rem] border border-white/30 flex items-center justify-center overflow-hidden shadow-2xl">
-            
-            <!-- Big Icon -->
-            <div class="text-[180px] drop-shadow-2xl">
-              💰
+    </div>
+
+    <!-- Decorative Elements -->
+    <div class="absolute bottom-10 right-10 hidden xl:block">
+      <div class="text-[180px] opacity-10">💰</div>
+    </div>
+  </div>
+
+  <!-- RIGHT HALF - CIBIL Score -->
+  <div class="bg-gradient-to-br from-[#f8fbff] to-white flex items-center py-5">
+    <div class="tail-container px-2 ">
+      <div class="flex flex-col lg:flex-row items-center gap-6">
+        
+        <!-- Image -->
+        <div class="relative flex-shrink-0">
+          <img src="<?= base_url('upload/assets/images/credit-score.jpg')?>" 
+               alt="CIBIL Score" 
+               class="w-full max-w-md lg:max-w-lg drop-shadow-2xl rounded-3xl">
+          
+          <!-- Floating Badge -->
+          <div class="absolute -top-4 -right-4 bg-white shadow-xl rounded-2xl px-6 py-3 flex items-center gap-3">
+            <div class="text-3xl">📈</div>
+            <div>
+              <p class="text-emerald-600 font-bold text-lg"> <?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->score_value : ''; ?></p>
+              <p class="text-xs text-gray-500 -mt-1"> <?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->score_label : ''; ?></p>
             </div>
-
-            <!-- Optional Gradient Overlay -->
-            <div class="absolute inset-0 bg-gradient-to-br from-[#0370b5]/20 to-[#0f8740]/20 rounded-[3rem]"></div>
           </div>
+        </div>
 
-          <!-- Small Floating Label -->
-          <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-white text-gray-900 text-sm font-semibold px-6 py-3 rounded-2xl shadow-xl flex items-center gap-2 whitespace-nowrap">
-            <span class="text-2xl">₹</span>
-            <span>10 Lakh Max</span>
-          </div>
+        <!-- Text Content -->
+        <div class="space-y-6 max-w-md">
+         <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+            <?php
+            if (isset($hero_banners) && !empty($hero_banners->right_heading)) {
+                echo preg_replace(
+                    '/CIBIL Score/',
+                    '<span class="brand-blue">CIBIL Score</span>',
+                    $hero_banners->right_heading,
+                    1 // sirf pehli occurrence replace hogi
+                );
+            }
+            ?>
+        </h2>
+          
+          <p class="text-gray-600 text-[17px] leading-relaxed">
+            <?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->right_description : ''; ?>
+          </p>
+
+          <button onclick="checkCibil()" 
+                  class="bg-gradient-to-r from-[#0370b5] to-[#0f8740] text-white px-4 py-3 rounded-2xl font-semibold  hover:scale-105 transition-all shadow-lg flex items-center gap-3">
+            <?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->right_cta_text : ''; ?>
+            <span class="text-xl">→</span>
+          </button>
         </div>
       </div>
     </div>
   </div>
+</div>
 
   <!-- Product Grid -->
   <div class="tail-container px-6 py-12">
@@ -143,8 +195,8 @@
           <div id="modalLogo" class="text-6xl"></div>
           <div>
             <h2 id="modalTitle" class="text-3xl font-bold text-gray-900"></h2>
-            <span class="inline-block mt-2 px-5 py-1.5 bg-gradient-to-r from-[#0370b5]/10 to-[#0f8740]/10 text-[#0370b5] rounded-full text-sm font-medium">
-              Personal Loan
+            <span class="inline-block mt-2 px-5 py-1.5 bg-gradient-to-r from-[#0370b5]/10 to-[#0f8740]/10 text-[#0370b5] rounded-full text-sm font-medium"id="modalType">
+              
             </span>
           </div>
         </div>
@@ -157,172 +209,259 @@
 
       <!-- Footer Actions -->
       <div class="p-8 border-t bg-gray-50 flex gap-4">
-        <button onclick="copyLink()" 
+        <button  onclick="copyLink(window.currentProduct.copy_link)" 
                 class="flex-1 py-4 border-2 border-gray-300 rounded-2xl font-semibold hover:bg-gray-100 transition-all">
           📋 Copy Link
         </button>
-        <button onclick="sellNow()" 
+        <button onclick="sellNow(window.currentProduct.sell_link)"
                 class="flex-1 py-4 bg-gradient-to-r from-[#0370b5] to-[#0f8740] text-white rounded-2xl font-semibold text-lg hover:shadow-xl transition-all">
           💰 Sell Now
         </button>
       </div>
     </div>
   </div>
+<script>
+  <?php if (!empty($products)): ?>
+    const products = <?= json_encode($products, JSON_UNESCAPED_UNICODE | JSON_HEX_QUOT | JSON_HEX_APOS); ?>;
+  <?php else: ?>
+    const products = [];
+  <?php endif; ?>
 
-  <script>
-    const products = [
-      {
-        name: "Poonawalla Fincorp",
-        logo: "💰",
-        amount: "₹5 Lakhs",
-        benefit: "Instant Approval",
-        desc: "Get instant personal loan up to ₹5 Lakhs with minimal documentation and zero hidden charges."
-      },
-      {
-        name: "Zype Personal Loan",
-        logo: "⚡",
-        amount: "₹10 Lakhs",
-        benefit: "Fast Disbursal",
-        desc: "Quickest personal loan with 100% digital process and competitive interest rates."
-      },
-      {
-        name: "PrefR Personal Loan",
-        logo: "🌟",
-        amount: "₹7 Lakhs",
-        benefit: "Lowest Interest",
-        desc: "Best interest rates with flexible repayment options and no collateral required."
-      },
-      {
-        name: "Moneyview",
-        logo: "📱",
-        amount: "₹5 Lakhs",
-        benefit: "Fully Digital",
-        desc: "Instant approval in minutes. Paperless process with doorstep disbursement."
-      }
-    ];
+  function renderProducts() {
+    const grid = document.getElementById('productGrid');
+    grid.innerHTML = '';
 
-    function renderProducts() {
-      const grid = document.getElementById('productGrid');
-      grid.innerHTML = '';
-
-      products.forEach(product => {
-        const card = document.createElement('div');
-        card.className = `bg-white rounded-3xl p-8 card-hover cursor-pointer border border-gray-100`;
-        card.innerHTML = `
-          <div class="product-logo text-6xl mb-6">${product.logo}</div>
-          <h3 class="font-semibold text-2xl mb-2">${product.name}</h3>
-          <p class="text-3xl font-bold text-[#0370b5] mb-3">${product.amount}</p>
-          <p class="text-emerald-600 font-medium mb-6">${product.benefit}</p>
-          
-          <button onclick="showDetail('${product.name}', '${product.desc}', '${product.amount}', '${product.logo}')" 
-                  class="w-full py-4 bg-gradient-to-r from-[#0370b5] to-[#0f8740] text-white rounded-2xl font-semibold hover:shadow-lg transition-all">
-            View Details
-          </button>
-        `;
-        grid.appendChild(card);
-      });
+    if (products.length === 0) {
+      grid.innerHTML = `<div class="col-span-full text-center text-gray-500 py-20 text-xl">No products available</div>`;
+      return;
     }
 
-    function showDetail(name, desc, amount, logo) {
-      document.getElementById('modalTitle').textContent = name;
-      document.getElementById('modalLogo').textContent = logo;
-
-      document.getElementById('modalContent').innerHTML = `
-        <div class="space-y-10">
-          <div>
-            <div class="text-7xl font-bold text-[#0370b5] mb-2">${amount}</div>
-            <p class="text-gray-600 text-lg leading-relaxed">${desc}</p>
-          </div>
-
-          <div class="grid grid-cols-2 gap-6">
-            <div class="bg-gradient-to-br from-[#0370b5]/5 to-transparent p-6 rounded-2xl border border-[#0370b5]/10">
-              <p class="text-gray-500">Approval Time</p>
-              <p class="text-2xl font-semibold text-[#0370b5]">30 Minutes</p>
-            </div>
-            <div class="bg-gradient-to-br from-[#0f8740]/5 to-transparent p-6 rounded-2xl border border-[#0f8740]/10">
-              <p class="text-gray-500">Processing Fee</p>
-              <p class="text-2xl font-semibold text-[#0f8740]">Zero</p>
-            </div>
-          </div>
-
-          <!-- Tabs -->
-          <div class="border-b">
-            <div class="flex gap-8 text-sm">
-              <button onclick="changeTab(this, 'benefits')" class="tab-btn pb-4 border-b-2 border-[#0370b5] text-[#0370b5] font-semibold">Benefits</button>
-              <button onclick="changeTab(this, 'works')" class="tab-btn pb-4 text-gray-500 hover:text-gray-700">How it Works</button>
-              <button onclick="changeTab(this, 'terms')" class="tab-btn pb-4 text-gray-500 hover:text-gray-700">Terms</button>
-              <button onclick="changeTab(this, 'sell')" class="tab-btn pb-4 text-gray-500 hover:text-gray-700">Target Customers</button>
-            </div>
-          </div>
-
-          <div id="tabContent" class="min-h-[300px]"></div>
+    products.forEach((product, index) => {
+      const card = document.createElement('div');
+      card.className = `relative bg-white rounded-3xl p-8 card-hover cursor-pointer border border-gray-100`;
+      
+      card.innerHTML = `
+        <div class="product-logo text-6xl mb-6"><img style="max-width:80px;max-height:80px;margin: auto;" src="${product.logo ? '<?= base_url('beta/') ?>' + product.logo : ''}"></div>
+        <h3 class="font-semibold text-2xl mb-2">${product.name || ''}</h3>
+        <p class="text-3xl font-bold text-[#0370b5] mb-3">${product.amount || ''}</p>
+        <p class="text-emerald-600 font-medium mb-6">${product.benefit || ''}</p>
+        <div class="absolute bottom-2.5 left-[15px] w-full">
+        <button class="w-[90%] py-4 bg-gradient-to-r from-[#0370b5] to-[#0f8740] text-white rounded-2xl font-semibold hover:shadow-lg transition-all view-detail-btn">
+        View Details
+        </button>
         </div>
       `;
 
-      document.getElementById('detailModal').classList.remove('hidden');
-      changeTab(document.querySelector('.tab-btn'), 'benefits');
-    }
-
-    function closeModal() {
-      document.getElementById('detailModal').classList.add('hidden');
-    }
-
-    function sellNow() {
-      alert("🎉 Lead captured! Redirecting to application...");
-      closeModal();
-    }
-
-    function copyLink() {
-      alert("✅ Link copied to clipboard!");
-    }
-
-    // Tab System
-    window.changeTab = function(el, type) {
-      document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove('border-b-2', 'border-[#0370b5]', 'text-[#0370b5]', 'font-semibold');
+      // Safe way - no quote issues
+      card.querySelector('.view-detail-btn').addEventListener('click', (e) => {
+        e.stopPropagation();
+        showDetail(product);
       });
-      el.classList.add('border-b-2', 'border-[#0370b5]', 'text-[#0370b5]', 'font-semibold');
 
-      const content = document.getElementById('tabContent');
+      // Optional: whole card clickable
+      card.addEventListener('click', () => showDetail(product));
 
-      if (type === 'benefits') {
-        content.innerHTML = `
-          <ul class="space-y-4 ">
-            <li class="flex items-center gap-3"><span class="text-[#0f8740]">✅</span> Up to ₹10 Lakhs</li>
-            <li class="flex items-center gap-3"><span class="text-[#0f8740]">✅</span> Instant Approval</li>
-            <li class="flex items-center gap-3"><span class="text-[#0f8740]">✅</span> Zero Hidden Charges</li>
-            <li class="flex items-center gap-3"><span class="text-[#0f8740]">✅</span> No Collateral Required</li>
-            <li class="flex items-center gap-3"><span class="text-[#0f8740]">✅</span> Flexible Repayment</li>
-          </ul>`;
-      } else if (type === 'works') {
-        content.innerHTML = `
-          <div class="space-y-8">
-            <div class="flex gap-6">
-              <div class="w-12 h-12 rounded-2xl bg-[#0370b5] text-white flex items-center justify-center font-bold text-xl">1</div>
-              <div><strong>Apply Online</strong><p class="text-gray-600">Fill simple form in 2 minutes</p></div>
-            </div>
-            <div class="flex gap-6">
-              <div class="w-12 h-12 rounded-2xl bg-[#0370b5] text-white flex items-center justify-center font-bold text-xl">2</div>
-              <div><strong>Upload Documents</strong><p class="text-gray-600">Minimal KYC required</p></div>
-            </div>
-            <div class="flex gap-6">
-              <div class="w-12 h-12 rounded-2xl bg-[#0370b5] text-white flex items-center justify-center font-bold text-xl">3</div>
-              <div><strong>Get Money</strong><p class="text-gray-600">Disbursal in minutes</p></div>
-            </div>
-          </div>`;
-      } else if (type === 'terms') {
-        content.innerHTML = `<ul class="list-disc pl-6 space-y-3 text-gray-700"><li>Age: 21 - 58 years</li><li>Indian Resident</li><li>Minimum monthly income ₹25,000</li></ul>`;
-      } else if (type === 'sell') {
-        content.innerHTML = `
-          <div class="grid grid-cols-2 gap-4">
-            <div class="border border-gray-200 rounded-2xl p-6 hover:border-[#0370b5] transition-colors">Salaried Employees</div>
-            <div class="border border-gray-200 rounded-2xl p-6 hover:border-[#0370b5] transition-colors">Self Employed</div>
-            <div class="border border-gray-200 rounded-2xl p-6 hover:border-[#0370b5] transition-colors">Business Owners</div>
-            <div class="border border-gray-200 rounded-2xl p-6 hover:border-[#0370b5] transition-colors">Professionals</div>
-          </div>`;
+      grid.appendChild(card);
+    });
+  }
+
+  function showDetail(product) {
+    document.getElementById('modalTitle').textContent = product.name || '';
+    document.getElementById('modalType').textContent = product.loan_type || '';
+   document.getElementById('modalLogo').innerHTML = product.logo
+    ? `<img src="<?= base_url('beta/') ?>${product.logo}"
+            style="max-width:80px;max-height:80px;margin:auto;object-fit:contain;">`
+    : ``;
+
+    // Store current product for tabs
+    window.currentProduct = product;
+
+    document.getElementById('modalContent').innerHTML = `
+      <div class="space-y-10">
+        <div>
+          <div class="text-7xl font-bold text-[#0370b5] mb-2">${product.amount || ''}</div>
+          <p class="text-gray-600 text-lg leading-relaxed">${product.description || ''}</p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-6">
+          <div class="bg-gradient-to-br from-[#0370b5]/5 to-transparent p-6 rounded-2xl border border-[#0370b5]/10">
+            <p class="text-gray-500">Approval Time</p>
+            <p class="text-2xl font-semibold text-[#0370b5]">${product.approval_time || '—'}</p>
+          </div>
+          <div class="bg-gradient-to-br from-[#0f8740]/5 to-transparent p-6 rounded-2xl border border-[#0f8740]/10">
+            <p class="text-gray-500">Processing Fee</p>
+            <p class="text-2xl font-semibold text-[#0f8740]">${product.processing_fee || '—'}</p>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="border-b">
+          <div class="flex gap-8 text-sm flex-wrap">
+            <button onclick="changeTab(this, 'benefits')" class="tab-btn pb-4 border-b-2 border-[#0370b5] text-[#0370b5] font-semibold">Benefits</button>
+            <button onclick="changeTab(this, 'works')" class="tab-btn pb-4 text-gray-500 hover:text-gray-700">How it Works</button>
+            <button onclick="changeTab(this, 'terms')" class="tab-btn pb-4 text-gray-500 hover:text-gray-700">Terms</button>
+            <button onclick="changeTab(this, 'sell')" class="tab-btn pb-4 text-gray-500 hover:text-gray-700">Target Customers</button>
+          </div>
+        </div>
+
+        <div id="tabContent" class="min-h-[300px]"></div>
+      </div>
+    `;
+
+    document.getElementById('detailModal').classList.remove('hidden');
+    changeTab(document.querySelector('.tab-btn'), 'benefits');
+  }
+
+  function closeModal() {
+    document.getElementById('detailModal').classList.add('hidden');
+  }
+
+ function sellNow(link) {
+
+    if (!link) {
+        alert("Sell link not available.");
+        return;
+    }
+
+    window.open(link, "_blank");
+}
+
+ async function copyLink(link) {
+
+    if (!link) {
+        alert("Link not available.");
+        return;
+    }
+
+    try {
+        await navigator.clipboard.writeText(link);
+        alert("✅ Link copied successfully!");
+    } catch (e) {
+        prompt("Copy this link:", link);
+    }
+}
+
+  // Dynamic Tab System
+  window.changeTab = function(el, type) {
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.classList.remove('border-b-2', 'border-[#0370b5]', 'text-[#0370b5]', 'font-semibold');
+      btn.classList.add('text-gray-500');
+    });
+    el.classList.remove('text-gray-500');
+    el.classList.add('border-b-2', 'border-[#0370b5]', 'text-[#0370b5]', 'font-semibold');
+
+    const content = document.getElementById('tabContent');
+    const p = window.currentProduct || {};
+
+    if (type === 'benefits') {
+      // benefits field is space separated string
+      const benefits = (p.benefits || '').split(/\s{2,}|\n/).filter(b => b.trim());
+      // Better split: common pattern
+      const list = (p.benefits || '')
+        .replace(/Up to ₹[\d\s]+Lakhs?/gi, match => match)
+        .split(/(?=[A-Z])/)   // simple split
+        .map(b => b.trim())
+        .filter(b => b.length > 3);
+
+      // Safer approach
+      let items = [];
+      if (p.benefits) {
+        // Try to split by common patterns
+        items = p.benefits
+          .split(/(?=Up to|Instant|Zero|No |Flexible)/i)
+          .map(i => i.trim())
+          .filter(i => i);
       }
-    };
 
-    // Initialize
-    renderProducts();
-  </script>
+      if (items.length === 0) {
+        items = ['Up to ₹5 Lakhs', 'Instant Approvals', 'Zero Hidden Charges', 'No Collateral Required', 'Flexible Repayment'];
+      }
+
+      content.innerHTML = `
+        <ul class="space-y-4">
+          ${items.map(item => `
+            <li class="flex items-center gap-3">
+              <span class="text-[#0f8740]">✅</span> ${item}
+            </li>
+          `).join('')}
+        </ul>`;
+    } 
+    else if (type === 'works') {
+      // how_it_works is like: "Apply Online: Fill... Upload Documents: ... Get Money: ..."
+      let steps = [];
+      if (p.how_it_works) {
+        steps = p.how_it_works
+          .split(/(?=Apply Online|Upload Documents|Get Money)/i)
+          .map(s => s.trim())
+          .filter(s => s);
+      }
+
+      if (steps.length === 0) {
+        steps = [
+          'Apply Online: Fill simple form in 2 minutes',
+          'Upload Documents: Minimal KYC required',
+          'Get Money: Disbursal in minutes'
+        ];
+      }
+
+      content.innerHTML = `
+        <div class="space-y-8">
+          ${steps.map((step, i) => {
+            const [title, ...desc] = step.split(':');
+            return `
+              <div class="flex gap-6">
+                <div class="w-12 h-12 rounded-2xl bg-[#0370b5] text-white flex items-center justify-center font-bold text-xl shrink-0">${i+1}</div>
+                <div>
+                  <strong>${title.trim()}</strong>
+                  <p class="text-gray-600">${desc.join(':').trim() || ''}</p>
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>`;
+    } 
+    else if (type === 'terms') {
+      let terms = [];
+      if (p.terms) {
+        terms = p.terms
+          .split(/(?=Age:|Indian|Minimum)/i)
+          .map(t => t.trim())
+          .filter(t => t);
+      }
+
+      if (terms.length === 0) {
+        terms = ['Age: 21 - 58 years', 'Indian Resident', 'Minimum monthly income ₹25,000'];
+      }
+
+      content.innerHTML = `
+        <ul class="list-disc pl-6 space-y-3 text-gray-700">
+          ${terms.map(t => `<li>${t}</li>`).join('')}
+        </ul>`;
+    } 
+    else if (type === 'sell') {
+      let customers = [];
+      if (p.target_customers) {
+        customers = p.target_customers
+          .split(/(?=Salaried|Self Employed|Business|Professionals)/i)
+          .map(c => c.trim())
+          .filter(c => c);
+      }
+
+      if (customers.length === 0) {
+        customers = ['Salaried Employees', 'Self Employed', 'Business Owners', 'Professionals'];
+      }
+
+      content.innerHTML = `
+        <div class="grid grid-cols-2 gap-4">
+          ${customers.map(c => `
+            <div class="border border-gray-200 rounded-2xl p-6 hover:border-[#0370b5] transition-colors text-center font-medium">
+              ${c}
+            </div>
+          `).join('')}
+        </div>`;
+    }
+  };
+
+  // Initialize
+  renderProducts();
+</script>

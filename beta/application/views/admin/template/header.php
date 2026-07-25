@@ -837,7 +837,10 @@ if (isset($_GET['type']) || isset($_GET['user_id'])) {?>
                   
                      ?>
                      <?php if ($this->session->userdata('type') == 'admin' || $count > 0 ||  $count2 > 0 ||  $count3 > 0 || ($this->session->userdata('role') == 1 &&  has_permission('Loan Enquiry'))) { ?>
-                     <li data-id="<?= $menu_possition['loan_enquiry'] ?>" class="<?php if ($currentURL == 'loan-enquiry') {echo 'active';}?>"><a href="<?php echo base_url('admin/loan-enquiry'); ?>"><i class="fa fa-money"></i> Loan Enquiry</a></li>
+                        <li data-id="<?= $menu_possition['loan_enquiry'] ?>" class="<?php if ($currentURL == 'loan-enquiry') {echo 'active';}?>"><a href="<?php echo base_url('admin/loan-enquiry'); ?>"><i class="fa fa-money"></i> Loan Enquiry</a></li>
+                        <?php }?>
+                        <?php if ($this->session->userdata('type') == 'admin' || has_permission('Product')) { ?>
+                     <li data-id="<?= $menu_possition['product'] ?>" class="<?php if ($currentURL == 'product') {echo 'active';}?>"><a href="<?php echo base_url('admin/product'); ?>"><i class="fa fa-box"></i> Products</a></li>
                      <?php }?>
                      <?php if ($this->session->userdata('type') == 'admin' || $count > 0 ||  $count2 > 0 ||  $count3 > 0 || ($this->session->userdata('role') == 1 &&  (has_permission('Government Services')))  ) { ?>
                      <li data-id="<?= $menu_possition['government_services'] ?>" class="<?php if ($currentURL == 'government-services') {echo 'active';}?>"><a href="<?php echo base_url('admin/government-services'); ?>"><i class="fa fa-building"></i> Government Services</a></li>
