@@ -16,7 +16,7 @@
                         <h5 class="mb-0">Loan Products Management</h5>
                         <div>
                             <a href="<?php echo base_url('admin/product/view_hero_banner'); ?>" class="btn btn-primary">
-                                <i class="fas fa-plus"></i> Edit Hero Banner
+                                <i class="fas fa-plus"></i> Website front page banner
                             </a>
                             <a href="<?php echo base_url('admin/product/add'); ?>" class="btn btn-primary">
                                 <i class="fas fa-plus"></i> Add New Product
