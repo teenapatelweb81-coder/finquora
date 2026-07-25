@@ -17,7 +17,7 @@
     .brand-blue { color: #0370b5; }
     .brand-green { color: #0f8740; }
 
-    .tail-container {
+    .container {
       max-width: 1280px;
       margin-left: auto;
       margin-right: auto;
@@ -52,12 +52,40 @@
         max-width: 1280px;
     }
     }
+    @media (max-width: 1024px){
+
+    .hero-gradient{
+        border-radius:0 0 30px 30px;
+    }
+
+    #productGrid{
+        margin-top:20px;
+    }
+
+}
+
+@media (max-width:768px){
+
+    .container{
+        padding-left:16px;
+        padding-right:16px;
+    }
+
+    .hero-gradient{
+        text-align:center;
+    }
+
+    .hero-gradient .flex{
+        justify-content:center;
+    }
+
+}
   </style>
 </head>
 
   <!-- Top Navigation -->
   <!-- <nav class="bg-white shadow-sm border-b  z-50">
-    <div class="tail-container px-6 py-5 flex justify-between items-center">
+    <div class="container px-6 py-5 flex justify-between items-center">
       <div class="flex items-center gap-3">
         <div class="w-10 h-10 bg-gradient-to-br from-[#0370b5] to-[#0f8740] rounded-2xl flex items-center justify-center text-white text-2xl font-bold">F</div>
         <h1 class="text-3xl font-bold tracking-tight">
@@ -79,38 +107,38 @@
   <!-- Hero Banner -->
 
   <!-- Enhanced Hero Section -->
-<div class="grid md:grid-cols-2 gap-0 min-h-[85vh]">
+<div class="grid grid-cols-1 xl:grid-cols-2 min-h-auto lg:min-h-[85vh]">
 
   <!-- LEFT HALF - Loan Offers -->
-  <div class="hero-gradient text-white py-20 relative overflow-hidden flex items-center">
-    <div class="tail-container px-3">
+  <div class="hero-gradient text-white py-12 md:py-16 lg:py-20 relative overflow-hidden flex items-center">
+    <div class="container px-5 sm:px-6 lg:px-8">
       <div class="max-w-3xl">
         <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-5 py-2 rounded-3xl mb-6">
           <span class="text-sm font-medium"><?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->badge_text : ''; ?></span>
         </div>
 
-        <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-5">
           <?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->main_heading : ''; ?>
         </h1>
 
-        <p class="text-xl md:text-2xl opacity-90 mb-10">
+        <p class="text-base sm: md:text-xl lg:text-2xl opacity-90 mb-8">
           <?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->sub_heading : ''; ?>
         </p>
 
-        <div class="flex flex-wrap gap-4">
+        <div class="flex flex-col sm:flex-row gap-4">
           <button  onclick="copyLink(window.currentProduct.copy_link)"
-                  class="flex items-center gap-3 bg-white/20 hover:bg-white/30 backdrop-blur-md px-8 py-4 rounded-3xl font-semibold transition-all text-lg">
+                  class="bg-white text-[#0370b5] hover:bg-yellow-300 px-6 md:px-10 py-3 md:py-4 rounded-3xl font-semibold text-base md: flex justify-center items-center gap-3 transition-all shadow-xl w-full sm:w-auto">
             <i class="fa fa-copy"></i> <?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->cta1_text : 'Copy Link'; ?>
           </button>
           
           <button onclick="document.getElementById('productGrid').scrollIntoView({behavior: 'smooth'})"
-                  class="bg-white text-[#0370b5] hover:bg-yellow-300 hover:text-[#0370b5] px-10 py-4 rounded-3xl font-semibold text-lg flex items-center gap-3 transition-all shadow-xl">
+                  class="bg-white text-[#0370b5] hover:bg-yellow-300 hover:text-[#0370b5] px-10 py-4 rounded-3xl font-semibold  flex items-center gap-3 transition-all shadow-xl">
             <i class="fa fa-bolt"></i> <?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->cta2_text : 'Check Offers Now'; ?>
           </button>
         </div>
 
         <!-- Trust Signals -->
-        <div class="flex items-center gap-8 mt-12 text-sm opacity-90">
+        <div class="flex flex-wrap gap-4 md:gap-8 mt-10 text-sm opacity-90">
           <?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->trusts : ''; ?>
         </div>
       </div>
@@ -123,28 +151,28 @@
   </div>
 
   <!-- RIGHT HALF - CIBIL Score -->
-  <div class="bg-gradient-to-br from-[#f8fbff] to-white flex items-center py-5">
-    <div class="tail-container px-2 ">
-      <div class="flex flex-col lg:flex-row items-center gap-6">
+  <div class="bg-gradient-to-br from-[#f8fbff] to-white flex items-center py-10 lg:py-5">
+    <div class="container px-2 ">
+      <div class="flex flex-col lg:flex-row items-center gap-8">
         
         <!-- Image -->
         <div class="relative flex-shrink-0">
           <img src="<?= base_url('upload/assets/images/credit-score.jpg')?>" 
                alt="CIBIL Score" 
-               class="w-full max-w-md lg:max-w-lg drop-shadow-2xl rounded-3xl">
+               class="w-full max-w-[280px] sm:max-w-[360px]  rounded-3xl drop-shadow-2xl">
           
           <!-- Floating Badge -->
-          <div class="absolute -top-4 -right-4 bg-white shadow-xl rounded-2xl px-6 py-3 flex items-center gap-3">
+          <div class="absolute top-2 right-2 sm:-top-4 sm:-right-4 bg-white shadow-xl rounded-2xl px-6 py-3 flex items-center gap-3">
             <div class="text-3xl">📈</div>
             <div>
-              <p class="text-emerald-600 font-bold text-lg"> <?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->score_value : ''; ?></p>
+              <p class="text-emerald-600 font-bold "> <?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->score_value : ''; ?></p>
               <p class="text-xs text-gray-500 -mt-1"> <?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->score_label : ''; ?></p>
             </div>
           </div>
         </div>
 
         <!-- Text Content -->
-        <div class="space-y-6 max-w-md">
+        <div class="space-y-5 max-w-xl text-center lg:text-left">
          <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
             <?php
             if (isset($hero_banners) && !empty($hero_banners->right_heading)) {
@@ -158,12 +186,12 @@
             ?>
         </h2>
           
-          <p class="text-gray-600 text-[17px] leading-relaxed">
+          <p class="text-gray-600 text-base md: leading-relaxed">
             <?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->right_description : ''; ?>
           </p>
 
           <button onclick="checkCibil()" 
-                  class="bg-gradient-to-r from-[#0370b5] to-[#0f8740] text-white px-4 py-3 rounded-2xl font-semibold  hover:scale-105 transition-all shadow-lg flex items-center gap-3">
+                  class="bg-gradient-to-r from-[#0370b5] to-[#0f8740] text-white px-6 py-3 rounded-2xl font-semibold hover:scale-105 transition-all shadow-lg inline-flex items-center justify-center gap-3 w-full sm:w-auto">
             <?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->right_cta_text : ''; ?>
             <span class="text-xl">→</span>
           </button>
@@ -174,8 +202,8 @@
 </div>
 
   <!-- Product Grid -->
-  <div class="tail-container px-6 py-12">
-    <div class="flex justify-between items-end mb-10">
+  <div class="container px-6 py-12">
+    <div class="flex justify-between items-end mb-10 flex-wrap">
       <h2 class="text-4xl font-semibold text-gray-900">Premium Loan Products</h2>
       <p class="text-gray-500">Handpicked for maximum conversion</p>
     </div>
@@ -214,7 +242,7 @@
           📋 Copy Link
         </button>
         <button onclick="sellNow(window.currentProduct.sell_link)"
-                class="flex-1 py-4 bg-gradient-to-r from-[#0370b5] to-[#0f8740] text-white rounded-2xl font-semibold text-lg hover:shadow-xl transition-all">
+                class="flex-1 py-4 bg-gradient-to-r from-[#0370b5] to-[#0f8740] text-white rounded-2xl font-semibold  hover:shadow-xl transition-all">
           💰 Sell Now
         </button>
       </div>
@@ -280,7 +308,7 @@
       <div class="space-y-10">
         <div>
           <div class="text-7xl font-bold text-[#0370b5] mb-2">${product.amount || ''}</div>
-          <p class="text-gray-600 text-lg leading-relaxed">${product.description || ''}</p>
+          <p class="text-gray-600  leading-relaxed">${product.description || ''}</p>
         </div>
 
         <div class="grid grid-cols-2 gap-6">
