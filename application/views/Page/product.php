@@ -223,7 +223,7 @@
         <div class="flex items-center gap-1 flex-wrap">
           <div id="modalLogo" class="text-6xl"></div>
           <div>
-            <h2 id="modalTitle" class="text-3xl font-bold text-gray-900"></h2>
+            <h2 id="modalTitle" class="text-3xl font-bold text-gray-900 mb-2"></h2>
             <span class="inline-block mt-2 px-5 py-1.5 bg-gradient-to-r from-[#0370b5]/10 to-[#0f8740]/10 text-[#0370b5] rounded-full text-sm font-medium"id="modalType">
               
             </span>
@@ -314,7 +314,7 @@
     document.getElementById('modalContent').innerHTML = `
       <div class="space-y-10">
         <div>
-          <div class="md:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#0370b5] mb-2">${product.amount || ''}</div>
+          <div class="md:text-2xl lg:text-3xl xl:text-3xl font-bold text-[#0370b5] mb-2">${product.amount || ''}</div>
           <p class="text-gray-600  leading-relaxed">${product.description || ''}</p>
         </div>
 
