@@ -110,35 +110,35 @@
 <div class="grid grid-cols-1 xl:grid-cols-2 min-h-auto lg:min-h-[85vh]">
 
   <!-- LEFT HALF - Loan Offers -->
-  <div class="hero-gradient text-white py-12 md:py-16 lg:py-20 relative overflow-hidden flex items-center">
+  <div class="hero-gradient  py-12 md:py-16 lg:py-20 relative overflow-hidden flex items-center">
     <div class="container px-5 sm:px-6 lg:px-8">
       <div class="max-w-3xl">
         <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-5 py-2 rounded-3xl mb-6">
-          <span class="text-sm font-medium"><?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->badge_text : ''; ?></span>
+          <span class="text-sm font-medium text-white"><?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->badge_text : ''; ?></span>
         </div>
 
-        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-5">
+        <h1 class="text-3xl text-white sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-5">
           <?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->main_heading : ''; ?>
         </h1>
 
-        <p class="text-base sm: md:text-xl lg:text-2xl opacity-90 mb-8">
+        <p class="text-base text-white sm: md:text-xl lg:text-2xl opacity-90 mb-8">
           <?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->sub_heading : ''; ?>
         </p>
 
         <div class="flex flex-col sm:flex-row gap-4">
-          <button  onclick="copyLink(window.currentProduct.copy_link)"
+          <a  href="javascript:void(0);" onclick="copyLink(window.currentProduct.copy_link)"
                   class="bg-white text-[#0370b5] hover:bg-yellow-300 px-6 md:px-10 py-3 md:py-4 rounded-3xl font-semibold text-base md: flex justify-center items-center gap-3 transition-all shadow-xl w-full sm:w-auto">
             <i class="fa fa-copy"></i> <?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->cta1_text : 'Copy Link'; ?>
-          </button>
+          </a>
           
-          <button onclick="document.getElementById('productGrid').scrollIntoView({behavior: 'smooth'})"
+          <a href="<?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->cta2_link : 'javascript:void(0)'; ?>"
                   class="bg-white text-[#0370b5] hover:bg-yellow-300 hover:text-[#0370b5] px-10 py-4 rounded-3xl font-semibold  flex items-center gap-3 transition-all shadow-xl">
             <i class="fa fa-bolt"></i> <?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->cta2_text : 'Check Offers Now'; ?>
-          </button>
+          </a>
         </div>
 
         <!-- Trust Signals -->
-        <div class="flex flex-wrap gap-4 md:gap-8 mt-10 text-sm opacity-90">
+        <div class="flex text-white flex-wrap gap-4 md:gap-8 mt-10 text-sm opacity-90">
           <?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->trusts : ''; ?>
         </div>
       </div>
@@ -190,11 +190,11 @@
             <?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->right_description : ''; ?>
           </p>
 
-          <button onclick="checkCibil()" 
+          <a href="<?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->right_cta_link : 'javascript:void(0)'; ?>" 
                   class="bg-gradient-to-r from-[#0370b5] to-[#0f8740] text-white px-6 py-3 rounded-2xl font-semibold hover:scale-105 transition-all shadow-lg inline-flex items-center justify-center gap-3 w-full sm:w-auto">
             <?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->right_cta_text : ''; ?>
             <span class="text-xl">→</span>
-          </button>
+          </a>
         </div>
       </div>
     </div>
