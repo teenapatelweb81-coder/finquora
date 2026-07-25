@@ -136,6 +136,11 @@
                     </div>
 
                     <div class="col-md-6">
+                        <label for="gst_no" class="form-label">GST No<span class="text-danger">*</span></label>
+                        <input type="text" name="gst_no" id="gst_no" class="form-control" value="<?php echo isset($datas['gst_no']) ? $datas['gst_no'] : ''; ?>" required>
+                    </div>
+
+                    <div class="col-md-6">
                         <label for="registered_office" class="form-label">Registered Office<span class="text-danger">*</span></label>
                         <input type="text" name="registered_office" id="registered_office" class="form-control" value="<?php echo isset($datas['registered_office']) ? $datas['registered_office'] : ''; ?>" required>
                     </div>

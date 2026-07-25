@@ -2798,6 +2798,10 @@ public function userPaymentAgen($id)
 
   public function products()
     {
+        if (domain_id_get() != 3) {
+            show_404();
+        }
+
         $data['title'] = 'Products';
         $data['keywords'] = 'home,page,test';
         $data['description'] = 'this is products page';

@@ -17,6 +17,7 @@ $defaultData = [
     'ownere_gmail' => 'Not found',
     'company_url' => 'Not found',
     'cin_no' => 'Not found',
+    'gst_no' => '',
     'registered_office' => 'Not found',
     'google' => '',
     'facebook' => '',
@@ -68,11 +69,12 @@ $defaultData = [
                     <h5 class="text-uppercase m-b-15">Contact Us</h5>
                     <div>
                         <p><a href="tel:+91-<?= isset($contectUs['mobile_no']) && !empty($contectUs['mobile_no']) ? $contectUs['mobile_no'] : $defaultData['mobile_no'] ?>"><i class="fa fa-phone m-r-5"></i> +91-<?= isset($contectUs['mobile_no']) && !empty($contectUs['mobile_no']) ? $contectUs['mobile_no'] : $defaultData['mobile_no'] ?></a></p>
-                        <p><a href="mailto:<?= isset($contectUs['company_gmail']) && !empty($contectUs['company_gmail']) ? $contectUs['company_gmail'] : $defaultData['company_gmail'] ?>"><i class="fa fa-envelope m-r-5"></i> <?= isset($contectUs['company_gmail']) && !empty($contectUs['company_gmail']) ? $contectUs['company_gmail'] : $defaultData['company_gmail'] ?></a></p>
-                        <p><a href="mailto:<?= isset($contectUs['other_gmail']) && !empty($contectUs['other_gmail']) ? $contectUs['other_gmail'] : $defaultData['other_gmail'] ?>"><i class="fa fa-envelope m-r-5"></i> <?= isset($contectUs['other_gmail']) && !empty($contectUs['other_gmail']) ? $contectUs['other_gmail'] : $defaultData['other_gmail'] ?></a></p>
-                        <p><a href="mailto:<?= isset($contectUs['ownere_gmail']) && !empty($contectUs['ownere_gmail']) ? $contectUs['ownere_gmail'] : $defaultData['ownere_gmail'] ?>"><i class="fa fa-envelope m-r-5"></i> <?= isset($contectUs['ownere_gmail']) && !empty($contectUs['ownere_gmail']) ? $contectUs['ownere_gmail'] : $defaultData['ownere_gmail'] ?></a></p>
-                        <p><a href="<?= isset($contectUs['company_url']) && !empty($contectUs['company_url']) ? $contectUs['company_url'] : $defaultData['company_url'] ?>"><i class="fa fa-map-marker m-r-5"></i> <?= isset($contectUs['company_url']) && !empty($contectUs['company_url']) ? $contectUs['company_url'] : $defaultData['company_url'] ?></a></p>
+                        <p><a style=" text-wrap: wrap; word-break: break-all; " href="mailto:<?= isset($contectUs['company_gmail']) && !empty($contectUs['company_gmail']) ? $contectUs['company_gmail'] : $defaultData['company_gmail'] ?>"><i class="fa fa-envelope m-r-5"></i> <?= isset($contectUs['company_gmail']) && !empty($contectUs['company_gmail']) ? $contectUs['company_gmail'] : $defaultData['company_gmail'] ?></a></p>
+                        <p><a style=" text-wrap: wrap; word-break: break-all; " href="mailto:<?= isset($contectUs['other_gmail']) && !empty($contectUs['other_gmail']) ? $contectUs['other_gmail'] : $defaultData['other_gmail'] ?>"><i class="fa fa-envelope m-r-5"></i> <?= isset($contectUs['other_gmail']) && !empty($contectUs['other_gmail']) ? $contectUs['other_gmail'] : $defaultData['other_gmail'] ?></a></p>
+                        <p><a style=" text-wrap: wrap; word-break: break-all; " href="mailto:<?= isset($contectUs['ownere_gmail']) && !empty($contectUs['ownere_gmail']) ? $contectUs['ownere_gmail'] : $defaultData['ownere_gmail'] ?>"><i class="fa fa-envelope m-r-5"></i> <?= isset($contectUs['ownere_gmail']) && !empty($contectUs['ownere_gmail']) ? $contectUs['ownere_gmail'] : $defaultData['ownere_gmail'] ?></a></p>
+                        <p><a style=" text-wrap: wrap; word-break: break-all; " href="<?= isset($contectUs['company_url']) && !empty($contectUs['company_url']) ? $contectUs['company_url'] : $defaultData['company_url'] ?>"><i class="fa fa-map-marker m-r-5"></i> <?= isset($contectUs['company_url']) && !empty($contectUs['company_url']) ? $contectUs['company_url'] : $defaultData['company_url'] ?></a></p>
                         <p><i class="fa fa-gavel m-r-5"></i> CIN No.: <?= isset($contectUs['cin_no']) && !empty($contectUs['cin_no']) ? $contectUs['cin_no'] : $defaultData['cin_no'] ?></p>
+                        <p><i class="fa fa-gavel m-r-5"></i> GST  No.: <?= isset($contectUs['gst_no']) && !empty($contectUs['gst_no']) ? $contectUs['gst_no'] : $defaultData['gst_no'] ?></p>
                         <p><i class="fa fa-map-marker m-r-5"></i> Registered Office: <br><?= isset($contectUs['registered_office']) && !empty($contectUs['registered_office']) ? $contectUs['registered_office'] : $defaultData['registered_office'] ?></p>
                     </div>
                     <div class="social-icons social-icons-colored social-icons-rounded float-left">

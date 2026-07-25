@@ -107,11 +107,12 @@
   <!-- Hero Banner -->
 
   <!-- Enhanced Hero Section -->
-<div class="grid grid-cols-1 xl:grid-cols-2 min-h-auto lg:min-h-[85vh]">
+<!-- <div class="grid grid-cols-1 xl:grid-cols-2 min-h-auto lg:min-h-[85vh] hero-gradient relative overflow-hidden"> -->
+  <div class="grid grid-cols-1 xl:grid-cols-[2fr_3fr] min-h-auto lg:min-h-[85vh] hero-gradient relative overflow-hidden">
 
   <!-- LEFT HALF - Loan Offers -->
-  <div class="hero-gradient  py-12 md:py-16 lg:py-20 relative overflow-hidden flex items-center">
-    <div class="container px-5 sm:px-6 lg:px-8">
+  <div class="py-12 md:py-5 lg:py-10 flex items-center relative">
+    <div class="container px-4 sm:px-4 lg:px-6">
       <div class="max-w-3xl">
         <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-5 py-2 rounded-3xl mb-6">
           <span class="text-sm font-medium text-white"><?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->badge_text : ''; ?></span>
@@ -121,18 +122,18 @@
           <?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->main_heading : ''; ?>
         </h1>
 
-        <p class="text-base text-white sm: md:text-xl lg:text-2xl opacity-90 mb-8">
+        <p class="text-base text-white sm:text-lg md:text-xl lg:text-2xl opacity-90 mb-8">
           <?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->sub_heading : ''; ?>
         </p>
 
         <div class="flex flex-col sm:flex-row gap-4">
-          <a  href="javascript:void(0);" onclick="copyLink(window.currentProduct.copy_link)"
-                  class="bg-white text-[#0370b5] hover:bg-yellow-300 px-6 md:px-10 py-3 md:py-4 rounded-3xl font-semibold text-base md: flex justify-center items-center gap-3 transition-all shadow-xl w-full sm:w-auto">
+          <a href="javascript:void(0);" onclick="copyLink(window.currentProduct.copy_link)"
+             class="bg-white text-[#0370b5] hover:bg-yellow-300 px-6 md:px-10 py-3 md:py-4 rounded-3xl font-semibold text-base md:text-lg flex justify-center items-center gap-3 transition-all shadow-xl w-full sm:w-auto">
             <i class="fa fa-copy"></i> <?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->cta1_text : 'Copy Link'; ?>
           </a>
           
           <a href="<?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->cta2_link : 'javascript:void(0)'; ?>"
-                  class="bg-white text-[#0370b5] hover:bg-yellow-300 hover:text-[#0370b5] px-10 py-4 rounded-3xl font-semibold  flex items-center gap-3 transition-all shadow-xl">
+             class="bg-white text-[#0370b5] hover:bg-yellow-300 hover:text-[#0370b5] px-10 py-4 rounded-3xl font-semibold flex items-center gap-3 transition-all shadow-xl">
             <i class="fa fa-bolt"></i> <?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->cta2_text : 'Check Offers Now'; ?>
           </a>
         </div>
@@ -151,47 +152,47 @@
   </div>
 
   <!-- RIGHT HALF - CIBIL Score -->
-  <div class="bg-gradient-to-br from-[#f8fbff] to-white flex items-center py-10 lg:py-5">
-    <div class="container px-2 ">
-      <div class="flex flex-col lg:flex-row items-center gap-8">
+  <div class="flex items-center py-10 lg:py-5 relative">
+    <div class="container pe-5 sm:pe-6 lg:pe-8">
+      <div class="flex flex-col lg:flex-row items-center gap-0">
         
         <!-- Image -->
-        <div class="relative flex-shrink-0">
+        <div class="relative flex-shrink-0 lg:pe-3">
           <img src="<?= base_url('upload/assets/images/credit-score.jpg')?>" 
                alt="CIBIL Score" 
-               class="w-full max-w-[280px] sm:max-w-[360px]  rounded-3xl drop-shadow-2xl">
+               class="w-full max-w-[280px] sm:max-w-[360px] rounded-3xl drop-shadow-2xl">
           
           <!-- Floating Badge -->
           <div class="absolute top-2 right-2 sm:-top-4 sm:-right-4 bg-white shadow-xl rounded-2xl px-6 py-3 flex items-center gap-3">
             <div class="text-3xl">📈</div>
             <div>
-              <p class="text-emerald-600 font-bold "> <?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->score_value : ''; ?></p>
-              <p class="text-xs text-gray-500 -mt-1"> <?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->score_label : ''; ?></p>
+              <p class="text-emerald-600 font-bold"><?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->score_value : ''; ?></p>
+              <p class="text-xs text-gray-500 -mt-1"><?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->score_label : ''; ?></p>
             </div>
           </div>
         </div>
 
         <!-- Text Content -->
         <div class="space-y-5 max-w-xl text-center lg:text-left">
-         <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+          <h2 class="text-4xl lg:text-5xl font-bold text-white leading-tight">
             <?php
             if (isset($hero_banners) && !empty($hero_banners->right_heading)) {
                 echo preg_replace(
                     '/CIBIL Score/',
-                    '<span class="brand-blue">CIBIL Score</span>',
+                    '<span class="text-yellow-300">CIBIL Score</span>',
                     $hero_banners->right_heading,
-                    1 // sirf pehli occurrence replace hogi
+                    1
                 );
             }
             ?>
-        </h2>
+          </h2>
           
-          <p class="text-gray-600 text-base md: leading-relaxed">
+          <p class="text-white/90 text-base md:text-lg leading-relaxed">
             <?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->right_description : ''; ?>
           </p>
 
           <a href="<?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->right_cta_link : 'javascript:void(0)'; ?>" 
-                  class="bg-gradient-to-r from-[#0370b5] to-[#0f8740] text-white px-6 py-3 rounded-2xl font-semibold hover:scale-105 transition-all shadow-lg inline-flex items-center justify-center gap-3 w-full sm:w-auto">
+             class="bg-white text-[#0370b5] hover:bg-yellow-300 px-6 py-3 rounded-2xl font-semibold hover:scale-105 transition-all shadow-lg inline-flex items-center justify-center gap-3 w-full sm:w-auto">
             <?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->right_cta_text : ''; ?>
             <span class="text-xl">→</span>
           </a>
@@ -219,7 +220,7 @@
       
       <!-- Modal Header -->
       <div class="p-8 border-b flex justify-between items-start">
-        <div class="flex items-center gap-5">
+        <div class="flex items-center gap-1 flex-wrap">
           <div id="modalLogo" class="text-6xl"></div>
           <div>
             <h2 id="modalTitle" class="text-3xl font-bold text-gray-900"></h2>
@@ -295,7 +296,13 @@
 
   function showDetail(product) {
     document.getElementById('modalTitle').textContent = product.name || '';
-    document.getElementById('modalType').textContent = product.loan_type || '';
+   let loanTypeText = product.loan_type || '';
+
+    if (loanTypeText.toLowerCase() === 'both') {
+      loanTypeText = 'Personal & Business Loan';
+    }
+
+    document.getElementById('modalType').textContent = loanTypeText;
    document.getElementById('modalLogo').innerHTML = product.logo
     ? `<img src="<?= base_url('beta/') ?>${product.logo}"
             style="max-width:80px;max-height:80px;margin:auto;object-fit:contain;">`
@@ -307,7 +314,7 @@
     document.getElementById('modalContent').innerHTML = `
       <div class="space-y-10">
         <div>
-          <div class="text-7xl font-bold text-[#0370b5] mb-2">${product.amount || ''}</div>
+          <div class="md:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#0370b5] mb-2">${product.amount || ''}</div>
           <p class="text-gray-600  leading-relaxed">${product.description || ''}</p>
         </div>
 
@@ -381,49 +388,62 @@
     const content = document.getElementById('tabContent');
     const p = window.currentProduct || {};
 
+    // if (type === 'benefits') {
+    //   // benefits field is space separated string
+    //   const benefits = (p.benefits || '').split(/\s{2,}|\n/).filter(b => b.trim());
+    //   // Better split: common pattern
+    //   const list = (p.benefits || '')
+    //     .replace(/Up to ₹[\d\s]+Lakhs?/gi, match => match)
+    //     .split(/(?=[A-Z])/)   // simple split
+    //     .map(b => b.trim())
+    //     .filter(b => b.length > 3);
+
+    //   // Safer approach
+    //   let items = [];
+    //   if (p.benefits) {
+    //     // Try to split by common patterns
+    //     items = p.benefits
+    //       .split(/(?=Up to|Instant|Zero|No |Flexible)/i)
+    //       .map(i => i.trim())
+    //       .filter(i => i);
+    //   }
+
+    //   if (items.length === 0) {
+    //     items = ['Up to ₹5 Lakhs', 'Instant Approvals', 'Zero Hidden Charges', 'No Collateral Required', 'Flexible Repayment'];
+    //   }
+
+    //   content.innerHTML = `
+    //     <ul class="space-y-4">
+    //       ${items.map(item => `
+    //         <li class="flex items-center gap-3">
+    //           <span class="text-[#0f8740]">✅</span> ${item}
+    //         </li>
+    //       `).join('')}
+    //     </ul>`;
+    // } 
     if (type === 'benefits') {
-      // benefits field is space separated string
-      const benefits = (p.benefits || '').split(/\s{2,}|\n/).filter(b => b.trim());
-      // Better split: common pattern
-      const list = (p.benefits || '')
-        .replace(/Up to ₹[\d\s]+Lakhs?/gi, match => match)
-        .split(/(?=[A-Z])/)   // simple split
-        .map(b => b.trim())
-        .filter(b => b.length > 3);
-
-      // Safer approach
-      let items = [];
-      if (p.benefits) {
-        // Try to split by common patterns
-        items = p.benefits
-          .split(/(?=Up to|Instant|Zero|No |Flexible)/i)
-          .map(i => i.trim())
-          .filter(i => i);
-      }
-
-      if (items.length === 0) {
-        items = ['Up to ₹5 Lakhs', 'Instant Approvals', 'Zero Hidden Charges', 'No Collateral Required', 'Flexible Repayment'];
-      }
-
-      content.innerHTML = `
-        <ul class="space-y-4">
-          ${items.map(item => `
-            <li class="flex items-center gap-3">
-              <span class="text-[#0f8740]">✅</span> ${item}
-            </li>
-          `).join('')}
-        </ul>`;
-    } 
+      content.innerHTML = p.benefits 
+        ? p.benefits 
+        : '';
+    }
     else if (type === 'works') {
-      // how_it_works is like: "Apply Online: Fill... Upload Documents: ... Get Money: ..."
       let steps = [];
+
       if (p.how_it_works) {
-        steps = p.how_it_works
+        // Pehle HTML tags hata do (CKEditor se <p> etc aate hain)
+        const cleanText = p.how_it_works
+          .replace(/<[^>]+>/g, ' ')   // saare HTML tags hatao
+          .replace(/\s+/g, ' ')       // extra spaces clean karo
+          .trim();
+
+        // Ab keyword se split karo (jaise pehle tha)
+        steps = cleanText
           .split(/(?=Apply Online|Upload Documents|Get Money)/i)
           .map(s => s.trim())
-          .filter(s => s);
+          .filter(s => s.length > 0);
       }
 
+      // Fallback
       if (steps.length === 0) {
         steps = [
           'Apply Online: Fill simple form in 2 minutes',
@@ -438,7 +458,7 @@
             const [title, ...desc] = step.split(':');
             return `
               <div class="flex gap-6">
-                <div class="w-12 h-12 rounded-2xl bg-[#0370b5] text-white flex items-center justify-center font-bold text-xl shrink-0">${i+1}</div>
+                <div class="w-12 h-12 rounded-2xl bg-[#0370b5] text-white flex items-center justify-center font-bold text-xl shrink-0">${i + 1}</div>
                 <div>
                   <strong>${title.trim()}</strong>
                   <p class="text-gray-600">${desc.join(':').trim() || ''}</p>
@@ -447,47 +467,35 @@
             `;
           }).join('')}
         </div>`;
-    } 
+    }
     else if (type === 'terms') {
-      let terms = [];
-      if (p.terms) {
-        terms = p.terms
-          .split(/(?=Age:|Indian|Minimum)/i)
-          .map(t => t.trim())
-          .filter(t => t);
-      }
-
-      if (terms.length === 0) {
-        terms = ['Age: 21 - 58 years', 'Indian Resident', 'Minimum monthly income ₹25,000'];
-      }
-
-      content.innerHTML = `
-        <ul class="list-disc pl-6 space-y-3 text-gray-700">
-          ${terms.map(t => `<li>${t}</li>`).join('')}
-        </ul>`;
+     content.innerHTML = p.terms || '';
     } 
     else if (type === 'sell') {
-      let customers = [];
-      if (p.target_customers) {
-        customers = p.target_customers
-          .split(/(?=Salaried|Self Employed|Business|Professionals)/i)
-          .map(c => c.trim())
-          .filter(c => c);
-      }
+        let customers = [];
 
-      if (customers.length === 0) {
-        customers = ['Salaried Employees', 'Self Employed', 'Business Owners', 'Professionals'];
-      }
+        if (p.target_customers) {
+          // CKEditor ke <br> se split karo
+          customers = p.target_customers
+            .split(/<br\s*\/?>/i)                 // <br> ya <br/> se tod do
+            .map(c => c.replace(/<[^>]+>/g, '').trim())  // baaki HTML tags hata do
+            .filter(c => c.length > 0);           // empty lines hata do
+        }
 
-      content.innerHTML = `
-        <div class="grid grid-cols-2 gap-4">
-          ${customers.map(c => `
-            <div class="border border-gray-200 rounded-2xl p-6 hover:border-[#0370b5] transition-colors text-center font-medium">
-              ${c}
-            </div>
-          `).join('')}
-        </div>`;
-    }
+        // Agar kuch nahi mila to fallback
+        if (customers.length === 0) {
+          customers = ['Salaried Employees', 'Self Employed', 'Business Owners', 'Professionals'];
+        }
+
+        content.innerHTML = `
+          <div class="grid grid-cols-2 gap-4">
+            ${customers.map(c => `
+              <div class="border border-gray-200 rounded-2xl p-6 hover:border-[#0370b5] transition-colors text-center font-medium">
+                ${c}
+              </div>
+            `).join('')}
+          </div>`;
+      }
   };
 
   // Initialize

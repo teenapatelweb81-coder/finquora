@@ -142,28 +142,65 @@
 
                     <div class="form-group">
                         <label>Description <span class="text-danger">*</span></label>
-                        <textarea name="description" class="form-control" rows="3" placeholder="Enter product description" required><?php echo isset($product) ? $product->description : ''; ?></textarea>
+                        <textarea name="description" class="form-control" rows="3" placeholder="Enter product description" required><?php echo isset($product) ? $product->description : 'Get instant personal loan up to ₹5 Lakhs with minimal documentation and zero hidden charges.'; ?></textarea>
                         <?php echo form_error('description', '<span class="text-danger">', '</span>'); ?>
+                        <script>
+                         CKEDITOR.replace( 'description' );
+                        </script>
                     </div>
 
                     <div class="form-group">
                         <label>Benefits (One per line)</label>
-                        <textarea name="benefits" class="form-control" rows="4" placeholder="Enter benefits (one per line)"><?php echo isset($product) ? $product->benefits : ''; ?></textarea>
+                        <textarea name="benefits" class="form-control" rows="4" placeholder="Enter benefits (one per line)"><?php echo isset($product) ? $product->benefits : '<p>✅Up to ₹5 Lakhs</p>
+
+<p>✅Instant Approval</p>
+
+<p>✅Zero Hidden Charges</p>
+
+<p>✅No Collateral Required</p>
+
+<p>✅Flexible Repayment</p>
+'; ?></textarea>
+<script>
+                         CKEDITOR.replace( 'benefits' );
+                        </script>
                     </div>
 
                     <div class="form-group">
                         <label>How It Works (One per line)</label>
-                        <textarea name="how_it_works" class="form-control" rows="4" placeholder="Enter steps (one per line)"><?php echo isset($product) ? $product->how_it_works : ''; ?></textarea>
+                        <textarea name="how_it_works" class="form-control" rows="4" placeholder="Enter steps (one per line)"><?php echo isset($product) ? $product->how_it_works : '<p>Apply Online: Fill simple form in 2 minutes<br />
+Upload Documents: Minimal KYC required<br />
+Get Money: Disbursal in minutes</p>
+'; ?></textarea>
+<script>
+                         CKEDITOR.replace( 'how_it_works' );
+                        </script>
                     </div>
 
                     <div class="form-group">
                         <label>Terms & Conditions (One per line)</label>
-                        <textarea name="terms" class="form-control" rows="3" placeholder="Enter terms (one per line)"><?php echo isset($product) ? $product->terms : ''; ?></textarea>
+                        <textarea name="terms" class="form-control" rows="3" placeholder="Enter terms (one per line)"><?php echo isset($product) ? $product->terms : '<ul>
+	<li>Age: 21 - 58 years</li>
+	<li>Indian Resident</li>
+	<li>Minimum monthly income ₹25,000</li>
+</ul>
+'; ?></textarea>
+<script>
+                         CKEDITOR.replace( 'terms' );
+                        </script>
                     </div>
 
                     <div class="form-group">
                         <label>Target Customers (One per line)</label>
-                        <textarea name="target_customers" class="form-control" rows="3" placeholder="Enter target customers (one per line)"><?php echo isset($product) ? $product->target_customers : ''; ?></textarea>
+                        <textarea name="target_customers" class="form-control" rows="3" placeholder="Enter target customers (one per line)"><?php echo isset($product) ? $product->target_customers : '<p>Salaried Employees<br />
+Self Employed<br />
+Business Owners<br />
+Professionals Professionals</p>
+'; ?></textarea>
+<script>
+                         CKEDITOR.replace( 'target_customers' );
+                        </script>
+
                     </div>
 
                     <div class="row">
