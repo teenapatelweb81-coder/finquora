@@ -120,6 +120,11 @@ $datas = !empty($datas) ? $datas : [
 .inspiro-slider .flickity-button::before {
     line-height: 40px;
 }
+.one-line-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 </style>
 
 <!--=================slider============================================-->
