@@ -1,4 +1,10 @@
-
+<style>
+  .inspiro-slider .slide {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+</style>
 
      <?php
 // Define dummy data for each section to prevent null errors
