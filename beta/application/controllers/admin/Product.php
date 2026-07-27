@@ -223,6 +223,7 @@ class Product extends CI_Controller {
             'cta1_link'         => $this->input->post('cta1_link', TRUE),
             'cta2_text'         => $this->input->post('cta2_text', TRUE),
             'cta2_link'         => $this->input->post('cta2_link', TRUE),
+            'background_color'  => $this->input->post('background_color', TRUE),
             'trusts'            => $this->input->post('trusts', TRUE),
             'title'             => $this->input->post('title', TRUE),
             'sub_title'         => $this->input->post('sub_title', TRUE),

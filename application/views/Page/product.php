@@ -11,7 +11,7 @@
     }
 
     .hero-gradient {
-      background: linear-gradient(135deg, #0370b5 0%, #0f8740 100%);
+      background: <?php echo isset($banner->background_color) ? $banner->background_color : 'linear-gradient(135deg, #0370b5 0%, #0f8740 100%)'; ?>;
     }
 
     .brand-blue { color: #0370b5; }

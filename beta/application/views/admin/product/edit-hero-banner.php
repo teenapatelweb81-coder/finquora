@@ -77,6 +77,14 @@
                                 <input type="text" name="cta1_link" class="form-control" 
                                     value="<?= set_value('cta1_link', isset($banner) ? $banner->cta1_link : '') ?>">
                             </div>
+                             <div class="col-md-6 mb-3">
+                                <label for="background_color" class="form-label">Background Color</label>
+                                <div class="input-group">
+                                    <input type="text" name="background_color" id="background_color" class="form-control" placeholder="Add background color" value="<?= (isset($banner->background_color)) ? $banner->background_color : '' ; ?>">
+                                    <input type="color" id="background_color_picker" class="form-control form-control-color" value="<?= (isset($banner->background_color)) ? $banner->background_color : '' ; ?>">
+                                </div>
+                                <?php echo form_error('background_color','<span class="text-danger mt-1">','</span>'); ?>
+                            </div>
                         </div>
 
                         <div class="row">
@@ -192,4 +200,32 @@ function previewimage(input){
         reader.readAsDataURL(input.files[0]);
     }
 }
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const textInput = document.getElementById("background_color");
+    const colorPicker = document.getElementById("background_color_picker");
+
+    // Initial Sync
+    if (textInput.value) {
+        colorPicker.value = textInput.value;
+    } else {
+        textInput.value = colorPicker.value;
+    }
+
+    // Text → Color Picker
+    textInput.addEventListener("input", function () {
+        if (/^#[0-9A-Fa-f]{6}$/.test(this.value)) {
+            colorPicker.value = this.value;
+        }
+    });
+
+    // Color Picker → Text
+    colorPicker.addEventListener("input", function () {
+        textInput.value = this.value;
+    });
+
+});
 </script>
