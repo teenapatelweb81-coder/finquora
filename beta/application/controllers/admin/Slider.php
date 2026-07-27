@@ -131,6 +131,7 @@ class Slider extends CI_Controller {
 	            $data['domain_id'] = $this->input->post('domain_id');
 				$data['type'] = 'slider';
 	            $data['button_name'] = $this->input->post('button_name');
+	            $data['text_color'] = $this->input->post('text_color');
 	            $data['button_color'] = $this->input->post('button_color');
 	            $data['status']  = $this->input->post('status');
 	            $data['created_at']  = date('d m Y h:i:s'); 
@@ -245,6 +246,7 @@ class Slider extends CI_Controller {
 	            $data['url'] = $this->input->post('url');
 				$data['type'] = 'slider';
 	            $data['button_name'] = $this->input->post('button_name');
+	            $data['text_color'] = $this->input->post('text_color');
 	            $data['button_color'] = $this->input->post('button_color');
 	            $data['status']  = $this->input->post('status');
 	            $data['domain_id']  = $this->input->post('domain_id');

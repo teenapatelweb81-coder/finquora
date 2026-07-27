@@ -51,6 +51,14 @@
                      <?php echo form_error('button_name','<span class="text-danger mt-1">','</span>') ;?>
                  </div>
                  <div class="col-md-6 mt-2">
+                  <label for="text_color" class="form-label">Text Color</label>
+                  <div class="input-group">
+                     <input type="text" name="text_color" id="text_color" class="form-control" placeholder="Add text color" value="<?= set_value('text_color',$datas->text_color); ?>">
+                     <input type="color" id="text_color_picker" class="form-control form-control-color" value="<?= set_value('text_color',$datas->text_color) ? set_value('text_color',$datas->text_color) : '#000000'; ?>">
+                  </div>
+                  <?php echo form_error('text_color','<span class="text-danger mt-1">','</span>'); ?>
+               </div>
+                 <div class="col-md-6 mt-2">
                   <label for="button_color" class="form-label">Button Color</label>
                   <div class="input-group">
                      <input type="text" name="button_color" id="button_color" class="form-control" placeholder="Add button color" value="<?= set_value('button_color',$datas->button_color); ?>">
@@ -114,6 +122,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const textInput = document.getElementById("button_color");
     const colorPicker = document.getElementById("button_color_picker");
+
+    // Initial Sync
+    if (textInput.value) {
+        colorPicker.value = textInput.value;
+    } else {
+        textInput.value = colorPicker.value;
+    }
+
+    // Text → Color Picker
+    textInput.addEventListener("input", function () {
+        if (/^#[0-9A-Fa-f]{6}$/.test(this.value)) {
+            colorPicker.value = this.value;
+        }
+    });
+
+    // Color Picker → Text
+    colorPicker.addEventListener("input", function () {
+        textInput.value = this.value;
+    });
+
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const textInput = document.getElementById("text_color");
+    const colorPicker = document.getElementById("text_color_picker");
 
     // Initial Sync
     if (textInput.value) {

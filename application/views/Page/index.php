@@ -16,6 +16,7 @@ $sliders = !empty($sliders) ? $sliders : [
         'url' => '#',
         'button_name' => 'Learn More',
         'button_color' => '#ed940d',
+        'button_text' => '#000000',
         'slider_image' => 'default-slide.jpg'
     ]
 ];
@@ -138,8 +139,8 @@ $datas = !empty($datas) ? $datas : [
       <div class="container">
         <div class="slide-captions row">
           <div class="col-lg-6 col-md-6 col-12 align-self-center fadeInUp">
-            <h2 class="text-dark"><?= $slide['title']?></h2> 
-            <p class="text-dark"><?= $slide['sub_title']?></p>
+            <h2 style="color: <?= $slide['text_color']?>"><?= $slide['title']?></h2> 
+            <p style="color: <?= $slide['text_color']?>"><?= $slide['sub_title']?></p>
             <a href="<?= base_url($slide['url']); ?>" class="btn btn-outline btn-rounded btn-reveal btn-reveal-right" style="background: <?= $slide['button_color'] ?>;border: unset !important;" >
                 <span><?= $slide['button_name'] ?></span>
                 <i class="fa fa-arrow-right"></i>
