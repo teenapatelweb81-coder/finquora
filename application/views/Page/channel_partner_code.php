@@ -35,7 +35,8 @@
                     <p><?php echo isset($dsaSection1['text']) && !empty($dsaSection1['text']) ? htmlspecialchars($dsaSection1['text']) : 'Not found.'; ?></p>
                 </div>
                 <p><?php echo isset($dsaSection1['description']) && !empty($dsaSection1['description']) ? strip_tags($dsaSection1['description']) : 'Not found.'; ?></p>
-                <a href="<?php echo base_url('/agent'); ?>" class="btn btn-outline btn-rounded btn-reveal btn-reveal-right">
+                <a href="<?php echo base_url('/agent'); ?>" class="btn btn-outline btn-rounded btn-reveal btn-reveal-right"
+                        style="background: <?php echo !empty($dsaBanner['button_color']) ? htmlspecialchars($dsaBanner['button_color']) : '#007bff'; ?>; border: unset !important; color: <?php echo !empty($dsaBanner['text_color']) ? htmlspecialchars($dsaBanner['text_color']) : '#ffffff'; ?>;">
                     <span>Register Now</span><i class="fa fa-arrow-right"></i>
                 </a>
             </div>
