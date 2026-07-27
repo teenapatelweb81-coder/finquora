@@ -152,6 +152,8 @@ class Page extends CI_Controller
         
         // Get branches for homepage (limit to 3)
         $data['branch_data'] = $this->Branch_Model->get_branches_for_homepage($domain_id);
+          $data['products'] = $this->Page_Model->get_active_products(domain_id_get());
+        $data['hero_banners'] = $this->Page_Model->get_active_hero_banners(domain_id_get());
         
         $data['sliders'] = $this->db->where('status', 1)->where('domain_id',$domain_id)->where('type','slider')->get('slider')->result_array();
         $data['edges'] = $this->db->where('status', 1)->where('domain_id',$domain_id)->where('type','edge')->get('slider')->result_array();
@@ -167,6 +169,9 @@ class Page extends CI_Controller
         $data['categories_heading'] = $this->db->where('domain_id',$domain_id)->where('type','categories')->get('settings')->row_array();
 
         $this->load->view('Page/template/header', $data);
+        if (domain_id_get() == 3) {
+            $this->load->view('Page/product');
+        }
         $this->load->view('Page/index', $data);
         $this->load->view('Page/template/footer', $data);
     }
@@ -2797,7 +2802,8 @@ public function userPaymentAgen($id)
         }
 
   public function products()
-    {
+  {
+        show_404();
         if (domain_id_get() != 3) {
             show_404();
         }
@@ -2812,9 +2818,9 @@ public function userPaymentAgen($id)
         $data['hero_banners'] = $this->Page_Model->get_active_hero_banners(domain_id_get());
 
         // print_r($data['products']);die;
-        $this->load->view('Page/template/header', $data);
+        // $this->load->view('Page/template/header', $data);
         $this->load->view('Page/product', $data);
-        $this->load->view('Page/template/footer', $data);
+        // $this->load->view('Page/template/footer', $data);
     }   
 
     }
