@@ -127,7 +127,6 @@ $datas = !empty($datas) ? $datas : [
   <div id="slider"
      class="inspiro-slider slider-fullscreen dots-creative"
      data-height-xs="360"
-     data-autoplay="0"
      data-items="1"
      data-loop="false"
      data-arrows="true">
