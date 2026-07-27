@@ -98,7 +98,7 @@
 
                   ?>
 
-<!--<section style="background-color: #eee;">-->
+<!--<section style="background: #eee;">-->
   <div class="container-fluid py-5" style="box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;background: #8080804d;">
 
     <div class="row top_banner header12">

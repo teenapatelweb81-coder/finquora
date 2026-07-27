@@ -11,7 +11,7 @@
 }
 
 /*body {*/
-/*  background-color: #f2f8ff;*/
+/*  background: #f2f8ff;*/
 /*  color: #263238;*/
 /*  font-family: 'Noto Sans', sans-serif;*/
 /*  margin: 0;*/
@@ -32,7 +32,7 @@
 
 .card {
   width: 100%;
-  background-color: #fff;
+  background: #fff;
   border-radius: var(--card-radius);
   position: relative;
   
@@ -51,7 +51,7 @@
 
 .radio input[type=radio]:checked + label:after {
  
-  background-color: "green";
+  background: "green";
 }
 
 @supports(-webkit-appearance: none) or (-moz-appearance: none) { 
@@ -118,7 +118,7 @@
 
 .radio:checked ~ .plan-details {
   border-color: var(--color-green);
-  background-color :var(--color-green);
+  background:var(--color-green);
 }
 
 .radio:focus ~ .plan-details {

@@ -20,7 +20,7 @@
                 width: 100vw;
                 height: 100vh;
                 min-height: 675px;
-                background-color: #F4F5FF;
+                background: #F4F5FF;
             }
             p {
                 width: 100%;
@@ -93,7 +93,7 @@
                 flex-direction: row;
                 align-items: center;
                 justify-content: center;
-                background-color: #36344D;
+                background: #36344D;
             }
             @media screen and (max-width: 580px) and (min-width: 0px) {
                 h1, p, .link-container {

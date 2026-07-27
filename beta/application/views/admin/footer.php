@@ -54,7 +54,7 @@ Customer <br>Support
 
 					<p class="footers-info-icon"><i class="fa fa-phone"></i><a href="tel:+919820442719">+91 9820442719</a> / <a href="tel:+919820055899">+91 9820055899</a></p>
 
-          <p class="footers-info-icon"><i class="fa fa-whatsapp" style="background-color: #008838;"></i> <a href="tel:+919820442719">+91-9820442719</a></p>
+          <p class="footers-info-icon"><i class="fa fa-whatsapp" style="background: #008838;"></i> <a href="tel:+919820442719">+91-9820442719</a></p>
 
               <div class="social-icons"> 
 

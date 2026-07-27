@@ -140,7 +140,7 @@ nav.side-navbar ul li.active>a {
 
 }
 #toggle-btn span {
-    background-color: <?php echo $adminColor['header_logo_color']; ?> !important;
+    background: <?php echo $adminColor['header_logo_color']; ?> !important;
 }
  @media screen and (max-width: 644px){
    .main_hide_show {
@@ -630,7 +630,7 @@ if (isset($_GET['type']) || isset($_GET['user_id'])) {?>
                                              <a href="<?php echo base_url('admin/plantinum-section-3'); ?>">Platinum Member Section 3</a>
                                           </li><?php }?>
                                           <?php if (($this->session->userdata('type') == 'admin') || $this->session->userdata('role') == 1 && has_permission('silver member section 3')) { ?><li class="<?php if ($currentURL == 'admin/plantinum-section-4') {echo 'active';}?>">
-                                             <a href="<?php echo base_url('platinum membership section 4'); ?>">Platinum Member Section 4</a>
+                                             <a href="<?php echo base_url('admin/plantinum-section-4'); ?>">Platinum Member Section 4</a>
                                           </li><?php }?>
                                        </ul>
                                     </li>

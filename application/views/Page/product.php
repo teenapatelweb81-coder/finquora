@@ -163,13 +163,13 @@
                class="w-full max-w-[280px] sm:max-w-[360px] rounded-3xl drop-shadow-2xl">
           
           <!-- Floating Badge -->
-          <div class="absolute top-2 right-2 sm:-top-4 sm:-right-4 bg-white shadow-xl rounded-2xl px-3 py-2 flex items-center gap-1">
+          <!-- <div class="absolute top-2 right-2 sm:-top-4 sm:-right-4 bg-white shadow-xl rounded-2xl px-3 py-2 flex items-center gap-1">
             <div class="text-3xl">📈</div>
             <div>
               <p class="text-emerald-600 font-bold"><?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->score_value : ''; ?></p>
               <p class="text-xs text-gray-500 -mt-1"><?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->score_label : ''; ?></p>
             </div>
-          </div>
+          </div> -->
         </div>
 
         <!-- Text Content -->
@@ -205,8 +205,8 @@
   <!-- Product Grid -->
   <div class="container px-6 py-12">
     <div class="flex justify-between items-end mb-10 flex-wrap">
-      <h2 class="text-4xl font-semibold text-gray-900">Premium Loan Products</h2>
-      <p class="text-gray-500">Handpicked for maximum conversion</p>
+      <h2 class="text-4xl font-semibold text-gray-900"><?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->title : ''; ?></h2>
+      <p class="text-gray-500"><?php echo isset($hero_banners) && !empty($hero_banners) ? $hero_banners->sub_title : ''; ?></p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="productGrid">

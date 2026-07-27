@@ -239,7 +239,7 @@ a.extra-fields-customerss:hover ,a.extra-fields-customerss:focus {
                     </div>
 
                 <div class="form-group row align-items-end" > 
-                        <div class="col-md-12 mb-12" style="background-color:#fed8b1;padding-top: 4px;margin-bottom: 12px;">
+                        <div class="col-md-12 mb-12" style="background:#fed8b1;padding-top: 4px;margin-bottom: 12px;">
                             <label for="References" class="form-label" style="padding: 2px;">References 1 </label>
                         </div>  
                         <div class="col-md-4 mb-4">
@@ -254,7 +254,7 @@ a.extra-fields-customerss:hover ,a.extra-fields-customerss:focus {
                             <label for="relation" class="form-label">Relation <span class="text-danger">*</span></label>
                             <input type="text" name="ref_relation1" value ="<?= $loans['ref_relation1']?>" id="rname" class="form-control" ="">
                         </div> 
-                        <div class="col-md-12 mb-12" style="background-color:#fed8b1;padding-top: 4px;margin-bottom: 12px;">
+                        <div class="col-md-12 mb-12" style="background:#fed8b1;padding-top: 4px;margin-bottom: 12px;">
                             <label for="References" class="form-label"  style="padding: 2px;">References 2 <span class="text-danger">*</span></label>
                         </div>  
                         <div class="col-md-4 mb-4">
@@ -270,7 +270,7 @@ a.extra-fields-customerss:hover ,a.extra-fields-customerss:focus {
                             <input type="text" name="ref_relation2" value ="<?= $loans['ref_relation2']?>" id="rname" class="form-control" ="">
                         </div>
 
-                        <div class="col-md-12 mb-12" style="background-color:#fed8b1;">
+                        <div class="col-md-12 mb-12" style="background:#fed8b1;">
                             <label for="References" class="form-label" style="padding: 2px;">Upload Documents  <span class="text-danger">*</span></label>
                         </div>  
                     </div>
@@ -353,7 +353,7 @@ a.extra-fields-customerss:hover ,a.extra-fields-customerss:focus {
 
                      <!-- <div class="form-group row align-items-center">
                             <div class="col-md-12 mb-3 text-right">
-                            <button type="submit" class="btn btn-primary" style="background-color:#325f9a;">Upload</button>
+                            <button type="submit" class="btn btn-primary" style="background:#325f9a;">Upload</button>
                             </div>
                         </div> -->
 
@@ -362,7 +362,7 @@ a.extra-fields-customerss:hover ,a.extra-fields-customerss:focus {
                    
                  <?php 
                         if ($this->session->userdata('role') == 1) {?>
-                <div class="col-md-12 mb-3" style="background-color:#fed8b1;">
+                <div class="col-md-12 mb-3" style="background:#fed8b1;">
                             <label for="References" class="form-label"  style="padding: 2px;">For Remarks  <span class="text-danger">*</span></label>
                         </div> 
                 </div>

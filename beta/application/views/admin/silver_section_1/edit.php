@@ -7,7 +7,7 @@
          <nav aria-label="breadcrumb">
             <ol class="breadcrumb ">
                <li class="breadcrumb-item "><a href="<?php echo base_url("admin-dashboard");?>" class="text-decoration-none">Home</a></li>
-               <li class="breadcrumb-item active" aria-current="page">Add Lead</li> 
+               <li class="breadcrumb-item active" aria-current="page">Edit Silver section 1</li> 
            </ol>
          </nav>
 </div>

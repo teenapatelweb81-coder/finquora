@@ -1,7 +1,7 @@
 
 <style>
 .bg-secondary {
-    background-color: #6B5B95!important; 
+    background: #6B5B95!important; 
 }
 .text-right {
     text-align: left!important;

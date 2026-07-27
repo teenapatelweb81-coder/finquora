@@ -103,9 +103,9 @@
             "dropdown_background_color",
             "background_color",
             "header_logo_color",
-            "page_header_color"
-            "page_header_first_text_color"
-            "page_header_second_text_color"
+            "page_header_color",    
+            "page_header_first_text_color",
+            "page_header_second_text_color",
         ];
 
         colorFields.forEach(field => {

@@ -38,7 +38,7 @@ a.extra-fields-customer:hover ,a.extra-fields-customer:focus {
          <nav aria-label="breadcrumb">
             <ol class="breadcrumb ">
                <li class="breadcrumb-item "><a href="<?php echo base_url("admin-dashboard"); ?>" class="text-decoration-none">Home</a></li>
-               <li class="breadcrumb-item active" aria-current="page">Add Lead</li>
+               <li class="breadcrumb-item active" aria-current="page">Loan Page</li>
            </ol>
          </nav>
 </div>
@@ -281,7 +281,7 @@ if (isset($_GET['user_id'])) {
                     </div>
 
                      <div id="information-part" class="content" role="tabpanel" aria-labelledby="information-part-trigger">
-                        <div class="" style="background-color:#67c8ff;padding-top: 4px;margin-bottom: 12px;padding-left:5px;">
+                        <div class="" style="background:#67c8ff;padding-top: 4px;margin-bottom: 12px;padding-left:5px;">
                             <label for="References" class="form-label" style="padding: 2px;">Any Running Loan ?</label>
                         </div>
                             <div class="form-group row align-items-end customer_records" style="margin-bottom:0 !important;">
@@ -325,7 +325,7 @@ if (isset($_GET['user_id'])) {
                                 </div>
                             </div>
                              <div class="form-group row">
-                            <div class="col-md-12 mb-12" style="background-color:#fed8b1;padding-top: 4px;margin-bottom: 12px;">
+                            <div class="col-md-12 mb-12" style="background:#fed8b1;padding-top: 4px;margin-bottom: 12px;">
                                 <label for="References" class="form-label" style="padding: 2px;">References 1 <span class="text-danger">*</span></label>
                             </div>
                             <div class="col-md-4 mb-4">
@@ -340,7 +340,7 @@ if (isset($_GET['user_id'])) {
                                 <label for="relation" class="form-label">Relation <span class="text-danger">*</span></label>
                                 <input type="text" name="ref_relation1" id="rname" class="form-control" required>
                             </div>
-                            <div class="col-md-12 mb-12" style="background-color:#fed8b1;padding-top: 4px;margin-bottom: 12px;">
+                            <div class="col-md-12 mb-12" style="background:#fed8b1;padding-top: 4px;margin-bottom: 12px;">
                                 <label for="References" class="form-label" style="padding: 2px;">References 2 <span class="text-danger">*</span></label>
                             </div>
                             <div class="col-md-4 mb-4">
@@ -355,7 +355,7 @@ if (isset($_GET['user_id'])) {
                                 <label for="relation" class="form-label">Relation <span class="text-danger">*</span></label>
                                 <input type="text" name="ref_relation2" id="rname" class="form-control" required>
                             </div>
-                            <div class="col-md-12 mb-12" style="background-color:#fed8b1;">
+                            <div class="col-md-12 mb-12" style="background:#fed8b1;">
                                 <label for="References" class="form-label" style="padding: 2px;">Upload Documents  <span class="text-danger">*</span></label>
                             </div>
                         </div>

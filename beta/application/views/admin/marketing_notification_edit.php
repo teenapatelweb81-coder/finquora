@@ -108,7 +108,7 @@
                                 border-radius: 5px;
                                 padding: 10px;
                                 margin-top: 10px;
-                                background-color: #f8f9fa;
+                                background: #f8f9fa;
                             }
                             .custom-file-label::after {
                                 content: "Browse";

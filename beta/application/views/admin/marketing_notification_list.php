@@ -27,7 +27,7 @@
         border-radius: 50%;
         margin-right: 10px;
         object-fit: cover;
-        background-color: #f0f0f0;
+        background: #f0f0f0;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -131,7 +131,7 @@
         width: calc(1.25rem - 4px);
         height: calc(1.25rem - 4px);
         border-radius: 0.5rem;
-        background-color: #fff;
+        background: #fff;
     }
 
     .custom-switch .custom-control-input:checked ~ .custom-control-label::after {

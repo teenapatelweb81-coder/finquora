@@ -70,7 +70,7 @@
                     }
                   ?>
 
-<!--<section style="background-color: #eee;">-->
+<!--<section style="background: #eee;">-->
   <div class=" "style="height: 100vh;" >
 
     <div class="row top_banner header12">

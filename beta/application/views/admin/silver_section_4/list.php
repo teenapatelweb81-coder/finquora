@@ -15,63 +15,17 @@
            </ol>
          </nav>
 </div>
-<div class="container">
-    <div class="row" style="margin-bottom: -90px;">
-        <div class="col-md-12">
-        	 <section class="content">
-        	  <div class="container-fluid">
-                <!-- Small boxes (Stat box) -->
-                <!-- <div class="row">
-                    <div class="col-md-4">
-                        <div _ngcontent-wsc-c195=""
-                            class="form-group">
-                            <select _ngcontent-wsc-c195="" name="myleads" id="myleads" onchange="myleadsData()" class="form-control form-control-alternative">
-                                <option _ngcontent-wsc-c195="" value="today" selected="">Today</option>
-                                <option _ngcontent-wsc-c195="" value="lastweek">Last Week</option>
-                                <option _ngcontent-wsc-c195="" value="currentmonth">Current Month</option>
-                                <option _ngcontent-wsc-c195="" value="lastmonth">Last Month</option>
-                                <option _ngcontent-wsc-c195="" value="lastthreemonth">Last Three Month</option>
-                                <option _ngcontent-wsc-c195="" value="qtd">Quarter to Date</option>
-                                <option _ngcontent-wsc-c195="" value="ytd">Year to Date</option>
-                                <option _ngcontent-wsc-c195="" value="custom">Custom</option>
-                            </select>
-                        </div>
-
-                    </div>
-
-                     <div class="col-md-4">
-                        <div _ngcontent-wsc-c195=""
-                            class="form-group">
-                            <input type="text" id="filter-table" name="filter-table" placeholder="Search . . ." class="form-control form-control-alternative" />
-                        </div>
-
-                    </div>
-
-
-                    <!--<div class="col-md-4 ">-->
-                    <!--    <div _ngcontent-wsc-c195="" class="form-group">-->
-                    <!--        <input _ngcontent-wsc-c195="" type="date"  placeholder="custom date" id="to_date" name="to_date"  class="form-control form-control-alternative ng-pristine ng-invalid ng-touched">-->
-                    <!--    </div>-->
-
-                    <!--</div>
-
-                </div> -->
-              </div>
-
-
-            </section>
-       </div>
-    </div>
-    <div class="row">
-		<div class="col-md-12 mt-4  pt-2 shadow-lg">
+<div class="container-fluid p-0">
+    <div class="row m-0">
+		<div class="col-md-12 p-0">
               <?php //if($_SESSION['role'] == 1){ ?>
-		    <div id="" class="text-primary text-right mr-3">
-                <a href="<?php echo base_url() ?>admin/silver-section-4-add" class="btn btn-primary"><i class="fa fa-plus text-light fa-sm" aria-hidden="true"></i> Add</a>
-
-            </div>
-            <?php // }?>
-
-			<div class="table-responsive ">
+              <?php // }?>
+              
+              <div class="table-responsive ">
+                <div id="" class="text-primary text-right mr-2 mt-2">
+                    <a href="<?php echo base_url() ?>admin/silver-section-4-add" class="btn btn-primary"><i class="fa fa-plus text-light fa-sm" aria-hidden="true"></i> Add</a>
+    
+                </div>
 			<table class="table table-bordered text-center table-hover" >
 				<span class="text-center text-info mb-2" id="susid"> <?php echo $this->session->flashdata('success'); ?></span>
                 <span class="text-center text-danger mb-2" id="errid"> <?php echo $this->session->flashdata('error'); ?></span>

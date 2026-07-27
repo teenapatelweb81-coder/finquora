@@ -1,7 +1,7 @@
 
       <!--====================header close=============================-->
       <!--=================slider============================================-->
-      <div id="slider" class="inspiro-slider slider-fullscreen dots-creative flickity-enabled" data-height-xs="360" data-autoplay="8000" data-items="1" data-loop="true">
+      <div id="slider" class="inspiro-slider slider-fullscreen dots-creative flickity-enabled" data-height-xs="360" data-autoplay="8000" data-items="1" data-loop="false">
           <div class="slide" style="background-image: url(<?= base_url('upload/assets') ?>/images/slider-background-1.jpg);">
             <div class="container">
                 <div class="slide-captions row">

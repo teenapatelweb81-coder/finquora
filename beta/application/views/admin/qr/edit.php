@@ -88,10 +88,18 @@
                             <input type="text" name="p_id" id="p_id" class="form-control" value="<?= (isset($datas['p_id'])) ? $datas['p_id'] : '' ; ?>">
                             <?php //echo form_error('first_name','<span class="text-danger mt-1">','</span>') ;?>
                         </div>
-                        <div class="col-md-6 mb-2">
+                        <!-- <div class="col-md-6 mb-2">
                             <label for="bg_color" class="form-label">Background color</label>
                             <input type="color" name="bg_color" id="bg_color" class="form-control" value="<?= (isset($datas['bg_color'])) ? $datas['bg_color'] : '' ; ?>">
                             <?php //echo form_error('first_name','<span class="text-danger mt-1">','</span>') ;?>
+                        </div> -->
+                        <div class="col-md-6">
+                            <label for="bg_color" class="form-label">Background Color</label>
+                            <div class="input-group">
+                                <input type="text" name="bg_color" id="bg_color" class="form-control" placeholder="Add color" value="<?= (isset($datas['bg_color'])) ? trim($datas['bg_color']) : '' ; ?>">
+                                <input type="color" id="bg_color_picker" class="form-control form-control-color" value="<?= (isset($datas['bg_color'])) ? trim($datas['bg_color']) : '' ; ?>">
+                            </div>
+                            <?php echo form_error('bg_color','<span class="text-danger mt-1">','</span>'); ?>
                         </div>
                         <div class="col-md-6 mb-2">
                             <label for="qr_image" class="form-label">QR Img<span class="text-danger">*</span></label>
@@ -135,3 +143,31 @@
         </div>
     <!-- </form> -->
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const textInput = document.getElementById("bg_color");
+    const colorPicker = document.getElementById("bg_color_picker");
+
+    // Initial Sync
+    if (textInput.value) {
+        colorPicker.value = textInput.value;
+    } else {
+        textInput.value = colorPicker.value;
+    }
+
+    // Text → Color Picker
+    textInput.addEventListener("input", function () {
+        if (/^#[0-9A-Fa-f]{6}$/.test(this.value)) {
+            colorPicker.value = this.value;
+        }
+    });
+
+    // Color Picker → Text
+    colorPicker.addEventListener("input", function () {
+        textInput.value = this.value;
+    });
+
+});
+</script>

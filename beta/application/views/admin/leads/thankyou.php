@@ -71,7 +71,7 @@
 
     }
     .visit-btn {
-      background-color: <?= isset($heading->color) ? $heading->color : ''?>;
+      background: <?= isset($heading->color) ? $heading->color : ''?>;
       color: #fff;
       border: none;
       border-radius: 6px;
@@ -84,7 +84,7 @@
     }
 
     .visit-btn:hover {
-      background-color: <?= isset($heading->color) ? $heading->color : ''?>;
+      background: <?= isset($heading->color) ? $heading->color : ''?>;
     }
 
     /* ✅ Responsive Design */

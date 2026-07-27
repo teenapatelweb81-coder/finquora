@@ -3,7 +3,7 @@
 <!--=================slider============================================-->
 <div id="slider" class="inspiro-slider slider-fullscreen dots-creative flickity-enabled" data-height-xs="360"
     data-autoplay="8000" data-items="1" data-loop="true">
-    <div class="slide background-columbia-blue" style="background-color:<?php echo isset($dsaBanner['background_color']) && !empty($dsaBanner['background_color']) ? htmlspecialchars($dsaBanner['background_color']) : '#e6f0fa'; ?> !important">
+    <div class="slide background-columbia-blue" style="background:<?php echo isset($dsaBanner['background_color']) && !empty($dsaBanner['background_color']) ? htmlspecialchars($dsaBanner['background_color']) : '#e6f0fa'; ?> !important">
         <div class="container">
             <div class="slide-captions row">
                 <div class="col-lg-6 col-md-6 col-12 align-self-center fadeInUp">

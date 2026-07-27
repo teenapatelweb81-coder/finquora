@@ -8,7 +8,7 @@ td, th {
          <nav aria-label="breadcrumb">
             <ol class="breadcrumb ">
                <li class="breadcrumb-item "><a href="<?php echo base_url("admin-dashboard");?>" class="text-decoration-none">Home</a></li>
-               <li class="breadcrumb-item active" aria-current="page">Add Lead</li> 
+               <li class="breadcrumb-item active" aria-current="page">Credit view</li> 
            </ol>
          </nav>
 </div>
@@ -59,7 +59,7 @@ td, th {
 
                           <?php 
                         if ($this->session->userdata('role') == 1) {?>
-                <div class="col-md-12 mb-3" style="background-color:#fed8b1;">
+                <div class="col-md-12 mb-3" style="background:#fed8b1;">
                             <label for="References" class="form-label"  style="padding: 2px;">For Remarks  <span class="text-danger">*</span></label>
                         </div> 
                  <form action="<?= base_url('admin/Dashboard/remarks/')?><?= $loans['id']?>" method="post"> 

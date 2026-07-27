@@ -59,7 +59,7 @@ td, th {
 
                           <?php 
                         if ($this->session->userdata('role') == 1) {?>
-                <div class="col-md-12 mb-3" style="background-color:#fed8b1;">
+                <div class="col-md-12 mb-3" style="background:#fed8b1;">
                             <label for="References" class="form-label"  style="padding: 2px;">For Remarks  <span class="text-danger">*</span></label>
                         </div> 
                  <form action="<?= base_url('admin/Dashboard/remarks/')?><?= $loans['id']?>" method="post"> 

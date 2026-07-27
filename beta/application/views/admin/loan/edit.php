@@ -27,7 +27,7 @@ a.extra-fields-customerss:hover ,a.extra-fields-customerss:focus {
          <nav aria-label="breadcrumb">
             <ol class="breadcrumb ">
                <li class="breadcrumb-item "><a href="<?php echo base_url("admin-dashboard");?>" class="text-decoration-none">Home</a></li>
-               <li class="breadcrumb-item active" aria-current="page">Add Lead</li> 
+               <li class="breadcrumb-item active" aria-current="page">Loan</li> 
            </ol>
          </nav>
 </div>
@@ -186,7 +186,7 @@ a.extra-fields-customerss:hover ,a.extra-fields-customerss:focus {
                     </div>
 
                 <div class="form-group row align-items-end" > 
-                        <div class="col-md-12 mb-12" style="background-color:#fed8b1;padding-top: 4px;margin-bottom: 12px;">
+                        <div class="col-md-12 mb-12" style="background:#fed8b1;padding-top: 4px;margin-bottom: 12px;">
                             <label for="References" class="form-label" style="padding: 2px;">References 1 </label>
                         </div>  
                         <div class="col-md-4 mb-4">
@@ -201,7 +201,7 @@ a.extra-fields-customerss:hover ,a.extra-fields-customerss:focus {
                             <label for="relation" class="form-label">Relation <span class="text-danger">*</span></label>
                             <input required type="text" name="ref_relation1" value ="<?= isset($loans['ref_relation1']) ? $loans['ref_relation1'] : '';?>" id="rname" class="form-control" ="">
                         </div> 
-                        <div class="col-md-12 mb-12" style="background-color:#fed8b1;padding-top: 4px;margin-bottom: 12px;">
+                        <div class="col-md-12 mb-12" style="background:#fed8b1;padding-top: 4px;margin-bottom: 12px;">
                             <label for="References" class="form-label"  style="padding: 2px;">References 2 <span class="text-danger">*</span></label>
                         </div>  
                         <div class="col-md-4 mb-4">
@@ -217,7 +217,7 @@ a.extra-fields-customerss:hover ,a.extra-fields-customerss:focus {
                             <input required type="text" name="ref_relation2" value ="<?= isset($loans['ref_relation2']) ? $loans['ref_relation2'] : '';?>" id="rname" class="form-control" ="">
                         </div>
 
-                        <div class="col-md-12 mb-12" style="background-color:#fed8b1;">
+                        <div class="col-md-12 mb-12" style="background:#fed8b1;">
                             <label for="References" class="form-label" style="padding: 2px;">Upload Documents  <span class="text-danger">*</span></label>
                         </div>  
                     </div>
@@ -302,7 +302,7 @@ a.extra-fields-customerss:hover ,a.extra-fields-customerss:focus {
 
                      <div class="form-group row align-items-center">
                             <div class="col-md-12 mb-3 text-right">
-                            <button required type="submit" class="btn btn-primary" style="background-color:#325f9a;">Send</button>
+                            <button required type="submit" class="btn btn-primary" style="background:#325f9a;">Send</button>
                             </div>
                         </div>
 

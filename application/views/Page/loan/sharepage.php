@@ -187,7 +187,7 @@ a.extra-fields-customerss:hover ,a.extra-fields-customerss:focus {
                             <textarea name="remark" rows="2" cols="20" class="form-control track-focus" type="text"  style="height: 56px; width: 296px;"><?= $loans['remark']?></textarea>
                         </div> 
 
-                          <div class="col-md-12 mb-12" style="background-color:#fed8b1;padding-top: 4px;margin-bottom: 12px;">
+                          <div class="col-md-12 mb-12" style="background:#fed8b1;padding-top: 4px;margin-bottom: 12px;">
                             <label for="References" class="form-label" style="padding: 2px;">Any Running Loan ?</label>
                         </div>  
                          <div class="form-group row align-items-end customer_records" style="margin-bottom:0 !important;"> 
@@ -226,7 +226,7 @@ a.extra-fields-customerss:hover ,a.extra-fields-customerss:focus {
                                         </div> -->
 
 <div class="form-group row align-items-end" > 
-                        <div class="col-md-12 mb-12" style="background-color:#fed8b1;padding-top: 4px;margin-bottom: 12px;">
+                        <div class="col-md-12 mb-12" style="background:#fed8b1;padding-top: 4px;margin-bottom: 12px;">
                             <label for="References" class="form-label" style="padding: 2px;">References 1 </label>
                         </div>  
                         <div class="col-md-4 mb-4">
@@ -241,7 +241,7 @@ a.extra-fields-customerss:hover ,a.extra-fields-customerss:focus {
                             <label for="relation" class="form-label">Relation <span class="text-danger">*</span></label>
                             <input type="text" name="ref_relation1" value ="<?= $loans['ref_relation1']?>" id="rname" class="form-control" ="">
                         </div> 
-                        <div class="col-md-12 mb-12" style="background-color:#fed8b1;padding-top: 4px;margin-bottom: 12px;">
+                        <div class="col-md-12 mb-12" style="background:#fed8b1;padding-top: 4px;margin-bottom: 12px;">
                             <label for="References" class="form-label"  style="padding: 2px;">References 2 <span class="text-danger">*</span></label>
                         </div>  
                         <div class="col-md-4 mb-4">
@@ -257,7 +257,7 @@ a.extra-fields-customerss:hover ,a.extra-fields-customerss:focus {
                             <input type="text" name="ref_relation2" value ="<?= $loans['ref_relation2']?>" id="rname" class="form-control" ="">
                         </div>
 
-                        <div class="col-md-12 mb-12" style="background-color:#fed8b1;">
+                        <div class="col-md-12 mb-12" style="background:#fed8b1;">
                             <label for="References" class="form-label" style="padding: 2px;">Upload Documents  <span class="text-danger">*</span></label>
                         </div>  
                     </div>
@@ -339,7 +339,7 @@ a.extra-fields-customerss:hover ,a.extra-fields-customerss:focus {
 
                      <div class="form-group row align-items-center">
                             <div class="col-md-12 mb-3 text-right">
-                            <button type="submit" class="btn btn-primary" style="background-color:#325f9a;">Send</button>
+                            <button type="submit" class="btn btn-primary" style="background:#325f9a;">Send</button>
                             </div>
                         </div>
 

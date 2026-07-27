@@ -33,7 +33,7 @@
 
 /*body {*/
 
-/*  background-color: #f2f8ff;*/
+/*  background: #f2f8ff;*/
 
 /*  color: #263238;*/
 
@@ -76,7 +76,7 @@
 
   width: 100%;
 
-  background-color: #fff;
+  background: #fff;
 
   border-radius: var(--card-radius);
 
@@ -114,7 +114,7 @@
 
  
 
-  background-color: "green";
+  background: "green";
 
 }
 
@@ -248,7 +248,7 @@
 
   border-color: var(--color-green);
 
-  background-color :var(--color-green);
+  background:var(--color-green);
 
 }
 

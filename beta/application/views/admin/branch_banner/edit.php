@@ -7,7 +7,7 @@
          <nav aria-label="breadcrumb">
             <ol class="breadcrumb ">
                <li class="breadcrumb-item "><a href="<?php echo base_url("admin-dashboard");?>" class="text-decoration-none">Home</a></li>
-               <li class="breadcrumb-item active" aria-current="page">Add Lead</li> 
+               <li class="breadcrumb-item active" aria-current="page">Edit Branch Banner</li> 
            </ol>
          </nav>
 </div>
@@ -67,10 +67,18 @@
                             <?php //echo form_error('description','<span class="text-danger mt-1">','</span>'); ?>
                         </div>
 
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <label for="background_color" class="form-label">Background_Color<span class="text-danger">*</span></label>
                             <input name="background_color" id="background_color" class="form-control" required value="<?php echo (isset($branchBanner) && is_array($branchBanner) && isset($branchBanner['background_color'])) ? $branchBanner['background_color'] : ''; ?>" >
                             <?php //echo form_error('description','<span class="text-danger mt-1">','</span>'); ?>
+                        </div> -->
+                        <div class="col-md-6">
+                            <label for="background_color" class="form-label">Background Color</label>
+                            <div class="input-group">
+                                <input type="text" name="background_color" id="background_color" class="form-control" placeholder="Add button color" value="<?php echo (isset($branchBanner) && is_array($branchBanner) && isset($branchBanner['background_color'])) ? $branchBanner['background_color'] : ''; ?>">
+                                <input type="color" id="background_color_picker" class="form-control form-control-color" value="<?php echo (isset($branchBanner) && is_array($branchBanner) && isset($branchBanner['background_color'])) ? $branchBanner['background_color'] : ''; ?>">
+                            </div>
+                            <?php echo form_error('background_color','<span class="text-danger mt-1">','</span>'); ?>
                         </div>
 
                         <div class="col-md-6">
@@ -114,3 +122,31 @@
         </div>
     <!-- </form> -->
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const textInput = document.getElementById("background_color");
+    const colorPicker = document.getElementById("background_color_picker");
+
+    // Initial Sync
+    if (textInput.value) {
+        colorPicker.value = textInput.value;
+    } else {
+        textInput.value = colorPicker.value;
+    }
+
+    // Text → Color Picker
+    textInput.addEventListener("input", function () {
+        if (/^#[0-9A-Fa-f]{6}$/.test(this.value)) {
+            colorPicker.value = this.value;
+        }
+    });
+
+    // Color Picker → Text
+    colorPicker.addEventListener("input", function () {
+        textInput.value = this.value;
+    });
+
+});
+</script>

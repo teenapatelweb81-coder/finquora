@@ -11,7 +11,7 @@
         width: 32px;
         height: 32px;
         border-radius: 5px;
-        background-color: #4e73df;
+        background: #4e73df;
         color: white !important;
         transition: all 0.3s ease;
         text-decoration: none;
@@ -19,7 +19,7 @@
    
     
     .icon-btn.btn-danger {
-        background-color: #e74a3b;
+        background: #e74a3b;
     }
     
     .icon-btn i {

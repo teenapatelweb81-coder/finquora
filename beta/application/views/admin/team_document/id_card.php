@@ -16,7 +16,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-color: #f5f5f5;
+            background: #f5f5f5;
         }
         
         .id-card-container {
@@ -101,7 +101,7 @@
         }
         
         .designation {
-            background-color: #90EE90;
+            background: #90EE90;
             color: #006400;
             display: inline-block;
             padding: 5px 20px;

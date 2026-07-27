@@ -27,7 +27,7 @@
     .custom-card {
       padding-right: 0 !important;
       border: 1px solid #000;
-      /* background-color: #00883c; */
+      /* background: #00883c; */
     }
     /* clip-path: polygon(0px 0, 21% 50%, 64% 12%, 100% 0, 100% 100%, 0 100%); */
     .wave{

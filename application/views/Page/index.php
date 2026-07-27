@@ -88,7 +88,14 @@ $datas = !empty($datas) ? $datas : [
 
 <!--=================slider============================================-->
 
-<div id="slider" class="inspiro-slider slider-fullscreen dots-creative flickity-enabled" data-height-xs="360" data-autoplay="8000" data-items="1" data-loop="true">
+<!-- <div id="slider" class="inspiro-slider slider-fullscreen dots-creative flickity-enabled" data-height-xs="360" data-autoplay="8000" data-items="1" data-loop="false"> -->
+  <div id="slider"
+     class="inspiro-slider slider-fullscreen dots-creative"
+     data-height-xs="360"
+     data-autoplay="0"
+     data-items="1"
+     data-loop="false"
+     data-arrows="true">
   <?php 
     if (!empty($sliders)) {
     foreach ($sliders as $key => $slide) {                 

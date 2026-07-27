@@ -18,7 +18,7 @@
         .payment-container {
             max-width: 900px;
             margin: 50px auto;
-            background-color: white;
+            background: white;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 30px;
@@ -39,7 +39,7 @@
             padding: 20px;
         }
         .qr-bank-section {
-            background-color: #f8f9fa;
+            background: #f8f9fa;
             padding: 20px;
             border-radius: 10px;
             text-align: center;
@@ -53,7 +53,7 @@
             color: <?= (isset($payment['bg_color'])) ? $payment['bg_color'] : '' ?>;
         }
         .submit-btn {
-            background-color: <?= (isset($payment['bg_color'])) ? $payment['bg_color'] : '' ?>;
+            background: <?= (isset($payment['bg_color'])) ? $payment['bg_color'] : '' ?>;
             color: white;
             width: 100%;
             padding: 10px;
@@ -64,7 +64,7 @@
             transition: background-color 0.3s;
         }
         .submit-btn:hover {
-            background-color: <?= (isset($payment['bg_color'])) ? $payment['bg_color'] : '' ?>;
+            background: <?= (isset($payment['bg_color'])) ? $payment['bg_color'] : '' ?>;
         }
         .safe-payment {
             color: <?= (isset($payment['bg_color'])) ? $payment['bg_color'] : '' ?>;

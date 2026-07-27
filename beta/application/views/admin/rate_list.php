@@ -25,7 +25,7 @@ $seg_id = $this->uri->segment(2);
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background: #ccc;
   -webkit-transition: .4s;
   transition: .4s;
 }
@@ -37,13 +37,13 @@ $seg_id = $this->uri->segment(2);
   width: 26px;
   left: 4px;
   bottom: 4px;
-  background-color: white;
+  background: white;
   -webkit-transition: .4s;
   transition: .4s;
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+  background: #2196F3;
 }
 
 input:focus + .slider {

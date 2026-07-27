@@ -84,12 +84,19 @@
                             });
                         </script>
 
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <label for="background_color" class="form-label">Background_Color<span class="text-danger">*</span></label>
                             <input name="background_color" id="background_color" class="form-control" required value="<?= isset($buynowBanner['background_color']) ? $buynowBanner['background_color']: ''; ?>" >
                             <?php //echo form_error('description','<span class="text-danger mt-1">','</span>'); ?>
+                        </div> -->
+                            <div class="col-md-6">
+                            <label for="background_color" class="form-label">Background Color</label>
+                            <div class="input-group">
+                                <input type="text" name="background_color" id="background_color" class="form-control" placeholder="Add button color" value="<?= (isset($buynowBanner['background_color'])) ? trim($buynowBanner['background_color']) : '' ; ?>">
+                                <input type="color" id="background_color_picker" class="form-control form-control-color" value="<?= (isset($buynowBanner['background_color'])) ? trim($buynowBanner['background_color']) : '' ; ?>">
+                            </div>
+                            <?php echo form_error('background_color','<span class="text-danger mt-1">','</span>'); ?>
                         </div>
-
                       
 
 
@@ -122,3 +129,31 @@
         </div>
     <!-- </form> -->
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const textInput = document.getElementById("background_color");
+    const colorPicker = document.getElementById("background_color_picker");
+
+    // Initial Sync
+    if (textInput.value) {
+        colorPicker.value = textInput.value;
+    } else {
+        textInput.value = colorPicker.value;
+    }
+
+    // Text → Color Picker
+    textInput.addEventListener("input", function () {
+        if (/^#[0-9A-Fa-f]{6}$/.test(this.value)) {
+            colorPicker.value = this.value;
+        }
+    });
+
+    // Color Picker → Text
+    colorPicker.addEventListener("input", function () {
+        textInput.value = this.value;
+    });
+
+});
+</script>

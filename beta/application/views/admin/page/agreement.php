@@ -298,7 +298,7 @@
                                                             <img src="<?= base_url('uploads/signatures/'.$user_signature) ?>" 
                                                                  alt="Your Signature" 
                                                                  class="img-thumbnail shadow-sm" 
-                                                                 style="max-height: 80px; background-color: #fff;">
+                                                                 style="max-height: 80px; background: #fff;">
                                                             <span class="badge bg-success position-absolute top-0 start-100 translate-middle">
                                                                 <i class="fas fa-check"></i> Saved
                                                             </span>
@@ -389,7 +389,7 @@
 
 /* Typography */
 body {
-    background-color: #f5f7fb;
+    background: #f5f7fb;
     color: #4a5568;
     line-height: 1.7;
 }
@@ -494,7 +494,7 @@ h1, h2, h3, h4, h5, h6 {
 .upload-area {
     border: 2px dashed #cbd5e0;
     border-radius: var(--border-radius);
-    background-color: #fff;
+    background: #fff;
     transition: var(--transition);
     cursor: pointer;
     position: relative;
@@ -504,7 +504,7 @@ h1, h2, h3, h4, h5, h6 {
 .upload-area:hover, 
 .upload-area.dragover {
     border-color: var(--primary-color);
-    background-color: rgba(67, 97, 238, 0.03);
+    background: rgba(67, 97, 238, 0.03);
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(67, 97, 238, 0.1);
 }
@@ -515,7 +515,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .upload-area:hover .icon-container {
     transform: translateY(-3px);
-    background-color: rgba(67, 97, 238, 0.1) !important;
+    background: rgba(67, 97, 238, 0.1) !important;
 }
 
 /* Buttons */
@@ -533,13 +533,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-primary {
-    background-color: var(--primary-color);
+    background: var(--primary-color);
     border-color: var(--primary-color);
     box-shadow: 0 4px 6px rgba(67, 97, 238, 0.2);
 }
 
 .btn-primary:hover {
-    background-color: #3a56d4;
+    background: #3a56d4;
     border-color: #3a56d4;
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(67, 97, 238, 0.25);
@@ -628,7 +628,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .party-header {
     border-left: 4px solid #4361ee;
-    background-color: #f8f9fa;
+    background: #f8f9fa;
 }
 
 .party-details {

@@ -308,11 +308,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 .btn-outline-primarys:hover {
     color: #fff;
-    background-color: var(--primary-colors);
+    background: var(--primary-colors);
     border-color: var(--primary-colors);
 }
 .bg-primarys {
-    background-color: var(--primary-colors);
+    background: var(--primary-colors);
 }
 .card {
     border: none;
@@ -329,7 +329,7 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 
 .card-header {
-    background-color: #fff;
+    background: #fff;
     border-bottom: 1px solid #e3e6f0;
     padding: 1rem 1.5rem;
 }
@@ -370,22 +370,22 @@ document.addEventListener('DOMContentLoaded', function() {
     color: var(--primary-colors);
 }
 .btn-primarys {
-    background-color: var(--primary-colors);
+    background: var(--primary-colors);
     border-color: var(--primary-colors);
 }
 
 .btn-primarys:hover {
-    background-color: #2e59d9;
+    background: #2e59d9;
     border-color: #2653d4;
 }
 
 .btn-success {
-    background-color: var(--success-color);
+    background: var(--success-color);
     border-color: var(--success-color);
 }
 
 .btn-success:hover {
-    background-color: #17a673;
+    background: #17a673;
     border-color: #169b6b;
 }
 
@@ -413,7 +413,7 @@ document.addEventListener('DOMContentLoaded', function() {
 .info-card:hover, .credential-card:hover {
     transform: translateX(5px);
     border-color: #bac8f3;
-    background-color: #fff !important;
+    background: #fff !important;
 }
 
 .qr-code-container {

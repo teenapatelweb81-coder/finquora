@@ -191,7 +191,7 @@ abstract class RuleSet implements Renderable, Commentable
      * as keys. This method exists mainly for backwards-compatibility and is really only partially useful.
      *
      * Note: This method loses some information: Calling this (with an argument of `background-`) on a declaration block
-     * like `{ background-color: green; background-color; rgba(0, 127, 0, 0.7); }` will only yield an associative array
+     * like `{ background: green; background-color; rgba(0, 127, 0, 0.7); }` will only yield an associative array
      * containing the rgba-valued rule while `getRules()` would yield an indexed array containing both.
      *
      * @param Rule|string|null $mRule $mRule

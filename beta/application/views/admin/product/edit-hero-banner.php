@@ -33,6 +33,20 @@
                             <input type="hidden" name="id" class="form-control" value="<?= isset($banner) ? $banner->id : '' ?>" required>
 
                         <hr>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Title</label>
+                                <input type="text" name="title" class="form-control" 
+                                    value="<?= set_value('title', isset($banner) ? $banner->title : '') ?>">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Sub title</label>
+                                <input type="text" name="sub_title" class="form-control" 
+                                    value="<?= set_value('sub_title', isset($banner) ? $banner->sub_title : '') ?>">
+                            </div>
+                        </div>
+
+                        <hr>
                         <h5>Left Section</h5>
 
                         <div class="mb-3">
@@ -86,7 +100,7 @@
                         <hr>
                         <h5>Right Section</h5>
 
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Score Value</label>
                                 <input type="text" name="score_value" class="form-control" 
@@ -97,7 +111,7 @@
                                 <input type="text" name="score_label" class="form-control" 
                                     value="<?= set_value('score_label', isset($banner) ? $banner->score_label : '') ?>">
                             </div>
-                        </div>
+                        </div> -->
                         <div class="mb-3">
                             <div class="form-group">
                                 <label>Image</label>

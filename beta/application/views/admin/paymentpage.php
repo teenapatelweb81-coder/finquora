@@ -14,7 +14,7 @@
         .payment-container {
             max-width: 900px;
             margin: 50px auto;
-            background-color: white;
+            background: white;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 30px;
@@ -35,7 +35,7 @@
             padding: 20px;
         }
         .qr-bank-section {
-            background-color: #f8f9fa;
+            background: #f8f9fa;
             padding: 20px;
             border-radius: 10px;
             text-align: center;
@@ -49,7 +49,7 @@
             color: #006400;
         }
         .submit-btn {
-            background-color: #006400;
+            background: #006400;
             color: white;
             width: 100%;
             padding: 10px;
@@ -60,7 +60,7 @@
             transition: background-color 0.3s;
         }
         .submit-btn:hover {
-            background-color: #004b29;
+            background: #004b29;
         }
         .safe-payment {
             color: #28a745;

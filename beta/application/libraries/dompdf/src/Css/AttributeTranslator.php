@@ -45,7 +45,7 @@ class AttributeTranslator
                 'center' => 'margin-left: auto; margin-right: auto;',
                 'right' => 'margin-left: auto; margin-right: 0;'
             ],
-            'bgcolor' => 'background-color: %s;',
+            'bgcolor' => 'background: %s;',
             'border' => '_set_table_border',
             'cellpadding' => '_set_table_cellpadding', //'border-spacing: %0.2F; border-collapse: separate;',
             'cellspacing' => '_set_table_cellspacing',
@@ -346,7 +346,7 @@ class AttributeTranslator
     {
         $value = self::_get_valid_color($value);
 
-        return "background-color: $value;";
+        return "background: $value;";
     }
 
     protected static function _set_px_width(\DOMElement $node, string $value): string
@@ -586,7 +586,7 @@ class AttributeTranslator
         $value = self::_get_valid_color($value);
 
         foreach ($cell_list as $cell) {
-            self::append_style($cell, "; background-color: $value;");
+            self::append_style($cell, "; background: $value;");
         }
 
         return null;

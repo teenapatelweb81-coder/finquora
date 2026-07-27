@@ -25,7 +25,7 @@
         color: #c52242;
     }
     .form-control, .input-group .input-group-addon{
-        background-color: #ede7e7fa;
+        background: #ede7e7fa;
     } 
     .input-group .input-group-addon{
         line-height: 36px;
@@ -46,7 +46,7 @@
     overflow-y: auto !important;
 }
 .manually_sale ,.manually_sale[readonly],.manually_vendor,.manually_vendor[readonly] {
-    background-color: #c7c9cb ;
+    background: #c7c9cb ;
     pointer-events: none;
 }
 </style>
@@ -6074,7 +6074,7 @@ if (weightkg == 0 && length == 0 && height == 0 && width == 0 && volumetric_w ==
             $('#manually_fuel_get2').val(1);
             // Set value to 0, change background color, and disable pointer events
             $(fields.join(', ')).val(0).css({
-                'background-color': '#FFF',
+                'background': '#FFF',
                 'pointer-events': 'unset'
             });
         }

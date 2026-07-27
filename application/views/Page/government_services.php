@@ -22,7 +22,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
                         <div class="card shadow-lg">
-                            <div class="card-header text-white p-3" style="background-color:<?= isset($heading['color']) ? $heading['color'] :  '#ed940d' ?>">
+                            <div class="card-header text-white p-3" style="background:<?= isset($heading['color']) ? $heading['color'] :  '#ed940d' ?>">
                                 <h3 class="mb-0 text-center"><i class="fas fa-file-invoice-dollar mr-2"></i><?= isset($heading['title']) ? $heading['title'] : 'Government Services' ?>   Form</h3>
                             </div>
                             <?php if ($this->session->flashdata('success')): ?>
@@ -211,12 +211,12 @@ if (pincodeInput) {
 }
 
 .input-group-text {
-    background-color:  <?= isset($heading['color']) ? $heading['color'] :  '#ed940d' ?>;
+    background:  <?= isset($heading['color']) ? $heading['color'] :  '#ed940d' ?>;
     border-radius: 5px 0 0 5px;
 }
 
 .btn-dynamic {
-    background-color:  <?= isset($heading['color']) ? $heading['color'] :  '#ed940d' ?> !important;
+    background:  <?= isset($heading['color']) ? $heading['color'] :  '#ed940d' ?> !important;
     border :1px solid  <?= isset($heading['color']) ? $heading['color'] :  '#ed940d' ?> !important;
 }
 
@@ -232,7 +232,7 @@ if (pincodeInput) {
 
 /* Custom checkbox style */
 .form-check-input:checked {
-    background-color: #0d6efd;
+    background: #0d6efd;
     border-color: #0d6efd;
 }
 

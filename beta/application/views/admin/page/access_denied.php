@@ -44,7 +44,7 @@
         min-height: 80vh;
     }
     .bg-soft-danger {
-        background-color: rgba(220, 53, 69, 0.1) !important;
+        background: rgba(220, 53, 69, 0.1) !important;
     }
     .card {
         border: none;

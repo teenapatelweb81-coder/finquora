@@ -36,7 +36,7 @@
               <div class="bg-image hover-overlay" data-mdb-ripple-init data-mdb-ripple-color="light">
                 <?php if ($data->blogImage){?><img style="height:300px" src="<?= base_url('beta/')?><?= $data->blogImage;?>" class="img-fluid" /><?php }?>
                 <a href="#!">
-                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                  <div class="mask" style="background: rgba(251, 251, 251, 0.15);"></div>
                 </a>
               </div>
               <div class="card-body">

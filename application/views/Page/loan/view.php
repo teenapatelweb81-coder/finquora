@@ -172,7 +172,7 @@ td, th {
                             <textarea name="remark" rows="2" readonly cols="20" class="form-control track-focus" type="text"  style="height: 56px; width: 296px;"><?= $loans['remark']?></textarea>
                         </div> 
 
-                          <div class="col-md-12 mb-12" style="background-color:#fed8b1;padding-top: 4px;margin-bottom: 12px;">
+                          <div class="col-md-12 mb-12" style="background:#fed8b1;padding-top: 4px;margin-bottom: 12px;">
                             <label for="References" class="form-label" style="padding: 2px;">Any Running Loan ?</label>
                         </div>  
                             </div>
@@ -266,7 +266,7 @@ td, th {
                                                 
                                         
                 <div class="form-group row align-items-end"> 
-                        <div class="col-md-12 mb-12" style="background-color:#fed8b1;padding-top: 4px;margin-bottom: 12px;">
+                        <div class="col-md-12 mb-12" style="background:#fed8b1;padding-top: 4px;margin-bottom: 12px;">
                             <label for="References" class="form-label" style="padding: 2px;">References 1 <span class="text-danger">*</span></label>
                         </div>  
                         <div class="col-md-4 mb-4">
@@ -281,7 +281,7 @@ td, th {
                             <label for="relation" class="form-label">Relation <span class="text-danger">*</span></label>
                             <input type="text" name="ref_relation1" value ="<?= $loans['ref_relation1']?>" id="rname" class="form-control" ="">
                         </div> 
-                        <div class="col-md-12 mb-12" style="background-color:#fed8b1;padding-top: 4px;margin-bottom: 12px;">
+                        <div class="col-md-12 mb-12" style="background:#fed8b1;padding-top: 4px;margin-bottom: 12px;">
                             <label for="References" class="form-label"  style="padding: 2px;">References 2 <span class="text-danger">*</span></label>
                         </div>  
                         <div class="col-md-4 mb-4">
@@ -297,7 +297,7 @@ td, th {
                             <input type="text" name="ref_relation2" value ="<?= $loans['ref_relation2']?>" id="rname" class="form-control" ="">
                         </div>
 
-                        <div class="col-md-12 mb-3" style="background-color:#fed8b1;">
+                        <div class="col-md-12 mb-3" style="background:#fed8b1;">
                             <label for="References" class="form-label"  style="padding: 2px;">Upload Documents  <span class="text-danger">*</span></label>
                         </div>  
                     </div>
@@ -370,7 +370,7 @@ td, th {
 
             <?php 
                         if ($this->session->userdata('role') == 1) {?>
-                <div class="col-md-12 mb-3" style="background-color:#fed8b1;">
+                <div class="col-md-12 mb-3" style="background:#fed8b1;">
                             <label for="References" class="form-label"  style="padding: 2px;">For Remarks  <span class="text-danger">*</span></label>
                         </div> 
                 </div>

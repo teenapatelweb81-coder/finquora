@@ -1,4 +1,8 @@
-
+<style>
+    .background-columbia-blue {
+        background: <?= !empty($branchBanner['background_color']) ? htmlspecialchars($branchBanner['background_color']) : '#77E3FD' ?> !important;
+    }
+</style>
         <!--====================header close=============================-->
 
         <!--=================slider============================================-->
