@@ -15,6 +15,7 @@ $sliders = !empty($sliders) ? $sliders : [
         'sub_title' => 'Discover our amazing services',
         'url' => '#',
         'button_name' => 'Learn More',
+        'button_color' => '#ed940d',
         'slider_image' => 'default-slide.jpg'
     ]
 ];
@@ -89,7 +90,35 @@ $datas = !empty($datas) ? $datas : [
     width:200px !important;
     height:200px !important;
   }
-
+.flickity-button.next:before, .flickity-button.previous:before {
+    font-size: 20px;
+}
+.flickity-button {
+    background: #0000006e !important;
+    opacity: 1;
+}
+.flickity-button.previous {
+    right: auto;
+    left: 10px;
+}
+.flickity-button.next {
+    right: 10px;
+    left: auto;
+}
+@media (max-width: 992px) {
+    .inspiro-slider .flickity-prev-next-button {
+        display: block;
+    }
+}
+.inspiro-slider .flickity-button {
+    width: 40px;
+    height: 40px;
+    line-height: 38px;
+    border-radius: 10px;
+}
+.inspiro-slider .flickity-button::before {
+    line-height: 40px;
+}
 </style>
 
 <!--=================slider============================================-->
@@ -112,7 +141,7 @@ $datas = !empty($datas) ? $datas : [
           <div class="col-lg-6 col-md-6 col-12 align-self-center fadeInUp">
             <h2 class="text-dark"><?= $slide['title']?></h2> 
             <p class="text-dark"><?= $slide['sub_title']?></p>
-            <a href="<?= base_url($slide['url']); ?>" class="btn btn-outline btn-rounded btn-reveal btn-reveal-right">
+            <a href="<?= base_url($slide['url']); ?>" class="btn btn-outline btn-rounded btn-reveal btn-reveal-right" style="background: <?= $slide['button_color'] ?>;border: unset !important;" >
                 <span><?= $slide['button_name'] ?></span>
                 <i class="fa fa-arrow-right"></i>
             </a>
