@@ -9090,6 +9090,10 @@ public function id_genrate_docx()
                 'text' => $post['text'],
                 'background_color' => $post['background_color'],
                 'user_id' => $this->session->userdata('user_id'),
+                 'button_name' => $post['button_name'],
+                'button_link' => $post['button_link'],
+                'button_color' => $post['button_color'],
+                'text_color' => $post['text_color'],
                 'domain_id' => $post['domain_id'],
             );
         
@@ -9382,6 +9386,10 @@ public function id_genrate_docx()
                 'title' => $post['title'],
                 'text' => $post['text'],
                 'background_color' => $post['background_color'],
+                'button_name' => $post['button_name'],
+                'button_link' => $post['button_link'],
+                'button_color' => $post['button_color'],
+                'text_color' => $post['text_color'],
                 'domain_id' =>$post['domain_id'],
                 'user_id' => $this->session->userdata('user_id'),
             );

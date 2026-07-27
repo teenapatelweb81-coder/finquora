@@ -7,11 +7,15 @@
         <div class="container">
             <div class="slide-captions row">
                 <div class="col-lg-6 col-md-6 col-12 align-self-center fadeInUp">
-                    <h1 class="text-medium"><?php echo isset($dsaBanner['title']) && !empty($dsaBanner['title']) ? htmlspecialchars($dsaBanner['title']) : 'Join Our DSA Program Today'; ?></h1>
-                    <p><?php echo isset($dsaBanner['text']) && !empty($dsaBanner['text']) ? htmlspecialchars($dsaBanner['text']) : 'Earn high commissions by sharing your unique referral link with your network.'; ?></p>
-                    <a href="<?php echo base_url('/agent'); ?>" class="btn btn-outline btn-rounded btn-reveal btn-reveal-right">
-                        <span>Apply Now</span><i class="fa fa-arrow-right"></i>
-                    </a>
+                    <h1 class="text-medium"  style="color:<?php echo !empty($dsaBanner['text_color']) ? htmlspecialchars($dsaBanner['text_color']) : '#000000'; ?>"><?php echo isset($dsaBanner['title']) && !empty($dsaBanner['title']) ? htmlspecialchars($dsaBanner['title']) : 'Join Our DSA Program Today'; ?></h1>
+                    <p  style="color:<?php echo !empty($dsaBanner['text_color']) ? htmlspecialchars($dsaBanner['text_color']) : '#000000.'; ?>"><?php echo isset($dsaBanner['text']) && !empty($dsaBanner['text']) ? htmlspecialchars($dsaBanner['text']) : 'Earn high commissions by sharing your unique referral link with your network.'; ?></p>
+                   <a href="<?php echo !empty($dsaBanner['button_link']) ? htmlspecialchars($dsaBanner['button_link']) : base_url('agent'); ?>"
+                        class="btn btn-outline btn-rounded btn-reveal btn-reveal-right"
+                        style="background: <?php echo !empty($dsaBanner['button_color']) ? htmlspecialchars($dsaBanner['button_color']) : '#007bff'; ?>; border: unset !important; color: <?php echo !empty($dsaBanner['text_color']) ? htmlspecialchars($dsaBanner['text_color']) : '#ffffff'; ?>;">
+                            
+                            <?php echo !empty($dsaBanner['button_name']) ? htmlspecialchars($dsaBanner['button_name']) : 'Apply Now'; ?>
+
+                        </a>
                 </div>
                 <div class="col-lg-6 col-md-6 col-12 fadeInUp">
                     <img src="<?php echo isset($dsaBanner['image']) && !empty($dsaBanner['image']) ? base_url('beta/assets/images/dsaBanner/' . htmlspecialchars($dsaBanner['image'])) : base_url('beta/assets/images/dsaBanner/default-banner.jpg'); ?>" alt="premium membership" class="img-fluid" />

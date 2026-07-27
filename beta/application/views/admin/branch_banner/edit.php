@@ -73,6 +73,33 @@
                             <?php //echo form_error('description','<span class="text-danger mt-1">','</span>'); ?>
                         </div> -->
                         <div class="col-md-6">
+                            <label for="button_name" class="form-label">Button Name<span class="text-danger">*</span></label>
+                            <input type="text" name="button_name" id="button_name" class="form-control " required value="<?php echo (isset($branchBanner) && is_array($branchBanner) && isset($branchBanner['button_name'])) ? $branchBanner['button_name'] : ''; ?>" >
+                            <?php //echo form_error('button_name','<span class="text-danger mt-1">','</span>'); ?>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="button_link" class="form-label">Button Link<span class="text-danger">*</span></label>
+                            <input type="text" name="button_link" id="button_link" class="form-control" required value="<?php echo (isset($branchBanner) && is_array($branchBanner) && isset($branchBanner['button_link'])) ? $branchBanner['button_link'] : ''; ?>" >
+                            <?php //echo form_error('button_link','<span class="text-danger mt-1">','</span>'); ?>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="button_color" class="form-label">Button Color</label>
+                            <div class="input-group">
+                                <input type="text" name="button_color" id="button_color" class="form-control text-left" placeholder="Add button color" value="<?php echo (isset($branchBanner) && is_array($branchBanner) && isset($branchBanner['button_color'])) ? $branchBanner['button_color'] : ''; ?>">
+                                <input type="color" id="button_color_picker" class="form-control form-control-color" value="<?php echo (isset($branchBanner) && is_array($branchBanner) && isset($branchBanner['button_color'])) ? $branchBanner['button_color'] : ''; ?>">
+                            </div>
+                            <?php echo form_error('button_color','<span class="text-danger mt-1">','</span>'); ?>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="text_color" class="form-label">Text Color</label>
+                            <div class="input-group">
+                                <input type="text" name="text_color" id="text_color" class="form-control" placeholder="Add button color" value="<?php echo (isset($branchBanner) && is_array($branchBanner) && isset($branchBanner['text_color'])) ? $branchBanner['text_color'] : ''; ?>">
+                                <input type="color" id="text_color_picker" class="form-control form-control-color" value="<?php echo (isset($branchBanner) && is_array($branchBanner) && isset($branchBanner['text_color'])) ? $branchBanner['text_color'] : ''; ?>">
+                            </div>
+                            <?php echo form_error('text_color','<span class="text-danger mt-1">','</span>'); ?>
+                        </div>
+
+                        <div class="col-md-6">
                             <label for="background_color" class="form-label">Background Color</label>
                             <div class="input-group">
                                 <input type="text" name="background_color" id="background_color" class="form-control" placeholder="Add button color" value="<?php echo (isset($branchBanner) && is_array($branchBanner) && isset($branchBanner['background_color'])) ? $branchBanner['background_color'] : ''; ?>">
@@ -122,31 +149,43 @@
         </div>
     <!-- </form> -->
 </div>
-
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-    const textInput = document.getElementById("background_color");
-    const colorPicker = document.getElementById("background_color_picker");
+    function initColorPicker(textInputId, colorPickerId) {
+        const textInput = document.getElementById(textInputId);
+        const colorPicker = document.getElementById(colorPickerId);
 
-    // Initial Sync
-    if (textInput.value) {
-        colorPicker.value = textInput.value;
-    } else {
-        textInput.value = colorPicker.value;
+        if (!textInput || !colorPicker) return;
+
+        // Initial Sync
+        if (textInput.value) {
+            colorPicker.value = textInput.value;
+        } else {
+            textInput.value = colorPicker.value;
+        }
+
+        // Text → Color Picker
+        textInput.addEventListener("input", function () {
+            if (/^#[0-9A-Fa-f]{6}$/.test(this.value)) {
+                colorPicker.value = this.value;
+            }
+        });
+
+        // Color Picker → Text
+        colorPicker.addEventListener("input", function () {
+            textInput.value = this.value;
+        });
     }
 
-    // Text → Color Picker
-    textInput.addEventListener("input", function () {
-        if (/^#[0-9A-Fa-f]{6}$/.test(this.value)) {
-            colorPicker.value = this.value;
-        }
-    });
+    // Background Color
+    initColorPicker("background_color", "background_color_picker");
 
-    // Color Picker → Text
-    colorPicker.addEventListener("input", function () {
-        textInput.value = this.value;
-    });
+    // Button Color
+    initColorPicker("button_color", "button_color_picker");
+
+    // Text Color
+    initColorPicker("text_color", "text_color_picker");
 
 });
 </script>
