@@ -11,7 +11,7 @@
                     <p  style="color:<?php echo !empty($dsaBanner['text_color']) ? htmlspecialchars($dsaBanner['text_color']) : '#000000.'; ?>"><?php echo isset($dsaBanner['text']) && !empty($dsaBanner['text']) ? htmlspecialchars($dsaBanner['text']) : 'Earn high commissions by sharing your unique referral link with your network.'; ?></p>
                    <a href="<?php echo !empty($dsaBanner['button_link']) ? htmlspecialchars($dsaBanner['button_link']) : base_url('agent'); ?>"
                         class="btn btn-outline btn-rounded btn-reveal btn-reveal-right"
-                        style="background: <?php echo !empty($dsaBanner['button_color']) ? htmlspecialchars($dsaBanner['button_color']) : '#007bff'; ?>; border: unset !important; color: <?php echo !empty($dsaBanner['text_color']) ? htmlspecialchars($dsaBanner['text_color']) : '#ffffff'; ?>;">
+                        style="background: <?php echo !empty($dsaBanner['button_color']) ? htmlspecialchars($dsaBanner['button_color']) : '#007bff'; ?>; border: unset !important;">
                             
                             <?php echo !empty($dsaBanner['button_name']) ? htmlspecialchars($dsaBanner['button_name']) : 'Apply Now'; ?>
 

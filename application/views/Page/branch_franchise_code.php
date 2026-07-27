@@ -24,10 +24,6 @@
                    <a href="<?php echo !empty($branchBanner['button_link']) ? htmlspecialchars($branchBanner['button_link']) : base_url('branch-franchise'); ?>"
                         class="btn btn-outline btn-rounded btn-reveal btn-reveal-right"
                         style="background: <?php echo !empty($branchBanner['button_color']) ? htmlspecialchars($branchBanner['button_color']) : '#007bff'; ?>; border: unset !important; color: <?php echo !empty($branchBanner['text_color']) ? htmlspecialchars($branchBanner['text_color']) : '#ffffff'; ?>;">
-                            
-                            <?php echo !empty($branchBanner['button_name']) ? htmlspecialchars($branchBanner['button_name']) : 'Apply Now'; ?>
-
-                        </a>
                         <span><?php echo !empty($branchBanner['button_text']) ? htmlspecialchars($branchBanner['button_text']) : 'Apply Now.'; ?></span><i class="fa fa-arrow-right"></i>
                     </a>
                 </div>
