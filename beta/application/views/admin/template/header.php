@@ -1,12 +1,48 @@
 <!DOCTYPE html>
 <html>
    <head>
+   <?php $currentURL = $this->uri->segment(2);
+      $domain_id = domain_id_get();
+      $hedercontectUs = $this->db->where('domain_id', $domain_id)->get('contect_us')->row_array();
+      $logo_path = !empty($hedercontectUs['logo']) && file_exists(FCPATH . 'assets/images/logo/' . $hedercontectUs['logo']) 
+      ? base_url('assets/images/logo/' . $hedercontectUs['logo']) 
+      : base_url('upload/assets/images/default-logo.png');
+      $logo_icon_path = !empty($hedercontectUs['logo_icon']) && file_exists(FCPATH . 'assets/images/logo/' . $hedercontectUs['logo_icon']) 
+      ? base_url('assets/images/logo/' . $hedercontectUs['logo_icon']) 
+      : base_url('upload/assets/images/default-logo.png');
+      
+      $adminColor = $this->db->where( array('domain_id' => $domain_id))->get('admin_color')->row_array();
+      $menu_possition = $this->db->where( array('domain_id' => 3))->get('menu_possition')->row_array();
+   
+   if($domain_id == 3) { ?>
+   <meta name="title" content="Finquora | Instant Loans, DSA Registration, Personal Loans, Business Loans & Financial Services India" />
+   <meta name="description" content="Finquora helps you apply for Instant Loans, DSA Registration, personal loan, business and home loans, financial consultation and government services online in India" />
+   <meta name="keywords" content="Instant Loans, DSA Registration, Best Personal Loan Consultant, Business Loans, GST Registration, Business Loan for MSME, Loan Consultant, Loan Services, Udyam Registration, Business Loan for Startup, Apply Home Loan Online, Shop Act Registration Consultant, Loan Against Property, Car Loan" />
+   <meta name="robots" content="index, follow" />
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   <meta name="language" content="English" />
+   <link rel="canonical" href="https://www.finquora.org/" />
+   <meta name="google-site-verification" content="S-BaUtfGc4DLoz2xDXwlSfhN65BX9isukLMn28jiKyc" />
+   <!-- Google tag (gtag.js) -->
+   <script async src="https://www.googletagmanager.com/gtag/js?id=G-G5JS4ZCJ8J"></script>
+   <script>
+   window.dataLayer = window.dataLayer || [];
+   function gtag(){dataLayer.push(arguments);}
+   gtag('js', new Date());
+
+   gtag('config', 'G-G5JS4ZCJ8J');
+   </script>
+   <?php }else{ ?>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <title>DASHBOARD</title>
       <meta name="description" content="">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <meta name="robots" content="all,follow">
+   <?php } ?>
+      <title>DASHBOARD</title>
+
+
+
       <!-- Bootstrap CSS-->
       <link rel="stylesheet" href="<?php echo base_url(); ?>upload/admin/vendor/bootstrap/css/bootstrap.min.css">
       <!-- Font Awesome CSS-->
@@ -44,23 +80,6 @@
       <link rel="stylesheet" href="<?php echo base_url(); ?>upload/admin/plugins/daterangepicker/daterangepicker.css">
       <!-- summernote -->
       <link rel="stylesheet" href="<?php echo base_url(); ?>upload/admin/plugins/summernote/summernote-bs4.min.css">
-      
-      
-      
-      <?php $currentURL = $this->uri->segment(2);
-   $domain_id = domain_id_get();
-   $hedercontectUs = $this->db->where('domain_id', $domain_id)->get('contect_us')->row_array();
-   $logo_path = !empty($hedercontectUs['logo']) && file_exists(FCPATH . 'assets/images/logo/' . $hedercontectUs['logo']) 
-   ? base_url('assets/images/logo/' . $hedercontectUs['logo']) 
-   : base_url('upload/assets/images/default-logo.png');
-   $logo_icon_path = !empty($hedercontectUs['logo_icon']) && file_exists(FCPATH . 'assets/images/logo/' . $hedercontectUs['logo_icon']) 
-   ? base_url('assets/images/logo/' . $hedercontectUs['logo_icon']) 
-   : base_url('upload/assets/images/default-logo.png');
-   
-   $adminColor = $this->db->where( array('domain_id' => $domain_id))->get('admin_color')->row_array();
-   $menu_possition = $this->db->where( array('domain_id' => 3))->get('menu_possition')->row_array();
-
-   ?>
    <link rel="apple-touch-icon" sizes="180x180" href="<?= $logo_icon_path ?>">
    <link rel="icon" type="image/png" sizes="16x16" href="<?= $logo_icon_path ?>">
    <link rel="icon" type="image/x-icon" href="<?= $logo_icon_path ?>">

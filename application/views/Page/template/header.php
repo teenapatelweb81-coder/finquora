@@ -16,13 +16,33 @@
     // print_r($hedercontectUs);die;
     $default_phone = '';
     $default_email = '';
+
+if($domain_ids == 3) {
 ?>
+<meta name="title" content="Finquora | Instant Loans, DSA Registration, Personal Loans, Business Loans & Financial Services India" />
+<meta name="description" content="Finquora helps you apply for Instant Loans, DSA Registration, personal loan, business and home loans, financial consultation and government services online in India" />
+<meta name="keywords" content="Instant Loans, DSA Registration, Best Personal Loan Consultant, Business Loans, GST Registration, Business Loan for MSME, Loan Consultant, Loan Services, Udyam Registration, Business Loan for Startup, Apply Home Loan Online, Shop Act Registration Consultant, Loan Against Property, Car Loan" />
+<meta name="robots" content="index, follow" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="language" content="English" />
+<link rel="canonical" href="https://www.finquora.org/" />
+<meta name="google-site-verification" content="S-BaUtfGc4DLoz2xDXwlSfhN65BX9isukLMn28jiKyc" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G5JS4ZCJ8J"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-G5JS4ZCJ8J');
+</script>
+<?php }else{ ?>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Expert Financial Consultation with <?= isset($contectUs['company_title']) && !empty($contectUs['company_title']) ? $contectUs['company_title'] : '' ?>™ Quick Registration and Process. Apply Now at <?= isset($contectUs['company_title']) && !empty($contectUs['company_title']) ? $contectUs['company_title'] : '' ?>.com & Get Best Financial Consultation" />
     <meta name="keywords" content="Apply for Personal loan, Personal loan online, personal loan approval" />
-
+<?php } ?>
     <!-- Favicon and Apple Touch Icon -->
     <?php
     // Define base URL for assets

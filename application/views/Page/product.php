@@ -271,7 +271,7 @@
       
       card.innerHTML = `
         <div class="product-logo text-6xl mb-6"><img style="max-width:80px;max-height:80px;margin: auto;" src="${product.logo ? '<?= base_url('beta/') ?>' + product.logo : ''}"></div>
-        <h3 class="font-semibold text-2xl mb-2 ">${product.name || ''}</h3>
+        <h3 class="font-semibold text-2xl mb-2">${product.name || ''}</h3>
         <p class="text-3xl font-bold text-[#0370b5] mb-3">${product.amount || ''}</p>
         <p class="text-emerald-600 font-medium mb-6">${product.benefit || ''}</p>
         <div class="absolute bottom-2.5 left-[15px] w-full">
